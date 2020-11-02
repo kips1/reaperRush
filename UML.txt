@@ -1,0 +1,30 @@
+@startuml
+
+title Classes - Class Diagram
+
+
+class Main {
+  -int difficulty
+  -Player player
+  -Track track
+  -Reaper reaper
+  -Obstacle obstacle
+  -Server server
+  +void Main()
+  +void initGraphics()
+  +void setDifficulty()
+  +int getDifficulty()
+}
+
+abstract class Player
+class Track extends Map
+class Runner extends Player
+class Reaper extends Player
+abstract class Obstacle
+class Box extends Obstacle
+class Server
+class Map
+class Control
+class UI
+
+@enduml
