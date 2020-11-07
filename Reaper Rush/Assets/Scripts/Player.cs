@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private CharacterController controller;
     private float yVelocity = 0.0f;
     private float xDirection = 0;
+    private float zDirection = 1;
     public Text distanceMoved;
     private float distanceUnit;
 
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = new Vector3(xDirection, 0, 1);
+        Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
         if (controller.isGrounded)
@@ -67,8 +68,4 @@ public class Player : MonoBehaviour
         distanceMoved.text = distanceUnit.ToString();
     }
 
-    void getBoundry()
-    {
-        
-    }
 }

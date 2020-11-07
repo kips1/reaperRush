@@ -17,11 +17,13 @@ public class ObstacleScript : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player")
+        if (collider.gameObject.CompareTag("Player"))
         {
-            generate.Message(myNum);
             render.material.color = Color.green;
+            generate.Message(myNum);
+            Debug.Log("Works!");
+
         }
     }
-
+    
 }
