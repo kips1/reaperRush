@@ -21,7 +21,6 @@ public class ObstacleScript : MonoBehaviour
         {
             render.material.color = Color.green;
             generate.Message(myNum);
-            Debug.Log("Works!");
 
         }
     }

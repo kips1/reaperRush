@@ -6,10 +6,10 @@ public class ObstacleGenerator : MonoBehaviour
 {
     public GameObject obstacle;
     Vector3 position;
-    bool next;
+    private bool next;
     public float[] posX;
     public float[] posZ;
-    int value = 1;
+    private int value = 1;
     public int lastPosition = 1;
     
     void FixedUpdate()
@@ -19,7 +19,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     IEnumerator WaitSys()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5.0f);
         next = true;
         Generate();
     }

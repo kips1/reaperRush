@@ -8,10 +8,7 @@ using UnityEngine;
 public class Reaper : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private GameObject playerPosition;
-    private GameObject obstacle;
     private CharacterController controller;
-    private Player runner;
     private float xDirection = 0;
     private float zDirection = 1;
 
@@ -45,7 +42,7 @@ public class Reaper : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            Instantiate(obstacle, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.Euler(0, 0, 0));
+           
         }
 
         controller.Move(velocity * Time.deltaTime);
