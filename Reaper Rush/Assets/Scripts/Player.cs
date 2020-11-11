@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     private float zDirection = 1;
     public Text distanceMoved;
     private float distanceUnit;
-
+    Vector3 direction;
+    Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +29,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = new Vector3(xDirection, 0, zDirection);
-        Vector3 velocity = direction * speed;
+        direction = new Vector3(xDirection, 0, zDirection);
+        velocity = direction * speed;
 
         if (controller.isGrounded)
         {
@@ -68,4 +69,8 @@ public class Player : MonoBehaviour
         distanceMoved.text = distanceUnit.ToString();
     }
 
+    public float GetSpeed()
+    {
+        return velocity.z;
+    }
 }

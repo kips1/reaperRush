@@ -13,6 +13,9 @@ public class Track : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        trackGenerator.RecycleTrack(this.gameObject);
+        if (Camera.main)
+        {
+            trackGenerator.RecycleTrack(this.gameObject);
+        } 
     }
 }
