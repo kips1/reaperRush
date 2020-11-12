@@ -19,9 +19,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     IEnumerator WaitSys()
     {
-
-        yield return new WaitForSeconds(500f);
-
+        yield return new WaitForSeconds(5.0f);
         next = true;
         Generate();
     }
