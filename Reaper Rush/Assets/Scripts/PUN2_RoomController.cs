@@ -9,6 +9,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
     //Player spawn point
     public Transform spawnPoint;
+    public Camera PlayerCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
         //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
         PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0);
-
+        
     }
 
     void OnGUI()

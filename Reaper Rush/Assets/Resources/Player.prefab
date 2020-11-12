@@ -292,7 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 1997562184066409099}
-  localObjects: []
+  localObjects:
+  - {fileID: 3536685614573617542}
 --- !u!114 &393016251079512191
 MonoBehaviour:
   m_ObjectHideFlags: 0

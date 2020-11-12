@@ -445,6 +445,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a,
     type: 3}
   spawnPoint: {fileID: 1184796633}
+  PlayerCamera: {fileID: 0}
 --- !u!4 &1886892606
 Transform:
   m_ObjectHideFlags: 0
