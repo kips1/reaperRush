@@ -83,7 +83,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 RoomOptions roomOptions = new RoomOptions();
                 roomOptions.IsOpen = true;
                 roomOptions.IsVisible = true;
-                roomOptions.MaxPlayers = (byte)10; //Set any number
+                roomOptions.MaxPlayers = (byte)2; //Set any number
 
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
             }

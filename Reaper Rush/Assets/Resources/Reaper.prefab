@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1192028030900807205}
   - component: {fileID: 1192028030900807207}
+  - component: {fileID: 1192028030900807210}
   - component: {fileID: 1192028030900807204}
+  - component: {fileID: 5120304360619008118}
   - component: {fileID: 1192028030900807208}
   - component: {fileID: 1192028030900807211}
-  - component: {fileID: 1192028030900807210}
+  - component: {fileID: 5289199127520811691}
   m_Layer: 0
   m_Name: Reaper
   m_TagString: Untagged
@@ -44,6 +46,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192028030900807206}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1192028030900807210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192028030900807206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505dee99f3398574aa30fe12dde06bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
 --- !u!23 &1192028030900807204
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83,6 +98,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5120304360619008118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192028030900807206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34388e81112cd494da688a69ffcf114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 1192028030900807210}
+  localObjects:
+  - {fileID: 1192028031401336690}
 --- !u!54 &1192028030900807208
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,7 +148,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1192028030900807210
+--- !u!114 &5289199127520811691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +157,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1192028030900807206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505dee99f3398574aa30fe12dde06bdb, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 5120304360619008118}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1192028031401336690
 GameObject:
   m_ObjectHideFlags: 0

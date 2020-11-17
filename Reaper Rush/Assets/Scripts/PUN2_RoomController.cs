@@ -7,8 +7,10 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 {
     //Player instance prefab, must be located in the Resources folder
     public GameObject playerPrefab;
+    public GameObject reaperPrefab;
     //Player spawn point
-    public Transform spawnPoint;
+    public Transform runnerSpawnPoint;
+    public Transform reaperSpawnPoint;
     public Camera PlayerCamera;
 
     // Start is called before the first frame update
@@ -23,7 +25,14 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         }
 
         //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0);
+        if (PhotonNetwork.IsMasterClient == false)
+        {
+            PhotonNetwork.Instantiate(reaperPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
+        }
+        else
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+        }
         
     }
 

@@ -339,6 +339,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &910732944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910732945}
+  m_Layer: 0
+  m_Name: ReaperSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910732945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910732944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 3.7799997, z: 1.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1184796632
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1184796633}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: RunnerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,7 +484,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a,
     type: 3}
-  spawnPoint: {fileID: 1184796633}
+  reaperPrefab: {fileID: 1192028030900807206, guid: 3a12a2c1d35b3c245ab965ff29fbf8e3,
+    type: 3}
+  runnerSpawnPoint: {fileID: 1184796633}
+  reaperSpawnPoint: {fileID: 910732945}
   PlayerCamera: {fileID: 0}
 --- !u!4 &1886892606
 Transform:
