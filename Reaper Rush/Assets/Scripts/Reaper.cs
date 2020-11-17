@@ -1,13 +1,11 @@
-﻿using Packages.Rider.Editor.UnitTesting;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UnityEditor;
 using UnityEngine;
 
 public class Reaper : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 5.0f;
     private CharacterController controller;
     private float xDirection = 0;
     private float zDirection = 1;

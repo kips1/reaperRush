@@ -22,7 +22,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             gameObject.tag = "Player";
             //Add Rigidbody to make the player interact with rigidbody
             Rigidbody r = gameObject.AddComponent<Rigidbody>();
-            r.isKinematic = true;
+            //r.isKinematic = true;
         }
         else
         {
