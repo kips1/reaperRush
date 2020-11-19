@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ae86cf6745ddc4eb3714b87195c59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 9054535584886726201, guid: 293ee7bc273d7354ea52ffaae5ecbab0, type: 3}
   speed: 27
   gravity: 1
   jumpHeight: 15
@@ -296,7 +295,6 @@ MonoBehaviour:
   - {fileID: 1997562184066409099}
   localObjects:
   - {fileID: 3536685614573617542}
-  - {fileID: 9054535584886726201, guid: 293ee7bc273d7354ea52ffaae5ecbab0, type: 3}
 --- !u!114 &393016251079512191
 MonoBehaviour:
   m_ObjectHideFlags: 0

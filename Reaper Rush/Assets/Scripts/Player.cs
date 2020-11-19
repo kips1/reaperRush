@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
-    public GameObject UI;
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
@@ -20,9 +19,6 @@ public class Player : MonoBehaviour
     void Start()
     {
     controller = GetComponent<CharacterController>();
-    if (PhotonNetwork.IsMasterClient == true) { 
-        Instantiate(UI);
-    }
     InvokeRepeating("distance", 0, 1 / speed);
     }
 
