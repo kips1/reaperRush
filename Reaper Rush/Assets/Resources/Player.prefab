@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3536685614573617539}
   - component: {fileID: 3536685614573617540}
   - component: {fileID: 3536685614573617541}
+  - component: {fileID: 998827339}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -83,6 +84,24 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536685614573617542}
   m_Enabled: 1
+--- !u!114 &998827339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536685614573617542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2106aebabf2793847b12f269ba77a122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fog: 1
+  fogColor: {r: 0.7924528, g: 0.7737629, b: 0.77394885, a: 0}
+  fogDensity: 0.05
+  ambientLight: {r: 0.8745099, g: 0.9803922, b: 0.97647065, a: 0}
+  haloStrength: 0.5
+  flareStrength: 1
 --- !u!1 &3536685616307044674
 GameObject:
   m_ObjectHideFlags: 0
