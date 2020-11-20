@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 27
-  gravity: 1
-  jumpHeight: 15
+  gravity: 0.4
+  jumpHeight: 40
   distanceUnit: 0
 --- !u!23 &3536685616307044672
 MeshRenderer:

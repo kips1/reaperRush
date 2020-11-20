@@ -25,12 +25,12 @@ public class Reaper : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) && xDirection < 3.48f)
         {
-            xDirection += 0.01f;
+            xDirection -= 0.01f;
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow) && xDirection > -4.48f)
         {
-            xDirection -= 0.01f;
+            xDirection += 0.01f;
         }
 
         else
