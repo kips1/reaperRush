@@ -63,5 +63,15 @@ public class Player : MonoBehaviour
     {
         distanceUnit = distanceUnit + 1;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            CoinAddScript.coinAmount += 1;
+            Destroy(other.gameObject);
+            
+
+        }
+    }
 
 }
