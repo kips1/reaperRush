@@ -5,6 +5,7 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 
 public class ObstacleScript : MonoBehaviourPun
+
 {
     //public int myNum;
     private ObstacleGenerator generate;
@@ -48,6 +49,7 @@ public class ObstacleScript : MonoBehaviourPun
         }
     }
     
+
 
 
 

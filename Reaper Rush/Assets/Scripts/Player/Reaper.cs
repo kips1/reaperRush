@@ -19,8 +19,10 @@ public class Reaper : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
+
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class Reaper : MonoBehaviour
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
             //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
+
         }
 
         controller.Move(velocity * Time.deltaTime);

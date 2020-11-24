@@ -29,6 +29,7 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(100f);
     }*/
 
+
     public void Generate()
     {
         //if (!next)
@@ -46,6 +47,7 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
             return;
         }
     }
+
 
     /*public void ReaperGenerate(Vector3 reaperPosition)
     {

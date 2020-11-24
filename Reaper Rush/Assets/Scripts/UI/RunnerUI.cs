@@ -13,7 +13,6 @@ public class RunnerUI : MonoBehaviour
     void Start()
     {
         runner = GameObject.FindGameObjectWithTag("Player");
-
     }
 
     // Update is called once per frame
