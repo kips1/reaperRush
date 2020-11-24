@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rock
+  - Reaper
+  - ObstacleGenerator
+  - ReaperObj
+  - RoomController
   layers:
   - Default
   - TransparentFX

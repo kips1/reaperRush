@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 25.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
     private GameObject playerPosition;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     {
         distanceUnit = distanceUnit + 1;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)

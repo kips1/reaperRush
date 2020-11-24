@@ -9,13 +9,10 @@ public class RunnerUI : MonoBehaviour
     public Text Distance;
     private GameObject runner;
     public Text playerName;
-
-    
     // Start is called before the first frame update
     void Start()
     {
         runner = GameObject.FindGameObjectWithTag("Player");
-        
     }
 
     // Update is called once per frame
@@ -23,6 +20,5 @@ public class RunnerUI : MonoBehaviour
     {
         Distance.text = runner.GetComponent<Player>().distanceUnit.ToString();
         playerName.text = PhotonNetwork.NickName;
-        
     }
 }

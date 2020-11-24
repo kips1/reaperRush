@@ -15,7 +15,8 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public Camera PlayerCamera;
 
     // Start is called before the first frame update
-    void Start()
+
+    public void Start()
     {
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)
@@ -26,7 +27,8 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         }
 
         //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-        if (PhotonNetwork.IsMasterClient == true)
+
+        if (PhotonNetwork.IsMasterClient == true && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             PhotonNetwork.Instantiate(playerPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
             PhotonNetwork.Instantiate(UI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
@@ -35,7 +37,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.Instantiate(reaperPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
         }
-        
+
     }
 
     void OnGUI()

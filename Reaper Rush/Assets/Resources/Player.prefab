@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fog: 1
   fogColor: {r: 0.7924528, g: 0.7737629, b: 0.77394885, a: 0}
-  fogDensity: 0.05
+  fogDensity: 0.04
   ambientLight: {r: 0.8745099, g: 0.9803922, b: 0.97647065, a: 0}
   haloStrength: 0.5
   flareStrength: 1
@@ -278,9 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ae86cf6745ddc4eb3714b87195c59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 27
+  speed: 25
   gravity: 0.4
-  jumpHeight: 30
+  jumpHeight: 15
   distanceUnit: 0
 --- !u!23 &3536685616307044672
 MeshRenderer:
@@ -426,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 1997562184066409099}
+  - {fileID: 998827339}
   localObjects:
   - {fileID: 3536685614573617542}
 --- !u!114 &393016251079512191

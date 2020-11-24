@@ -17,7 +17,7 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
     {
         //StartCoroutine(WaitSys());
         if (GameObject.Find("Controller").transform.childCount < 15) {
-        Generate();
+            Generate();
         }
     }
 
@@ -29,7 +29,8 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(100f);
     }*/
 
-    void Generate()
+
+    public void Generate()
     {
         //if (!next)
           //  return;
@@ -47,6 +48,25 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
         }
     }
 
+
+    /*public void ReaperGenerate(Vector3 reaperPosition)
+    {
+        //if (!next)
+        //  return;
+        //if (PhotonNetwork.IsMasterClient == true)
+        //{
+            //int i = Random.Range(0, 3);
+            //position.x = posX[i];
+            //position.z += posZ[i];
+            GameObject obstacleClone2 = PhotonNetwork.Instantiate(obstacle.name, reaperPosition, obstacle.transform.rotation);
+            //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
+            obstacleClone2.transform.SetParent(this.transform);
+            value += 1;
+            next = false;
+            return;
+        //}
+    }
+    */
     public void Message(int i)
     {
         if (lastPosition == i)
