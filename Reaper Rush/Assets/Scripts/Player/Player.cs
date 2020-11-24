@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 25.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
     private GameObject playerPosition;
@@ -13,15 +13,13 @@ public class Player : MonoBehaviour
     private float yVelocity = 0.0f;
     private float xDirection = 0;
     private float zDirection = 1;
-    //public Text distanceMoved;
-    //private float distanceUnit;
+    public float distanceUnit;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        controller = GetComponent<CharacterController>();
-        //InvokeRepeating("distance", 0, 1 / speed);
+    controller = GetComponent<CharacterController>();
+    InvokeRepeating("distance", 0, 1 / speed);
     }
 
     // Update is called once per frame
@@ -61,10 +59,9 @@ public class Player : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    //void distance()
-    //{
-    //    distanceUnit = distanceUnit + 1;
-    //    distanceMoved.text = distanceUnit.ToString();
-    //}
+    void distance()
+    {
+        distanceUnit = distanceUnit + 1;
+    }
 
 }
