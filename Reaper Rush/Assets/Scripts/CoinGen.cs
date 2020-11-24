@@ -9,13 +9,15 @@ public class CoinGen : MonoBehaviour
     // Random rnd = new Random();
     // int x = rnd.Next(-5, 5);
     // int z = rnd.Next(3, 15);
-    int z = Random.Range(10, 25);
+    int z; 
     public int Coins;
 
    void Start()
     {
+        z = Random.Range(10, 25);
         //GameObject CoinClone = Instantiate(coinOriginal);
         CreateCoins(Coins);
+        
     }
     void CreateCoins(int coinsNum)
     {
