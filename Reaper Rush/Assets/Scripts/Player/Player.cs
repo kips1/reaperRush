@@ -40,13 +40,17 @@ public class Player : MonoBehaviour
     {
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
+        
 
         if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                yVelocity = jumpHeight;
+                Debug.Log(anim.GetBool("IsJumping"));
                 anim.SetBool("IsJumping", true);
+                anim.Play("Jump", 1);
+                yVelocity = jumpHeight;
+
             }
 
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
