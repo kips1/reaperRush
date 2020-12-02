@@ -9,6 +9,7 @@ TagManager:
   - ObstacleGenerator
   - ReaperObj
   - RoomController
+  - Coin
   - ReaperUI
   layers:
   - Default
@@ -21,7 +22,7 @@ TagManager:
   - 
   - Coin
   - Rock
-  - 
+  - PowerUP1
   - 
   - 
   - 

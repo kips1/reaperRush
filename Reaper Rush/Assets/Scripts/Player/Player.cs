@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
+    public float distanceValue;
+    public GameObject obstacleGenerator;   
     [SerializeField] private float speed = 25.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
@@ -20,13 +22,17 @@ public class Player : MonoBehaviour
     private float xDirection = 0;
     private float zDirection = 1;
     public float distanceUnit;
+
     public float maxHealth;
     public float currentHealth;
     public bool hasLost;
+    public GameObject ObstacleGeneratorScript;
+    public GameObject obstacle;
 
     // Start is called before the first frame update
     void Start()
     {
+        obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         anim = GetComponent<Animator>();
         maxHealth = 100;
         currentHealth = 100;
@@ -37,7 +43,16 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
+        if (distanceUnit == distanceValue + 30)
+        {
+            Debug.Log("test");
+            obstacleGenerator.SetActive(true);
+
+            //Instantiate(GameObject.FindWithTag("ObstacleGenerator"), new Vector3(0, 0, 0), Quaternion.identity);
+
+        }
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
         
@@ -98,14 +113,39 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        distanceValue = distanceUnit;
         if (other.gameObject.layer == 8)
         {
+            
             CoinAddScript.coinAmount += 1;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.layer == 10)
+        {
+            
+            Destroy(other.gameObject);
+            
+            //Debug.Log("test");
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 30), Quaternion.identity);
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 35), Quaternion.identity);
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 40), Quaternion.identity);
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 45), Quaternion.identity);
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 50), Quaternion.identity);
+            Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 55), Quaternion.identity);
+            obstacleGenerator.SetActive(false);
+            
+            //GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, new Vector3(Random.Range(-4, 4), 2, distanceUnit + 30), obstacle.transform.rotation);
+            //Instantiate(GameObject.FindWithTag("ObstacleGenerator"), new Vector3(0, 0, 0), Quaternion.identity);
+            //sn.Generate();
+
+            //object.GetComponent<ObstacleGenerator>().Generate();
+
+            
+
+        }
+        
     }
-
-
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;

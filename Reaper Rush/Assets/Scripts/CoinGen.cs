@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoinGen : MonoBehaviour
 {
+    
     public GameObject coinOriginal;
     public GameObject CoinContainer;
     // Random rnd = new Random();
@@ -14,6 +15,7 @@ public class CoinGen : MonoBehaviour
 
    void Start()
     {
+        
         z = Random.Range(10, 25);
         //GameObject CoinClone = Instantiate(coinOriginal);
         CreateCoins(Coins);
