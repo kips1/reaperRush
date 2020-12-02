@@ -39,8 +39,9 @@ public class ObstacleScript : MonoBehaviourPun
         if (collider.gameObject.CompareTag("Player"))
         {
             render.material.color = Color.green;
+            runner.GetComponent<Player>().TakeDamage(5);
             //generate.Message(myNum);
-            Debug.Log("Works!");
+            //Debug.Log("Works!");
             //if(SceneManager.GetActiveScene().name == "Game") {
             //    SceneManager.LoadScene("Game2");
             //    PhotonNetwork.LoadLevel("Game2");

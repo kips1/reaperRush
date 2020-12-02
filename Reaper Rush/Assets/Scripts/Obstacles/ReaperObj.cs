@@ -6,6 +6,7 @@ using Photon.Pun;
 public class ReaperObj : MonoBehaviour
 {
     public GameObject obstacle;
+    public GameObject fire;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,15 @@ public class ReaperObj : MonoBehaviour
         GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, position, obstacle.transform.rotation);
         //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
         obstacleClone.transform.SetParent(this.transform, true);
+        }
+    }
+    public void GenerateFire(Vector3 position)
+    {
+        if (PhotonNetwork.IsMasterClient == false)
+        {
+            GameObject obstacleClone = PhotonNetwork.Instantiate(fire.name, position, fire.transform.rotation);
+            //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
+            obstacleClone.transform.SetParent(this.transform, true);
         }
     }
 }

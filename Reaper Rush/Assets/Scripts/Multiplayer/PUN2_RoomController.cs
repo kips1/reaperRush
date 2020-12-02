@@ -7,6 +7,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 {
     //Player instance prefab, must be located in the Resources folder
     public GameObject UI;
+    public GameObject ReaperUI;
     public GameObject playerPrefab;
     public GameObject reaperPrefab;
     //Player spawn point
@@ -36,6 +37,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         else
         {
             PhotonNetwork.Instantiate(reaperPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(ReaperUI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
         }
 
     }

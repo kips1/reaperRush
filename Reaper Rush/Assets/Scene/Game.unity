@@ -398,7 +398,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 479a8481ce9fbb94cbd58e50674b8cf1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.224
+  m_Volume: 0.183
   m_Pitch: 0.86
   Loop: 0
   Mute: 0
@@ -490,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070551790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1253791, y: 1.0799999, z: 159.33682}
+  m_LocalPosition: {x: -1.1253791, y: 1.0799999, z: 401.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -656,6 +656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 9054535584886726201, guid: 293ee7bc273d7354ea52ffaae5ecbab0, type: 3}
+  ReaperUI: {fileID: 7726124870378591685, guid: 8b936fe2fcd770f478564213baf6670c,
+    type: 3}
   playerPrefab: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a,
     type: 3}
   reaperPrefab: {fileID: 1192028030900807206, guid: 3a12a2c1d35b3c245ab965ff29fbf8e3,
@@ -706,7 +708,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60f5131687682c4e8f0da8dec83217a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 0}
+  obstacle: {fileID: 1447450497290581837, guid: 36fe4df5044888b4db2c1b7739ac37c2,
+    type: 3}
+  fire: {fileID: 972907126413355617, guid: 631967b17f2c8294e8ddddee557b6c0a, type: 3}
 --- !u!4 &1947426484
 Transform:
   m_ObjectHideFlags: 0

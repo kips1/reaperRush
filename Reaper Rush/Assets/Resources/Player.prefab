@@ -282,8 +282,12 @@ MonoBehaviour:
   obstacleGenerator: {fileID: 0}
   speed: 25
   gravity: 0.4
-  jumpHeight: 15
+  jumpHeight: 30
+  anim: {fileID: 3536685616307044683}
   distanceUnit: 0
+  maxHealth: 100
+  currentHealth: 100
+  hasLost: 0
   ObstacleGeneratorScript: {fileID: 3749495040766380588, guid: 766263e11ed9e0540a791a0ec6d4dddd,
     type: 3}
   obstacle: {fileID: 0}

@@ -20,12 +20,20 @@ public class ReaperObjScript : MonoBehaviourPun
     void Update()
     {
 
-        if (render.transform.position.z < runner.transform.position.z - 40)
+        if (render.transform.position.z < runner.transform.position.z - 100)
         {
             if (photonView.IsMine) {
             PhotonNetwork.Destroy(gameObject);
             }
         }
 
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("particle test");
+        }
     }
 }
