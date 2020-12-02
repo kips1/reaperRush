@@ -14,6 +14,7 @@ public class Reaper : MonoBehaviour
     public GameObject reaper;
     private Vector3 obstacleSpawn;
     private GameObject ReaperObj;
+    private GameObject ReaperUI;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Reaper : MonoBehaviour
 
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
+        ReaperUI = GameObject.FindGameObjectWithTag("ReaperUI");
 
     }
 
@@ -47,10 +49,18 @@ public class Reaper : MonoBehaviour
             xDirection = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
+            //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+        {
+            obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
+            ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
             //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
 
         }

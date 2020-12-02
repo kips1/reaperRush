@@ -9,6 +9,7 @@ TagManager:
   - ObstacleGenerator
   - ReaperObj
   - RoomController
+  - ReaperUI
   layers:
   - Default
   - TransparentFX
