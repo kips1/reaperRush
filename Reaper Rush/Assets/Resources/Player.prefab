@@ -280,8 +280,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   gravity: 0.4
-  jumpHeight: 15
+  jumpHeight: 30
+  anim: {fileID: 3536685616307044683}
   distanceUnit: 0
+  maxHealth: 100
+  currentHealth: 100
+  hasLost: 0
 --- !u!23 &3536685616307044672
 MeshRenderer:
   m_ObjectHideFlags: 0
