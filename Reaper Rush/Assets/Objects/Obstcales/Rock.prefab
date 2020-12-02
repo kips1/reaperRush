@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1917367955037537676}
   - component: {fileID: 940313025}
   - component: {fileID: 458845608}
+  - component: {fileID: 5750657525193701641}
   m_Layer: 0
   m_Name: Volume16
   m_TagString: Untagged
@@ -108,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45d9ca5a0167c548886c4b8189b4401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myNum: 0
+  runner: {fileID: 0}
 --- !u!65 &458845608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,6 +123,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 91.04201, y: 55.713196, z: 89.78553}
   m_Center: {x: -16.617077, y: 9.779856, z: 9.110075}
+--- !u!114 &5750657525193701641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087312029783086686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6193450199760839890
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +156,8 @@ GameObject:
   - component: {fileID: 6825309177387253352}
   - component: {fileID: 1846092355}
   - component: {fileID: 1753035823337751891}
+  - component: {fileID: 5156572558111317090}
+  - component: {fileID: 832079744914388974}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -206,4 +231,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45d9ca5a0167c548886c4b8189b4401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myNum: 0
+  runner: {fileID: 0}
+--- !u!114 &5156572558111317090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193450199760839890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34388e81112cd494da688a69ffcf114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 1753035823337751891}
+  localObjects:
+  - {fileID: 6193450199760839890}
+--- !u!114 &832079744914388974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193450199760839890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 5156572558111317090}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
