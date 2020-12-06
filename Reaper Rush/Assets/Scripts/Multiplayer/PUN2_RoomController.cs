@@ -38,7 +38,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(playerPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(playerPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
                 PhotonNetwork.Instantiate(UI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
             }
             else
@@ -56,7 +56,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             }
             else
             {
-                PhotonNetwork.Instantiate(playerPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(playerPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
                 PhotonNetwork.Instantiate(UI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
             }
         }
