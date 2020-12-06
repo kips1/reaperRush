@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private GameObject playerPosition;
     private CharacterController controller;
     private HealthBar healthBar;
+    private GameObject rmController;
     public Animator anim;
 
 
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
+        rmController = GameObject.FindWithTag("RoomController");
         anim = GetComponent<Animator>();
         maxHealth = 100;
         currentHealth = 100;
@@ -97,6 +99,11 @@ public class Player : MonoBehaviour
 
         velocity.y = yVelocity;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void Reset()
+    {
+        rmController.GetComponent<PUN2_RoomController>().Start();
     }
 
     void distance()

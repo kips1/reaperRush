@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        health = this.GetComponentInChildren<Image>();
         runner = GameObject.FindGameObjectWithTag("Player");
     }
 

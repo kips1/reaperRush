@@ -11,6 +11,7 @@ TagManager:
   - RoomController
   - Coin
   - ReaperUI
+  - Manager
   layers:
   - Default
   - TransparentFX
