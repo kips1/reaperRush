@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool gameEnded;
 
     private GameObject runner;
+    private GameObject reaper;
     private GameObject rmController;
 
     // Start is called before the first frame update
@@ -27,22 +29,20 @@ public class GameManager : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
+            reaper = GameObject.FindGameObjectWithTag("Reaper");
 
             if (runner.GetComponent<Player>().hasLost && round == 1)
             {
                 round++;
                 gameEnded = true;
                 runner.GetComponent<Player>().Reset();
-                Destroy(runner);
+                reaper.GetComponent<Reaper>().Reset();
+                PhotonNetwork.Destroy(runner);
+                PhotonNetwork.LoadLevel("Game");
             }
 
         }
 
 
-    }
-
-    public void Test()
-    {
-        Debug.Log("Yes");
     }
 }

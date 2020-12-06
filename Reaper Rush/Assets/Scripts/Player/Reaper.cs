@@ -15,6 +15,7 @@ public class Reaper : MonoBehaviour
     private Vector3 obstacleSpawn;
     private GameObject ReaperObj;
     private GameObject ReaperUI;
+    private GameObject rmController;
 
     // Start is called before the first frame update
     void Start()
@@ -67,5 +68,10 @@ public class Reaper : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+    }
+
+    public void Reset()
+    {
+        rmController.GetComponent<PUN2_RoomController>().Start();
     }
 }

@@ -23,19 +23,13 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager");
-        gameEnded = false;
+        gameEnded = manager.GetComponent<GameManager>().gameEnded;
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)
         {
             Debug.Log("Is not in the room, returning back to Lobby");
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
             return;
-        }
-       
-        if (manager.GetComponent<GameManager>().gameEnded )
-        {
-            gameEnded = true;
-            Debug.Log(gameEnded);
         }
 
 
