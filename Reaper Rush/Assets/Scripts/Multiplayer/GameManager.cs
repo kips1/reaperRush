@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
                 runner.GetComponent<Player>().Reset();
                 reaper.GetComponent<Reaper>().Reset();
                 PhotonNetwork.Destroy(runner);
-                //PhotonNetwork.Destroy(reaper);
+                PhotonNetwork.Destroy(reaper);
                 PhotonNetwork.LoadLevel("Game");
             }
 

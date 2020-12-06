@@ -75,5 +75,6 @@ public class Reaper : MonoBehaviour
         PhotonNetwork.Destroy(gameObject);
         Debug.Log("i'm here!");
         rmController.GetComponent<PUN2_RoomController>().Start();
+        PhotonNetwork.LoadLevel("Game");
     }
 }
