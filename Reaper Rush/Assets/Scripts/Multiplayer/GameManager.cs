@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
-        {
-            Destroy(this.gameObject);
-        }
+        //if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
+        //{
+         //   Destroy(this.gameObject);
+       // }
 
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
