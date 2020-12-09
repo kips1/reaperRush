@@ -35,12 +35,12 @@ public class Reaper : MonoBehaviour
         Vector3 velocity = direction * speed;
 
 
-        if (Input.GetKey(KeyCode.RightArrow) && xDirection < 3.48f)
+        if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {
             xDirection -= 0.01f;
         }
 
-        else if (Input.GetKey(KeyCode.LeftArrow) && xDirection > -4.48f)
+        else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
         {
             xDirection += 0.01f;
         }
@@ -50,7 +50,7 @@ public class Reaper : MonoBehaviour
             xDirection = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
@@ -58,7 +58,7 @@ public class Reaper : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);

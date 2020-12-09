@@ -26,7 +26,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Game")
+        {
+            Destroy(this.gameObject);
+        }
+
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
@@ -35,15 +40,20 @@ public class GameManager : MonoBehaviour
             {
                 round++;
                 gameEnded = true;
-                runner.GetComponent<Player>().Reset();
-                reaper.GetComponent<Reaper>().Reset();
-                PhotonNetwork.Destroy(runner);
-                PhotonNetwork.Destroy(reaper);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    runner.GetComponent<Player>().Reset();
+                    PhotonNetwork.Destroy(runner);
+                } else if (!PhotonNetwork.IsMasterClient)
+                {
+                    reaper.GetComponent<Reaper>().Reset();
+
+                    PhotonNetwork.Destroy(reaper);
+                }
                 PhotonNetwork.LoadLevel("Game");
             }
 
         }
-
 
     }
 }

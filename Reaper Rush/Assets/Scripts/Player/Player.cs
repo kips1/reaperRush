@@ -80,6 +80,10 @@ public class Player : MonoBehaviour
                 xDirection += 0.01f;
             }
 
+            else if (Input.GetKey(KeyCode.I) && xDirection < 3.48f)
+            {
+                currentHealth += 10;
+            }
             else
             {
                 xDirection = 0;
