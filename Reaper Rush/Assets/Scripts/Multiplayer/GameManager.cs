@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
                 PhotonNetwork.LoadLevel("RoleSwap");
             }
 
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap")
+            {
+                PhotonNetwork.LoadLevel("Game");
+            }
         }
 
     }

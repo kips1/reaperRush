@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/Game2.unity
     guid: 4b8d9c5b9cda1ce40b9cbbef487c9eef
+  - enabled: 1
+    path: Assets/Scene/RoleSwap.unity
+    guid: 6961b6600c338d24b92d16fe1268af0e
   m_configObjects: {}
