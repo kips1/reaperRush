@@ -46,13 +46,12 @@ public class GameManager : MonoBehaviour
                     PhotonNetwork.Destroy(runner);
                 } else if (!PhotonNetwork.IsMasterClient)
                 {
-                    reaper.GetComponent<Reaper>().Reset();
-                    
-                    PhotonNetwork.Destroy(reaper);
+                    //reaper.GetComponent<Reaper>().Reset();
+                    //PhotonNetwork.Destroy(reaper);
                 }
                 
                 PhotonNetwork.AutomaticallySyncScene = true;
-                PhotonNetwork.LoadLevel("Game");
+                PhotonNetwork.LoadLevel("RoleSwap");
             }
 
         }
