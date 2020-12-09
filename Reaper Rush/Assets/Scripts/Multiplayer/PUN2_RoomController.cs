@@ -22,7 +22,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("Manager");
+        manager = GameObject.FindGameObjectWithTag("mainManager");
         gameEnded = manager.GetComponent<GameManager>().gameEnded;
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)

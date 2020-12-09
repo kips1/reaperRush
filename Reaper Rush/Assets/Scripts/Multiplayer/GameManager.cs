@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
     {
         rmController = GameObject.FindGameObjectWithTag("RoomController");
         gameEnded = false;
-        round = 1;
+        round = 0;
         DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Game")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
         {
             Destroy(this.gameObject);
         }
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
 
-            if (runner.GetComponent<Player>().hasLost && round == 1)
+            if (runner.GetComponent<Player>().hasLost && round == 0)
             {
                 round++;
                 gameEnded = true;
@@ -46,19 +46,23 @@ public class GameManager : MonoBehaviour
                     PhotonNetwork.Destroy(runner);
                 } else if (!PhotonNetwork.IsMasterClient)
                 {
-                    //reaper.GetComponent<Reaper>().Reset();
-                    //PhotonNetwork.Destroy(reaper);
+                    reaper.GetComponent<Reaper>().Reset();
+                    PhotonNetwork.Destroy(reaper);
                 }
+
                 
-                PhotonNetwork.AutomaticallySyncScene = true;
+                    Debug.Log(gameEnded);
                 PhotonNetwork.LoadLevel("RoleSwap");
+                this.gameObject.tag = "mainManager";
             }
 
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap")
-            {
-                PhotonNetwork.LoadLevel("Game");
-            }
+            
         }
 
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
+        {
+            PhotonNetwork.LoadLevel("Game");
+            round++;
+        }
     }
 }
