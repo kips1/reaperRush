@@ -47,9 +47,11 @@ public class GameManager : MonoBehaviour
                 } else if (!PhotonNetwork.IsMasterClient)
                 {
                     reaper.GetComponent<Reaper>().Reset();
-
+                    
                     PhotonNetwork.Destroy(reaper);
                 }
+                
+                PhotonNetwork.AutomaticallySyncScene = true;
                 PhotonNetwork.LoadLevel("Game");
             }
 
