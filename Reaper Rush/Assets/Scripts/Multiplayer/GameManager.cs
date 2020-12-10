@@ -8,17 +8,33 @@ public class GameManager : MonoBehaviour
     private int round;
     private int distanceScore;
     private int coinsCollected;
-    public bool gameEnded;
+    public bool finalRound;
 
     private GameObject runner;
     private GameObject reaper;
     private GameObject rmController;
+    private static GameManager _instance;
+
+    public static GameManager Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rmController = GameObject.FindGameObjectWithTag("RoomController");
-        gameEnded = false;
+        finalRound = false;
         round = 0;
         DontDestroyOnLoad(gameObject);
     }
@@ -26,20 +42,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
-        //{
-         //   Destroy(this.gameObject);
-       // }
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
+        {
+           Destroy(this.gameObject);
+        }
 
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
+            finalRound = true;
 
             if (runner.GetComponent<Player>().hasLost && round == 0)
             {
                 round++;
-                gameEnded = true;
+                finalRound = true;
                 if (PhotonNetwork.IsMasterClient)
                 {
                     runner.GetComponent<Player>().Reset();
@@ -51,7 +68,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 
-                    Debug.Log(gameEnded);
+                    Debug.Log(finalRound);
                 PhotonNetwork.LoadLevel("RoleSwap");
                 this.gameObject.tag = "mainManager";
             }
