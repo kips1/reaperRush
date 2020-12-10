@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int round;
+    public int round;
     private int distanceScore;
     private int coinsCollected;
     public bool finalRound;

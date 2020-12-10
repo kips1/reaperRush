@@ -6,6 +6,7 @@ using Photon.Pun;
 public class ObstacleGenerator : MonoBehaviourPunCallbacks
 {
     public GameObject obstacle;
+    public GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
     Vector3 position;
     bool next;
     public float[] posX;
@@ -32,22 +33,31 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
 
     public void Generate()
     {
-        //if (!next)
-          //  return;
-        if (PhotonNetwork.IsMasterClient == true)
+        if (PhotonNetwork.IsMasterClient == true && gameManager.GetComponent<GameManager>().round == 0)
         {
-            int i = Random.Range(0, 3);
-            position.x = posX[i];
-            position.z += posZ[i];
-            GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, position, obstacle.transform.rotation);
-            //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
-            obstacleClone.transform.SetParent(this.transform);
-            value += 1;
-            next = false;
+            generateObstacles();
             return;
+
+        } else if (!PhotonNetwork.IsMasterClient == true && gameManager.GetComponent<GameManager>().round == 1)
+        {
+            generateObstacles();
+            return;
+
         }
     }
 
+
+    public void generateObstacles()
+    {
+        int i = Random.Range(0, 3);
+        position.x = posX[i];
+        position.z += posZ[i];
+        GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, position, obstacle.transform.rotation);
+        //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
+        obstacleClone.transform.SetParent(this.transform);
+        value += 1;
+        next = false;
+    }
 
     /*public void ReaperGenerate(Vector3 reaperPosition)
     {
