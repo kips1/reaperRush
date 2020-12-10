@@ -20,13 +20,18 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
     // Start is called before the first frame update
 
-    public void Start()
+    public void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("Manager");
         if (manager.GetComponent<GameManager>().finalRound)
         {
             PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
         }
+    }
+
+    public void Start()
+    {
+        
         gameEnded = manager.GetComponent<GameManager>().finalRound;
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)
