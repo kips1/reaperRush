@@ -6,13 +6,20 @@ using Photon.Pun;
 public class ObstacleGenerator : MonoBehaviourPunCallbacks
 {
     public GameObject obstacle;
-    public GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
+    public GameObject gameManager;
     Vector3 position;
     bool next;
     public float[] posX;
     public float[] posZ;
     int value = 1;
     public int lastPosition = 1;
+
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("Manager");
+    }
+
 
     void Update()
     {

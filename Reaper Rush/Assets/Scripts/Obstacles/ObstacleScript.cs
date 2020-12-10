@@ -13,6 +13,7 @@ public class ObstacleScript : MonoBehaviourPun
     public GameObject runner;
     private GameObject reaperobj;
     private GameObject roomController;
+    private GameObject manager;
 
     private void Start()
     {
@@ -20,13 +21,18 @@ public class ObstacleScript : MonoBehaviourPun
         generate = GetComponentInParent<ObstacleGenerator>();
         render = GetComponent<Renderer>();
         roomController = GameObject.FindGameObjectWithTag("RoomController");
+        manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     private void Update()
     {
         if (render.transform.position.z < runner.transform.position.z - 40)
         {
-            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
+            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine && manager.GetComponent<GameManager>().round == 0)
+            {
+                PhotonNetwork.Destroy(gameObject);
+
+            } else if (!PhotonNetwork.IsMasterClient == true && !photonView.IsMine && manager.GetComponent<GameManager>().round == 1)
             {
                 PhotonNetwork.Destroy(gameObject);
             }
