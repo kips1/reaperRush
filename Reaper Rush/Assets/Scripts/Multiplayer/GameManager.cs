@@ -65,12 +65,13 @@ public class GameManager : MonoBehaviour
                 {
                     reaper.GetComponent<Reaper>().Reset();
                     PhotonNetwork.Destroy(reaper);
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
                 }
 
                 
-                    Debug.Log(finalRound);
+                    Debug.Log(round);
                 PhotonNetwork.LoadLevel("RoleSwap");
-                this.gameObject.tag = "mainManager";
+                //this.gameObject.tag = "mainManager";
             }
 
             

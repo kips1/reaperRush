@@ -45,11 +45,6 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
             generateObstacles();
             return;
 
-        } else if (!PhotonNetwork.IsMasterClient == true && gameManager.GetComponent<GameManager>().round == 1)
-        {
-            generateObstacles();
-            return;
-
         }
     }
 
