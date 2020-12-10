@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             {
                 round++;
                 finalRound = true;
-                if (PhotonNetwork.IsMasterClient)
+                /*if (PhotonNetwork.IsMasterClient)
                 {
                     runner.GetComponent<Player>().Reset();
                     PhotonNetwork.Destroy(runner);
@@ -66,12 +66,11 @@ public class GameManager : MonoBehaviour
                     reaper.GetComponent<Reaper>().Reset();
                     PhotonNetwork.Destroy(reaper);
                     
-                }
+                }*/
 
-
-                
-                Debug.Log(PhotonNetwork.PlayerList[1]);
                 PhotonNetwork.LoadLevel("RoleSwap");
+                PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
+
                 //this.gameObject.tag = "mainManager";
             }
 
@@ -80,8 +79,8 @@ public class GameManager : MonoBehaviour
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
-            PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
             PhotonNetwork.LoadLevel("Game");
+
             round++;
         }
     }

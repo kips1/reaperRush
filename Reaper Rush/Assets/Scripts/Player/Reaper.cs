@@ -73,7 +73,6 @@ public class Reaper : MonoBehaviour
     public void Reset()
     {
         PhotonNetwork.Destroy(gameObject);
-        Debug.Log("i'm here!");
         rmController.GetComponent<PUN2_RoomController>().Start();
         PhotonNetwork.LoadLevel("Game");
     }
