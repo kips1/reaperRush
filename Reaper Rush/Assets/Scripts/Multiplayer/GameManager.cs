@@ -72,6 +72,12 @@ public class GameManager : MonoBehaviour
                 PhotonNetwork.LoadLevel("RoleSwap");
 
 
+                if (PhotonNetwork.IsMasterClient && PhotonNetwork.PlayerList.Length > 1)
+                {
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
+                }
+
+
                 //this.gameObject.tag = "mainManager";
             }
 
@@ -80,7 +86,12 @@ public class GameManager : MonoBehaviour
                 round = 1;
             }
 
-            
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
+            {
+
+                PhotonNetwork.LoadLevel("Game");
+
+            }
         }
 
 
