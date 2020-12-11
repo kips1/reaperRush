@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
+            
 
             if (runner.GetComponent<Player>().hasLost && round == 0)
             {
@@ -73,11 +74,21 @@ public class GameManager : MonoBehaviour
                 //this.gameObject.tag = "mainManager";
             }
 
+            if (PhotonNetwork.IsMasterClient == false)
+            {
+                round = 1;
+            }
+
             
         }
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
+            
+            if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
+            {
+                PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
+            }
             PhotonNetwork.LoadLevel("Game");
             round++;
         }

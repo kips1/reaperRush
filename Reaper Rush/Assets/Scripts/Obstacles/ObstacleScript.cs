@@ -28,14 +28,14 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (render.transform.position.z < runner.transform.position.z - 40)
         {
-            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine && manager.GetComponent<GameManager>().round == 0)
+            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
             {
                 PhotonNetwork.Destroy(gameObject);
 
-            } else if (!PhotonNetwork.IsMasterClient == true && !photonView.IsMine && manager.GetComponent<GameManager>().round == 1)
+            }/* else if (!PhotonNetwork.IsMasterClient == true && !photonView.IsMine && manager.GetComponent<GameManager>().round == 1)
             {
                 PhotonNetwork.Destroy(gameObject);
-            }
+            }*/
         }
     }
 
