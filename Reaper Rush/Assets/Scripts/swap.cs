@@ -12,6 +12,13 @@ public class swap : MonoBehaviour
         {
             PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
         }
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap")
+        {
+
+            PhotonNetwork.LoadLevel("Game");
+            
+        }
     }
 
     // Update is called once per frame
