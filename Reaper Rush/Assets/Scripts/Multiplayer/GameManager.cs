@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             finalRound = true;
             
 
-            if (runner.GetComponent<Player>().hasLost && round == 0)
+            if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
             {
                 round++;
                 finalRound = true;
@@ -70,6 +70,11 @@ public class GameManager : MonoBehaviour
                 }*/
 
                 PhotonNetwork.LoadLevel("RoleSwap");
+                if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
+                {
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
+                }
+
 
                 //this.gameObject.tag = "mainManager";
             }
@@ -85,10 +90,6 @@ public class GameManager : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
             
-            if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
-            {
-                PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
-            }
             PhotonNetwork.LoadLevel("Game");
             round++;
         }
