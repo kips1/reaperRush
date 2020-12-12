@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public int round;
     private int distanceScore;
@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject reaper;
     private GameObject rmController;
     private static GameManager _instance;
+    public Photon.Realtime.Player s;
 
     public static GameManager Instance { get { return _instance; } }
 
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         finalRound = false;
         round = 0;
         DontDestroyOnLoad(gameObject);
+        s = PhotonNetwork.MasterClient;
     }
 
     // Update is called once per frame
@@ -47,12 +49,12 @@ public class GameManager : MonoBehaviour
            Destroy(this.gameObject);
         }
 
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
-            
+
 
             if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
             {
@@ -72,12 +74,6 @@ public class GameManager : MonoBehaviour
                 PhotonNetwork.LoadLevel("RoleSwap");
 
 
-                if (PhotonNetwork.IsMasterClient && PhotonNetwork.PlayerList.Length > 1)
-                {
-                    PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
-                }
-
-
                 //this.gameObject.tag = "mainManager";
             }
 
@@ -85,15 +81,28 @@ public class GameManager : MonoBehaviour
             {
                 round = 1;
             }
+        }
 
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
             {
+                if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
+                {
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
+                }
 
-                PhotonNetwork.LoadLevel("Game");
-
+                //PhotonNetwork.LoadLevel("Game");
+                round++;
+            
+            
             }
-        }
 
+            if(s != PhotonNetwork.MasterClient && round == 2)
+            {
+                PhotonNetwork.LoadLevel("Game");
+                round++;
+            }
 
     }
+
+
 }
