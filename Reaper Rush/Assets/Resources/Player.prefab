@@ -288,6 +288,7 @@ MonoBehaviour:
   gravity: 1.5
   jumpHeight: 25
   anim: {fileID: 0}
+  takeDamage: 1
   distanceUnit: 0
   maxHealth: 100
   currentHealth: 100
