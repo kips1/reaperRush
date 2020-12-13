@@ -31,13 +31,15 @@ public class Player : MonoBehaviour
     public bool hasLost;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
+    private GameObject manager;
 
     // Start is called before the first frame update
     void Start()
     {
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
-        
+        manager = GameObject.FindGameObjectWithTag("Manager");
+
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour
         {
             speed = 0;
             distanceUnit += 0;
+            manager.GetComponent<GameManager>().distanceScore = distanceUnit;
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
