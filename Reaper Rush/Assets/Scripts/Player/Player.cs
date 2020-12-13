@@ -49,7 +49,7 @@ public class Player : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        runner = GameObject.FindGameObjectWithTag("Player");
+        
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
         
@@ -65,9 +65,10 @@ public class Player : MonoBehaviourPun
         audio1 = aSources[0];
         audio2 = aSources[1];
         audio3 = aSources[2];
+        runner = GameObject.FindGameObjectWithTag("Player");
         //audioSrcPowerUp1 = GetComponent<AudioSource>();
         //audioSrcPowerUp2 = GetComponent<AudioSource>();
-        
+
     }
 
     // Update is called once per frame
@@ -215,11 +216,7 @@ public class Player : MonoBehaviourPun
         
     }
 
-    [PunRPC]
-    void changeDistance(float distance)
-    {
-        runner.GetComponent<Player>().distanceUnit = distance;
-    }
+
 
     IEnumerator invulnerableActiveFor(float time)
     {
@@ -227,5 +224,11 @@ public class Player : MonoBehaviourPun
         yield return new WaitForSeconds(time);
         takeDamage = true;
 
+    }
+
+    [PunRPC]
+    void changeDistance(float distance)
+    {
+        runner.GetComponent<Player>().distanceUnit = distance;
     }
 }
