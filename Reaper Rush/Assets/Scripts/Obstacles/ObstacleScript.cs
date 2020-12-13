@@ -44,7 +44,14 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+<<<<<<< Updated upstream
             runner.GetComponent<Player>().TakeDamage(20);
+=======
+            if (runner.GetComponent<Player>().takeDamage == true)
+            {
+            runner.GetComponent<Player>().TakeDamage(25);
+            }
+>>>>>>> Stashed changes
             runner.GetComponent<Player>().anim.SetTrigger("Collide");
             
             //generate.Message(myNum);
