@@ -25,6 +25,8 @@ public class Player : MonoBehaviourPun
     private float zDirection = 1;
     private bool isJumping = false;
 
+
+    public bool takeDamage = true;
     public float distanceUnit;
     public float maxHealth;
     public float currentHealth;
@@ -168,7 +170,6 @@ public class Player : MonoBehaviourPun
             
             Destroy(other.gameObject);         
             audio3.Play();
-
             currentHealth = 100;          
 
 
@@ -223,5 +224,5 @@ public class Player : MonoBehaviourPun
         runner.GetComponent<Player>().distanceUnit = distance;
     }
 
-
+    IEnumerator 
 }
