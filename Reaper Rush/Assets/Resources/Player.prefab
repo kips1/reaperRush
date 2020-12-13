@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 3162800134812852328}
   - component: {fileID: 3536685616307044685}
   - component: {fileID: 3536685616307044673}
-  - component: {fileID: 3536685616307044683}
   - component: {fileID: 1853669131623230032}
   - component: {fileID: 653539737262356489}
   - component: {fileID: 393016251079512191}
@@ -283,7 +282,7 @@ MonoBehaviour:
   speed: 25
   gravity: 0.4
   jumpHeight: 30
-  anim: {fileID: 3536685616307044683}
+  anim: {fileID: 0}
   distanceUnit: 0
   maxHealth: 100
   currentHealth: 100
@@ -376,25 +375,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &3536685616307044683
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3536685616307044674}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8b5bca9b0e472d3449fbafa954c8464a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1853669131623230032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +544,11 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c8026d2266f906847852f61b7d2d5670,
         type: 3}
       propertyPath: m_Name
+      value: Player_Running
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8026d2266f906847852f61b7d2d5670,
+        type: 3}
+      propertyPath: m_TagString
       value: Player_Running
       objectReference: {fileID: 0}
     - target: {fileID: 3209018298546935164, guid: c8026d2266f906847852f61b7d2d5670,

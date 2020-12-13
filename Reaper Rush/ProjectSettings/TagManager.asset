@@ -13,6 +13,9 @@ TagManager:
   - ReaperUI
   - Manager
   - Health
+  - Player_Running
+  - Runner UI
+  - Round Over
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ using Photon.Pun;
 public class RunnerUI : MonoBehaviour
 {
     public Text Distance;
+    public Text roundOver;
     private GameObject runner;
     public Text playerName;
     // Start is called before the first frame update

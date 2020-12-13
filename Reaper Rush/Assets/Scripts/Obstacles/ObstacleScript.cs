@@ -44,8 +44,9 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            render.material.color = Color.green;
-            runner.GetComponent<Player>().TakeDamage(25);
+            runner.GetComponent<Player>().TakeDamage(5);
+            runner.GetComponent<Player>().anim.SetTrigger("Collide");
+            
             //generate.Message(myNum);
             //Debug.Log("Works!");
             //if(SceneManager.GetActiveScene().name == "Game") {

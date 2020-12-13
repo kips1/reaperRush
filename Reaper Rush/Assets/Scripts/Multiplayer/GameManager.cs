@@ -39,7 +39,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         round = 0;
         DontDestroyOnLoad(gameObject);
         s = PhotonNetwork.MasterClient;
+
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -71,8 +74,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     
                 }*/
 
-                PhotonNetwork.LoadLevel("RoleSwap");
-
+                StartCoroutine(ExecuteAfter(5.0f));
+                
 
                 //this.gameObject.tag = "mainManager";
             }
@@ -111,5 +114,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
+    IEnumerator ExecuteAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
 
+        PhotonNetwork.LoadLevel("RoleSwap");
+    }
 }

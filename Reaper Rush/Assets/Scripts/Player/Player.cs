@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -17,13 +18,14 @@ public class Player : MonoBehaviour
     private HealthBar healthBar;
     private GameObject rmController;
     public Animator anim;
-
+ 
 
     private float yVelocity = 0.0f;
     private float xDirection = 0;
     private float zDirection = 1;
-    public float distanceUnit;
+    private bool isJumping = false;
 
+    public float distanceUnit;
     public float maxHealth;
     public float currentHealth;
     public bool hasLost;
@@ -35,18 +37,19 @@ public class Player : MonoBehaviour
     {
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
-        anim = GetComponent<Animator>();
+        
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
         controller = GetComponent<CharacterController>();
         InvokeRepeating("distance", 0, 1 / speed);
+        anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-
     {
+
         if (distanceUnit == distanceValue + 30)
         {
             Debug.Log("test");
@@ -57,17 +60,13 @@ public class Player : MonoBehaviour
         }
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
-        
 
         if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(anim.GetBool("IsJumping"));
-                anim.SetBool("IsJumping", true);
-                anim.Play("Jump", 1);
+                anim.SetBool("isJumping", true);
                 yVelocity = jumpHeight;
-
             }
 
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
@@ -88,17 +87,24 @@ public class Player : MonoBehaviour
             {
                 xDirection = 0;
             }
+
         } 
+            
         else
         {
+            anim.SetBool("isJumping", false);
             yVelocity -= gravity;
         }
 
+        
         if (currentHealth <= 0)
         {
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
+            anim.SetBool("hasDied", true);
+            anim.SetTrigger("Die");
+            GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
         velocity.y = yVelocity;
