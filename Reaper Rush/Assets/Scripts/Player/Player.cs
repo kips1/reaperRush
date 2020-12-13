@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPun
 {
     public float distanceValue;
     public GameObject obstacleGenerator;   
@@ -31,10 +31,12 @@ public class Player : MonoBehaviour
     public bool hasLost;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
+    public GameObject runner;
 
     // Start is called before the first frame update
     void Start()
     {
+        runner = GameObject.FindGameObjectWithTag("Player");
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
         
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        photonView.RPC("changeDistance", RpcTarget.All, distanceUnit);
         if (distanceUnit == distanceValue + 30)
         {
             Debug.Log("test");
@@ -167,5 +169,12 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damage;
     }
+
+    [PunRPC]
+    void changeDistance(float distance)
+    {
+        runner.GetComponent<Player>().distanceUnit = distance;
+    }
+
 
 }
