@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        distanceScore = 0;
         rmController = GameObject.FindGameObjectWithTag("RoomController");
         finalRound = false;
         round = 0;
@@ -59,10 +58,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
 
-
+            if (runner.GetComponent<Player>().hasLost && round < 1) {
+            distanceScore = runner.GetComponent<Player>().distanceUnit;
+            }
             if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
             {
-                distanceScore = runner.GetComponent<Player>().distanceUnit;
                 round++;
                 finalRound = true;
                 /*if (PhotonNetwork.IsMasterClient)
@@ -86,6 +86,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 round = 1;
             }
+
+                
+            
         }
 
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
