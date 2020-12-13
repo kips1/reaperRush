@@ -223,9 +223,9 @@ public class Player : MonoBehaviourPun
 
     IEnumerator invulnerableActiveFor(float time)
     {
-        
-        yield return new WaitForSeconds(time);
         takeDamage = false;
+        yield return new WaitForSeconds(time);
+        takeDamage = true;
 
     }
 }
