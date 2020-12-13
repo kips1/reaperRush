@@ -75,7 +75,7 @@ public class Player : MonoBehaviourPun
     void Update()
     {
 
-        photonView.RPC("changeDistance", RpcTarget.All, distanceUnit);
+        photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
 
         timeLeft -= Time.deltaTime;
         if (distanceUnit == distanceValue + 30)
