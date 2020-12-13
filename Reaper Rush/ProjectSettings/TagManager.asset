@@ -16,6 +16,8 @@ TagManager:
   - Player_Running
   - Runner UI
   - Round Over
+  - PowerUpHealth
+  - PowerUpCoin
   layers:
   - Default
   - TransparentFX
@@ -32,12 +34,12 @@ TagManager:
   - 
   - 
   - 
+  - PowerUP2
   - 
   - 
   - 
   - 
-  - 
-  - 
+  - PowerUP3
   - 
   - 
   - 
