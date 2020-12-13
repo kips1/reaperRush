@@ -295,6 +295,7 @@ MonoBehaviour:
   ObstacleGeneratorScript: {fileID: 3749495040766380588, guid: 766263e11ed9e0540a791a0ec6d4dddd,
     type: 3}
   obstacle: {fileID: 0}
+  runner: {fileID: 0}
 --- !u!23 &3536685616307044672
 MeshRenderer:
   m_ObjectHideFlags: 0
