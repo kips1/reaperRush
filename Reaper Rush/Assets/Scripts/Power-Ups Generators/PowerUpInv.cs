@@ -22,7 +22,7 @@ public class PowerUpInv : MonoBehaviour
     {
         for (int i = 0; i < coinsNum; i++)
         {
-            GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 200)), PowerUp3Original.transform.rotation);
+            GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
 
         }
     }

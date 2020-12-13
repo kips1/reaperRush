@@ -154,7 +154,7 @@ MonoBehaviour:
   PowerUp3Original: {fileID: 5087261723147196355, guid: 5483a51e72b3f894cb9bd0bd71801110,
     type: 3}
   PowerUp3Container: {fileID: 0}
-  PowerUp: 100
+  PowerUp: 200
 --- !u!4 &361038149
 Transform:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   PowerUp2Original: {fileID: 6718089927411664074, guid: 2666c1bbec96aef4590be91027b0b40c,
     type: 3}
   PowerUp2Container: {fileID: 0}
-  PowerUp: 100
+  PowerUp: 200
 --- !u!4 &764288942
 Transform:
   m_ObjectHideFlags: 0
@@ -853,7 +853,7 @@ MonoBehaviour:
   coinOriginal: {fileID: 6435272963498920098, guid: 32a39a3071251dd4292a204981c5041b,
     type: 3}
   CoinContainer: {fileID: 0}
-  Coins: 500
+  Coins: 1000
 --- !u!4 &2111702958
 Transform:
   m_ObjectHideFlags: 0
