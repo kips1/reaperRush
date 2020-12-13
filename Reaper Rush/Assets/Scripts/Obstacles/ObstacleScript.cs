@@ -44,7 +44,7 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            runner.GetComponent<Player>().TakeDamage(5);
+            runner.GetComponent<Player>().TakeDamage(20);
             runner.GetComponent<Player>().anim.SetTrigger("Collide");
             
             //generate.Message(myNum);
