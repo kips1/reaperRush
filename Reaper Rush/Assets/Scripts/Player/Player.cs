@@ -74,8 +74,10 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-
-        photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
+        /*if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
+        }*/
 
         timeLeft -= Time.deltaTime;
         if (distanceUnit == distanceValue + 30)
@@ -226,9 +228,9 @@ public class Player : MonoBehaviourPun
 
     }
 
-    [PunRPC]
+    /*[PunRPC]
     void changeDistance(float distance)
     {
         runner.GetComponent<Player>().distanceUnit = distance;
-    }
+    }*/
 }
