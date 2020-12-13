@@ -13,6 +13,7 @@ public class ObstacleScript : MonoBehaviourPun
     public GameObject runner;
     private GameObject reaperobj;
     private GameObject roomController;
+    private GameObject manager;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class ObstacleScript : MonoBehaviourPun
         generate = GetComponentInParent<ObstacleGenerator>();
         render = GetComponent<Renderer>();
         roomController = GameObject.FindGameObjectWithTag("RoomController");
+        manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     private void Update()
@@ -29,7 +31,11 @@ public class ObstacleScript : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
             {
                 PhotonNetwork.Destroy(gameObject);
-            }
+
+            }/* else if (!PhotonNetwork.IsMasterClient == true && !photonView.IsMine && manager.GetComponent<GameManager>().round == 1)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }*/
         }
     }
 
@@ -38,8 +44,9 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            render.material.color = Color.green;
             runner.GetComponent<Player>().TakeDamage(5);
+            runner.GetComponent<Player>().anim.SetTrigger("Collide");
+            
             //generate.Message(myNum);
             //Debug.Log("Works!");
             //if(SceneManager.GetActiveScene().name == "Game") {

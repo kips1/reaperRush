@@ -11,6 +11,11 @@ TagManager:
   - RoomController
   - Coin
   - ReaperUI
+  - Manager
+  - Health
+  - Player_Running
+  - Runner UI
+  - Round Over
   - PowerUpHealth
   - PowerUpCoin
   layers:

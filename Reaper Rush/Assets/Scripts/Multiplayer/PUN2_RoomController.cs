@@ -14,11 +14,17 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public Transform runnerSpawnPoint;
     public Transform reaperSpawnPoint;
     public Camera PlayerCamera;
+    private GameObject manager;
+
+    public bool gameEnded;
 
     // Start is called before the first frame update
 
+
     public void Start()
     {
+
+        // gameEnded = manager.GetComponent<GameManager>().finalRound;
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)
         {
@@ -27,18 +33,18 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             return;
         }
 
-        //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
 
-        if (PhotonNetwork.IsMasterClient == true && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
-        {
-            PhotonNetwork.Instantiate(playerPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
-            PhotonNetwork.Instantiate(UI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
-        }
-        else
-        {
-            PhotonNetwork.Instantiate(reaperPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
-            PhotonNetwork.Instantiate(ReaperUI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
-        }
+        //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Instantiate(playerPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(UI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+            }
+            else if(PhotonNetwork.IsMasterClient == false)
+            {
+                PhotonNetwork.Instantiate(reaperPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(ReaperUI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+            }
 
     }
 
@@ -74,6 +80,6 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPun
 {
     public float distanceValue;
     public GameObject obstacleGenerator;
@@ -15,19 +16,23 @@ public class Player : MonoBehaviour
     private GameObject playerPosition;
     private CharacterController controller;
     private HealthBar healthBar;
+    private GameObject rmController;
     public Animator anim;
-
+ 
 
     private float yVelocity = 0.0f;
     private float xDirection = 0;
     private float zDirection = 1;
-    public float distanceUnit;
+    private bool isJumping = false;
 
+    public float distanceUnit;
     public float maxHealth;
     public float currentHealth;
     public bool hasLost;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
+    public GameObject runner;
+
     float timeLeft = 3.0f;
     private int abc = 1;
 
@@ -42,13 +47,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        runner = GameObject.FindGameObjectWithTag("Player");
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
-        anim = GetComponent<Animator>();
+        rmController = GameObject.FindWithTag("RoomController");
+        
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
         controller = GetComponent<CharacterController>();
         InvokeRepeating("distance", 0, 1 / speed);
+
+        anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
+
         var aSources = GetComponents<AudioSource>();
         audio1 = aSources[0];
         audio2 = aSources[1];
@@ -60,11 +70,11 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-
     {
 
-        timeLeft -= Time.deltaTime;
+        photonView.RPC("changeDistance", RpcTarget.All, distanceUnit);
 
+        timeLeft -= Time.deltaTime;
         if (distanceUnit == distanceValue + 30)
         {
             Debug.Log("test");
@@ -74,19 +84,15 @@ public class Player : MonoBehaviour
        
 
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
-            Vector3 velocity = direction * speed;
-        
-        
+        Vector3 velocity = direction * speed;
+
 
         if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(anim.GetBool("IsJumping"));
-                anim.SetBool("IsJumping", true);
-                anim.Play("Jump", 1);
+                anim.SetBool("isJumping", true);
                 yVelocity = jumpHeight;
-
             }
 
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
@@ -101,25 +107,41 @@ public class Player : MonoBehaviour
                 xDirection += 0.045f;
             }
 
+            else if (Input.GetKey(KeyCode.I) && xDirection < 3.48f)
+            {
+                currentHealth += 10;
+            }
             else
             {
                 xDirection = 0;
             }
+
         } 
+            
         else
         {
+            anim.SetBool("isJumping", false);
             yVelocity -= gravity;
         }
 
+        
         if (currentHealth <= 0)
         {
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
+            anim.SetBool("hasDied", true);
+            anim.SetTrigger("Die");
+            GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
         velocity.y = yVelocity;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void Reset()
+    {
+        rmController.GetComponent<PUN2_RoomController>().Start();
     }
 
     void distance()
@@ -195,6 +217,11 @@ public class Player : MonoBehaviour
         
     }
 
-   
+    [PunRPC]
+    void changeDistance(float distance)
+    {
+        runner.GetComponent<Player>().distanceUnit = distance;
+    }
+
 
 }

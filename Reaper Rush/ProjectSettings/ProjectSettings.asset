@@ -658,6 +658,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -671,10 +672,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 35fb26bf-5303-4199-9f3f-e0f343fccd16
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Reaper Rush (1)
+  organizationId: skitb11
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

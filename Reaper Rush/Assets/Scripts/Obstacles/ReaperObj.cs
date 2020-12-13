@@ -20,19 +20,12 @@ public class ReaperObj : MonoBehaviour
     }
     public void Generate(Vector3 position)
     {
-        if (PhotonNetwork.IsMasterClient == false) {
         GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, position, obstacle.transform.rotation);
-        //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
         obstacleClone.transform.SetParent(this.transform, true);
-        }
     }
     public void GenerateFire(Vector3 position)
     {
-        if (PhotonNetwork.IsMasterClient == false)
-        {
             GameObject obstacleClone = PhotonNetwork.Instantiate(fire.name, position, fire.transform.rotation);
-            //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
             obstacleClone.transform.SetParent(this.transform, true);
-        }
     }
 }

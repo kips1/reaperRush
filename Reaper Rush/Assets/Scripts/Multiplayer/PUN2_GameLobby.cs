@@ -8,7 +8,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 
 
     //Our player name
-    string playerName = "Player 1";
+    string playerName = "Please Enter Your Name";
     //Users are separated from each other by gameversion (which allows you to make breaking changes).
     string gameVersion = "0.9";
     //The list of created rooms
@@ -74,7 +74,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         //Room name text field
         roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
 
-        if (GUILayout.Button("Create Room", GUILayout.Width(125)))
+        if (GUILayout.Button("Host", GUILayout.Width(125)))
         {
             if (roomName != "")
             {
@@ -86,7 +86,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 roomOptions.MaxPlayers = (byte)2; //Set any number
 
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
-            }
+            } 
         }
 
         GUILayout.EndHorizontal();
@@ -96,7 +96,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 
         if (createdRooms.Count == 0)
         {
-            GUILayout.Label("No Rooms were created yet...");
+            GUILayout.Label("Waiting For Other Player...");
         }
         else
         {
@@ -108,7 +108,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 
                 GUILayout.FlexibleSpace();
 
-                if (GUILayout.Button("Join Room"))
+                if (GUILayout.Button("Join"))
                 {
                     joiningRoom = true;
 
