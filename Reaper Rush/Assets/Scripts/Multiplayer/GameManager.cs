@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
 
-            if (runner.GetComponent<Player>().hasLost && round < 1) {
+            if (runner.GetComponent<Player>().hasLost && round < 2) {
             distanceScore = runner.GetComponent<Player>().distanceUnit;
             }
             if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
