@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public int round;
-    private int distanceScore;
+    public float distanceScore;
     private int coinsCollected;
     public bool finalRound;
 
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        distanceScore = 0;
         rmController = GameObject.FindGameObjectWithTag("RoomController");
         finalRound = false;
         round = 0;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
             {
+                distanceScore = runner.GetComponent<Player>().distanceUnit;
                 round++;
                 finalRound = true;
                 /*if (PhotonNetwork.IsMasterClient)
