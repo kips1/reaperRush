@@ -170,10 +170,7 @@ public class Player : MonoBehaviourPun
             
             Destroy(other.gameObject);         
             audio3.Play();
-            currentHealth = 100;          
-
-
-
+            StartCoroutine(invulnerableActiveFor(5));
         }
 
         if (other.gameObject.layer == 15)
@@ -224,5 +221,11 @@ public class Player : MonoBehaviourPun
         runner.GetComponent<Player>().distanceUnit = distance;
     }
 
-    IEnumerator 
+    IEnumerator invulnerableActiveFor(float time)
+    {
+        
+        yield return new WaitForSeconds(time);
+        takeDamage = false;
+
+    }
 }
