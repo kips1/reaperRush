@@ -68,6 +68,7 @@ public class Player : MonoBehaviourPun
         runner = GameObject.FindGameObjectWithTag("Player");
         //audioSrcPowerUp1 = GetComponent<AudioSource>();
         //audioSrcPowerUp2 = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -90,7 +91,7 @@ public class Player : MonoBehaviourPun
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
-        
+
         if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
