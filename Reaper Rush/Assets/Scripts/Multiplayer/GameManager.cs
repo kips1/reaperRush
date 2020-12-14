@@ -58,9 +58,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
 
-            if (PhotonNetwork.IsMasterClient)
-            {
-                if (runner.GetComponent<Player>().hasLost && round == 0)
+                if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
                 {
                     round++;
                     finalRound = true;
@@ -69,7 +67,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                     //this.gameObject.tag = "mainManager";
                 }
-            }
 
             if (PhotonNetwork.IsMasterClient == false)
             {
@@ -90,6 +87,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             round++;
+
+        }
             if (s != PhotonNetwork.MasterClient && round == 2)
             {
                 PhotonNetwork.LoadLevel("Game");
@@ -103,18 +102,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         }
-
-
-
-
-        if (round < 2)
-        {
-            //distanceScore = runner.GetComponent<Player>().distanceUnit;
-        }
-
-
-    }
-
     IEnumerator ExecuteAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);

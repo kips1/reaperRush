@@ -137,7 +137,7 @@ public class Player : MonoBehaviourPun
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
-            GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
+            //GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
         velocity.y = yVelocity;
