@@ -42,8 +42,8 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             }
             else if(PhotonNetwork.IsMasterClient == false)
             {
-                PhotonNetwork.Instantiate(reaperPrefab.name, runnerSpawnPoint.position, Quaternion.identity, 0);
-                PhotonNetwork.Instantiate(ReaperUI.name, runnerSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(reaperPrefab.name, reaperSpawnPoint.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(ReaperUI.name, reaperSpawnPoint.position, Quaternion.identity, 0);
             }
 
     }
