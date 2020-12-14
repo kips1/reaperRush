@@ -16,6 +16,7 @@ public class Reaper : MonoBehaviour
     private GameObject ReaperObj;
     private GameObject ReaperUI;
     private GameObject rmController;
+    AudioSource audio1;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,8 @@ public class Reaper : MonoBehaviour
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
         ReaperUI = GameObject.FindGameObjectWithTag("ReaperUI");
+        var aSources = GetComponents<AudioSource>();
+        audio1 = aSources[0];
 
     }
 
@@ -62,6 +65,7 @@ public class Reaper : MonoBehaviour
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
+            audio1.Play();
             //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
 
         }
