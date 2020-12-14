@@ -22,7 +22,7 @@ public class Player : MonoBehaviourPun
 
     private float yVelocity = 0.0f;
     private float xDirection = 0;
-    private float zDirection = 1;
+    private float zDirection = 0;
     private bool isJumping = false;
 
 
@@ -36,7 +36,7 @@ public class Player : MonoBehaviourPun
     public GameObject runner;
 
     float timeLeft = 3.0f;
-    private int abc = 1;
+    private int start = 1;
 
     // AudioSource audioSrcCoins;
     // AudioSource audioSrcPowerUp1;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         controller = GetComponent<CharacterController>();
-        InvokeRepeating("distance", 0, 1 / speed);
+
 
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
 
@@ -78,6 +78,16 @@ public class Player : MonoBehaviourPun
         {
             photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
         }*/
+
+        if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            zDirection = 1;
+        }
+        if(start == 0 && zDirection == 1)
+        {
+            InvokeRepeating("distance", 0, 1 / speed);
+            start = 1;
+        }
 
         timeLeft -= Time.deltaTime;
         if (distanceUnit == distanceValue + 30)

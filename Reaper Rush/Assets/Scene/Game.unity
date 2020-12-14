@@ -758,7 +758,7 @@ MonoBehaviour:
   reaperPrefab: {fileID: 1192028030900807206, guid: 3a12a2c1d35b3c245ab965ff29fbf8e3,
     type: 3}
   runnerSpawnPoint: {fileID: 1184796633}
-  reaperSpawnPoint: {fileID: 0}
+  reaperSpawnPoint: {fileID: 910732945}
   PlayerCamera: {fileID: 0}
   gameEnded: 0
 --- !u!4 &1886892606
