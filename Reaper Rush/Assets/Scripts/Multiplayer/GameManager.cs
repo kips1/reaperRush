@@ -50,27 +50,29 @@ public class GameManager : MonoBehaviourPunCallbacks
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
-            if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
+            if (round == 0 && PhotonNetwork.IsMasterClient)
             {
-                round++;
-                finalRound = true;
-                /*if (PhotonNetwork.IsMasterClient)
+                if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
                 {
-                    runner.GetComponent<Player>().Reset();
-                    PhotonNetwork.Destroy(runner);
-                } else if (!PhotonNetwork.IsMasterClient)
-                {
-                    reaper.GetComponent<Reaper>().Reset();
-                    PhotonNetwork.Destroy(reaper);
-                    
-                }*/
+                    round++;
+                    finalRound = true;
+                    /*if (PhotonNetwork.IsMasterClient)
+                    {
+                        runner.GetComponent<Player>().Reset();
+                        PhotonNetwork.Destroy(runner);
+                    } else if (!PhotonNetwork.IsMasterClient)
+                    {
+                        reaper.GetComponent<Reaper>().Reset();
+                        PhotonNetwork.Destroy(reaper);
 
-                PhotonNetwork.LoadLevel("RoleSwap");
-
-                StartCoroutine(ExecuteAfter(5.0f));
+                    }*/
 
 
-                //this.gameObject.tag = "mainManager";
+                    StartCoroutine(ExecuteAfter(5.0f));
+
+
+                    //this.gameObject.tag = "mainManager";
+                }
             }
             if (PhotonNetwork.IsMasterClient == false)
             {
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
+            runner = null;
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
             {
                 PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
@@ -88,12 +91,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         }
-        if (s != PhotonNetwork.MasterClient && round == 2)
+        if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
             round++;
         }
-        else if (s != PhotonNetwork.MasterClient && round == 1)
+        else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
             round = 3;
