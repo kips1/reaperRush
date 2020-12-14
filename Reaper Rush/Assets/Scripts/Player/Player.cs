@@ -33,7 +33,7 @@ public class Player : MonoBehaviourPun
     public bool hasLost;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
-    public GameObject runner;
+    public GameObject manager;
 
     float timeLeft = 3.0f;
     private int abc = 1;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviourPun
         audio1 = aSources[0];
         audio2 = aSources[1];
         audio3 = aSources[2];
-        runner = GameObject.FindGameObjectWithTag("Player");
+        manager = GameObject.FindGameObjectWithTag("Manager");
         //audioSrcPowerUp1 = GetComponent<AudioSource>();
         //audioSrcPowerUp2 = GetComponent<AudioSource>();
 
@@ -232,6 +232,6 @@ public class Player : MonoBehaviourPun
     [PunRPC]
     void changeDistance(float distance)
     {
-        runner.GetComponent<Player>().distanceUnit = distance;
+        manager.GetComponent<GameManager>().distanceScore = distance;
     }
 }

@@ -26,7 +26,7 @@ public class RunnerUI : MonoBehaviour
         playerName.text = PhotonNetwork.NickName;
         if (manager.GetComponent<GameManager>().distanceScore > 0)
         {
-            Score.text = manager.GetComponent<GameManager>().distanceScore.ToString();
+            Score.text = manager.GetComponent<GameManager>().distanceScored.ToString();
         }
     }
 }
