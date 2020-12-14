@@ -912,4 +912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   round: 0
+  distanceScore: 0
+  distanceScored: 0
   finalRound: 0
