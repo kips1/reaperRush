@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.LoadLevel("Game");
                 round++;
             }
-            else if (s != PhotonNetwork.MasterClient && round == 1)
+            else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.PlayerList.Length > 1)
             {
                 PhotonNetwork.LoadLevel("Game");
                 round = 3;
