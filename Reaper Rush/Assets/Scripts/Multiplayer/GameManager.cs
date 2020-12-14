@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public int round;
-    private int distanceScore;
+    public float distanceScore;
+    public float distanceScored;
     private int coinsCollected;
     public bool finalRound;
     private GameObject runner;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
                 {
+                    distanceScored = distanceScore;
                     round++;
                     finalRound = true;
                     /*if (PhotonNetwork.IsMasterClient)
@@ -76,11 +78,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             if (PhotonNetwork.IsMasterClient == false)
             {
-                round = 1;
+                round = 1;  
             }
         }
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
+            distanceScored = distanceScore;
             runner = null;
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
             {

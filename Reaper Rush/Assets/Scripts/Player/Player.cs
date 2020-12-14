@@ -33,7 +33,7 @@ public class Player : MonoBehaviourPun
     public bool hasLost;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
-    public GameObject runner;
+    public GameObject manager;
 
     float timeLeft = 3.0f;
     private int start = 0;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviourPun
         audio1 = aSources[0];
         audio2 = aSources[1];
         audio3 = aSources[2];
-        runner = GameObject.FindGameObjectWithTag("Player");
+        manager = GameObject.FindGameObjectWithTag("Manager");
         //audioSrcPowerUp1 = GetComponent<AudioSource>();
         //audioSrcPowerUp2 = GetComponent<AudioSource>();
 
@@ -74,10 +74,7 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        /*if (PhotonNetwork.PlayerList.Length > 1)
-        {
-            photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
-        }*/
+
 
         if (GameObject.Find("Reaper(Clone)") != null)
         {
@@ -143,6 +140,10 @@ public class Player : MonoBehaviourPun
         
         if (currentHealth <= 0)
         {
+            if (PhotonNetwork.PlayerList.Length > 1)
+            {
+                photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
+            }
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
@@ -245,9 +246,9 @@ public class Player : MonoBehaviourPun
 
     }
 
-    /*[PunRPC]
+    [PunRPC]
     void changeDistance(float distance)
     {
-        runner.GetComponent<Player>().distanceUnit = distance;
-    }*/
+        manager.GetComponent<GameManager>().distanceScore = distance;
+    }
 }
