@@ -36,7 +36,7 @@ public class Player : MonoBehaviourPun
     public GameObject runner;
 
     float timeLeft = 3.0f;
-    private int start = 1;
+    private int start = 0;
 
     // AudioSource audioSrcCoins;
     // AudioSource audioSrcPowerUp1;
@@ -79,10 +79,11 @@ public class Player : MonoBehaviourPun
             photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
         }*/
 
-        if (PhotonNetwork.PlayerList.Length > 1)
+        if (GameObject.Find("Reaper(Clone)") != null)
         {
             zDirection = 1;
         }
+
         if(start == 0 && zDirection == 1)
         {
             InvokeRepeating("distance", 0, 1 / speed);
