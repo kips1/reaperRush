@@ -33,7 +33,11 @@ public class ReaperObjScript : MonoBehaviourPun
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("particle test");
+            if (runner.GetComponent<Player>().takeDamage == true)
+            {
+                runner.GetComponent<Player>().TakeDamage(8);
+            }
+            runner.GetComponent<Player>().anim.SetTrigger("Collide");
         }
     }
 }
