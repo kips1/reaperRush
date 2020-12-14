@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public int round;
-    private int distanceScore;
+    public float distanceScore;
     private int coinsCollected;
     public bool finalRound;
     private GameObject runner;
@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
                 {
+
+                    distanceScore = runner.GetComponent<Player>().distanceUnit;
+                    
                     round++;
                     finalRound = true;
                     /*if (PhotonNetwork.IsMasterClient)
