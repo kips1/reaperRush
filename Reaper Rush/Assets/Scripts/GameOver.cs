@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour
     public GameObject manager;
     public float firstScore;
     public float secondScore;
+    public Image background;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class GameOver : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("Manager");
         firstScore = manager.GetComponent<GameManager>().distanceScored;
         secondScore = manager.GetComponent<GameManager>().secondScore;
+        background = gameObject.GetComponentInChildren<Image>();
         if (PhotonNetwork.IsMasterClient == false)
         {
             if(secondScore > firstScore)
@@ -31,12 +33,14 @@ public class GameOver : MonoBehaviour
                 Message.text = "YOU WIN!";
                 Bottom.text = PhotonNetwork.PlayerListOthers[0].NickName + ": " + secondScore;
                 Top.text = PhotonNetwork.NickName + ": " + firstScore;
+                background.color = Color.green;
             }
             else if (secondScore.Equals(firstScore))
             {
                 Message.text = "DRAW!";
                 Bottom.text = PhotonNetwork.PlayerListOthers[0].NickName + ": " + secondScore;
                 Top.text = PhotonNetwork.NickName + ": " + firstScore;
+                background.color = Color.yellow;
             }
         }
         else
@@ -52,12 +56,14 @@ public class GameOver : MonoBehaviour
                 Message.text = "YOU WIN!";
                 Bottom.text = PhotonNetwork.PlayerListOthers[0].NickName + ": " + firstScore;
                 Top.text = PhotonNetwork.NickName + ": " + secondScore;
+                background.color = Color.green;
             }
             else if (secondScore.Equals(firstScore))
             {
                 Message.text = "DRAW!";
                 Bottom.text = PhotonNetwork.PlayerListOthers[0].NickName + ": " + firstScore;
                 Top.text = PhotonNetwork.NickName + ": " + secondScore;
+                background.color = Color.yellow;
             }
         }
     }

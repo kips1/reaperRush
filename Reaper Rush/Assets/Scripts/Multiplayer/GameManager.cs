@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             //PhotonNetwork.LoadLevel("Game");
             round++;
 
-
         }
         if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient)
         {
@@ -108,6 +107,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel("Game");
             round = 5;
             lastRound = true;
+        }
+
+        if(s != PhotonNetwork.MasterClient && !PhotonNetwork.IsMasterClient)
+        {
+            round = 5;
         }
 
         if (round == 5)
