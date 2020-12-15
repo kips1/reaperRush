@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Photon.Realtime.Player s;
     public bool lastRound;
     public float secondScore;
+    public bool isDead;
     public static GameManager Instance { get { return _instance; } }
     private void Awake()
     {
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (round == 5)
         {
             secondScore = distanceScore;
-            if (runner.GetComponent<Player>().hasLost)
+            if (isDead)
             {
                 round = 10;
                 StartCoroutine(ExecuteLast(5.0f));
@@ -125,9 +126,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd")
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
         {
             StartCoroutine(ExecuteBackToLobby(14.0f));
+            round = 11;
         }
 
 
@@ -150,6 +152,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(seconds);
 
-        PhotonNetwork.LoadLevel("GameEnd");
+        PhotonNetwork.LeaveRoom();
     }
 }

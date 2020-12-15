@@ -149,6 +149,7 @@ public class Player : MonoBehaviourPun
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
+            manager.GetComponent<GameManager>().isDead = true;
             //GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
