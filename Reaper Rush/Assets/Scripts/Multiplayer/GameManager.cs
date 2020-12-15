@@ -117,12 +117,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(s != PhotonNetwork.MasterClient && !PhotonNetwork.IsMasterClient)
         {
             round = 5;
-            secondDead = dead;
         }
 
         if (round == 5)
         {
             secondScore = distanceScore;
+            secondDead = dead;
             if (secondDead)
             {
                 round = 10;
