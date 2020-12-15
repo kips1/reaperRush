@@ -149,6 +149,10 @@ public class Player : MonoBehaviourPun
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
+            if (manager.GetComponent<GameManager>().lastRound)
+            {
+                manager.GetComponent<GameManager>().secondScore = distanceUnit;
+            }
             //GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     private GameObject rmController;
     private static GameManager _instance;
     public Photon.Realtime.Player s;
+    public bool lastRound;
+    public float secondScore;
     public static GameManager Instance { get { return _instance; } }
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         round = 0;
         DontDestroyOnLoad(gameObject);
         s = PhotonNetwork.MasterClient;
+        lastRound = false;
 
     }
 
@@ -98,11 +101,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LoadLevel("Game");
             round++;
+            lastRound = true;
         }
         else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
             round = 3;
+            lastRound = true;
+        }
+
+        if (secondScore > 0 && round < 6)
+        {
+            round = 10;
+            StartCoroutine(ExecuteLast(5.0f));
+            //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
 
@@ -113,5 +125,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(seconds);
 
         PhotonNetwork.LoadLevel("RoleSwap");
+    }
+    IEnumerator ExecuteLast(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        PhotonNetwork.LoadLevel("GameEnd");
     }
 }
