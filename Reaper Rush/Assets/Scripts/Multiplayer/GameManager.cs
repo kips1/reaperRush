@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
         {
-            StartCoroutine(ExecuteBackToLobby(14.0f));
             round = 11;
+            StartCoroutine(ExecuteBackToLobby(14.0f));
         }
 
 
