@@ -125,6 +125,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd")
+        {
+            StartCoroutine(ExecuteBackToLobby(14.0f));
+        }
+
 
     }
 
@@ -135,6 +140,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("RoleSwap");
     }
     IEnumerator ExecuteLast(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        PhotonNetwork.LoadLevel("GameEnd");
+    }
+
+    IEnumerator ExecuteBackToLobby(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 
