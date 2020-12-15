@@ -100,20 +100,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
-            round++;
+            round = 5;
             lastRound = true;
         }
         else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
-            round = 3;
+            round = 5;
             lastRound = true;
         }
 
-        if (secondScore > 0 && round < 6)
+        if (round == 5)
         {
-            round = 10;
-            StartCoroutine(ExecuteLast(5.0f));
+            secondScore = distanceScore;
+            if (runner.GetComponent<Player>().hasLost)
+            {
+                round = 10;
+                StartCoroutine(ExecuteLast(5.0f));
+            }
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
