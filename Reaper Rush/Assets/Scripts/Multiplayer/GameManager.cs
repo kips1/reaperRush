@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool firstDead;
     public bool secondDead;
     public bool dead;
+    public string player2;
     public static GameManager Instance { get { return _instance; } }
     private void Awake()
     {
@@ -149,7 +150,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator ExecuteLast(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-
+        if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            player2 = PhotonNetwork.PlayerListOthers[0].NickName;
+        }
         PhotonNetwork.LoadLevel("GameEnd");
     }
 
