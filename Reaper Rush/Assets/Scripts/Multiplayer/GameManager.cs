@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Photon.Realtime.Player s;
     public bool lastRound;
     public float secondScore;
-    public bool isDead;
+    public bool firstDead;
+    public bool secondDead;
+    public bool dead;
     public static GameManager Instance { get { return _instance; } }
     private void Awake()
     {
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
             distanceScored = distanceScore;
+            firstDead = dead;
+            dead = false;
             runner = null;
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
             {
@@ -113,12 +117,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(s != PhotonNetwork.MasterClient && !PhotonNetwork.IsMasterClient)
         {
             round = 5;
+            secondDead = dead;
         }
 
         if (round == 5)
         {
             secondScore = distanceScore;
-            if (isDead)
+            if (secondDead)
             {
                 round = 10;
                 StartCoroutine(ExecuteLast(5.0f));

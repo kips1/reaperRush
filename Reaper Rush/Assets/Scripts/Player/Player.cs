@@ -149,7 +149,10 @@ public class Player : MonoBehaviourPun
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
-            manager.GetComponent<GameManager>().isDead = true;
+            if (PhotonNetwork.PlayerList.Length > 1)
+            {
+                photonView.RPC("changeDead", RpcTarget.AllBuffered, hasLost);
+            }
             //GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
@@ -251,5 +254,11 @@ public class Player : MonoBehaviourPun
     void changeDistance(float distance)
     {
         manager.GetComponent<GameManager>().distanceScore = distance;
+    }
+
+    [PunRPC]
+    void changeDead(bool isDead)
+    {
+        manager.GetComponent<GameManager>().dead = isDead; ;
     }
 }
