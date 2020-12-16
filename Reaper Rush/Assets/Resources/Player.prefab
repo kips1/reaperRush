@@ -411,7 +411,7 @@ MonoBehaviour:
   obstacleGenerator: {fileID: 0}
   speed: 25
   gravity: 1.5
-  jumpHeight: 18
+  jumpHeight: 25
   anim: {fileID: 0}
   takeDamage: 1
   distanceUnit: 0
@@ -593,7 +593,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f2de09c214014b14a31aadb69efa78d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.356
+  m_Volume: 0.225
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -689,7 +689,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c1726d04415374b73a017619468158d2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.468
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -785,7 +785,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c1726d04415374b73a017619468158d2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.468
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
