@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
         {
             round = 11;
-            StartCoroutine(ExecuteBackToLobby(14.0f));
+            StartCoroutine(ExecuteBackToLobby(5.0f));
         }
 
 
@@ -160,7 +160,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator ExecuteBackToLobby(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-
-        PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.NetworkingClient.IsConnectedAndReady)
+        {
+            PhotonNetwork.LeaveRoom();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+        }
     }
 }
