@@ -100,6 +100,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             //PhotonNetwork.LoadLevel("Game");
             round++;
+            if (PhotonNetwork.PlayerList.Length > 1)
+            {
+                player2 = PhotonNetwork.PlayerListOthers[0].NickName;
+            }
 
         }
         if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient)
@@ -124,15 +128,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             secondScore = distanceScore;
             secondDead = dead;
-            if (secondDead)
+            if (secondDead && PhotonNetwork.IsMasterClient)
             {
                 round = 10;
                 StartCoroutine(ExecuteLast(5.0f));
             }
+            if (!PhotonNetwork.IsMasterClient && secondDead)
+            {
+                round = 10;
+            }
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10 && PhotonNetwork.IsMasterClient)
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
         {
             round = 11;
             StartCoroutine(ExecuteBackToLobby(5.0f));
@@ -150,20 +158,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator ExecuteLast(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (PhotonNetwork.PlayerList.Length > 1)
-        {
-            player2 = PhotonNetwork.PlayerListOthers[0].NickName;
-        }
         PhotonNetwork.LoadLevel("GameEnd");
     }
 
     IEnumerator ExecuteBackToLobby(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (PhotonNetwork.NetworkingClient.IsConnectedAndReady)
-        {
-            photonView.RPC("KickPlayer", RpcTarget.AllBuffered);
-        }
+        PhotonNetwork.LeaveRoom();
 
     }
 
@@ -173,9 +174,4 @@ public class GameManager : MonoBehaviourPunCallbacks
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
     }
 
-    [PunRPC]
-    private void Leave()
-    {
-        PhotonNetwork.LeaveRoom();
-    }
 }
