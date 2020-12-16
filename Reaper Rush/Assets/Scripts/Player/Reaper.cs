@@ -53,10 +53,6 @@ public class Reaper : MonoBehaviour
             zDirection = 0;
         }
 
-        if (manager.GetComponent<GameManager>().secondDead)
-        {
-            zDirection = 0;
-        }
 
         if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {
