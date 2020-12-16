@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10 && PhotonNetwork.IsMasterClient)
         {
             round = 11;
             StartCoroutine(ExecuteBackToLobby(5.0f));
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(seconds);
         if (PhotonNetwork.NetworkingClient.IsConnectedAndReady)
         {
-            PhotonNetwork.LeaveRoom();
+            photonView.RPC("KickPlayer", RpcTarget.AllBuffered);
         }
 
     }
@@ -171,5 +171,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+    }
+
+    [PunRPC]
+    private void Leave()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }
