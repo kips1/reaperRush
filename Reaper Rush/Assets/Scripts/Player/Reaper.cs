@@ -16,6 +16,7 @@ public class Reaper : MonoBehaviour
     private GameObject ReaperObj;
     private GameObject ReaperUI;
     private GameObject rmController;
+    private GameObject manager;
     AudioSource audio1;
 
 
@@ -27,6 +28,7 @@ public class Reaper : MonoBehaviour
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
         ReaperUI = GameObject.FindGameObjectWithTag("ReaperUI");
+        manager = GameObject.FindGameObjectWithTag("Manager");
         var aSources = GetComponents<AudioSource>();
         audio1 = aSources[0];
 
@@ -38,6 +40,23 @@ public class Reaper : MonoBehaviour
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
+        if (GameObject.Find("Player(Clone)") == null)
+        {
+            zDirection = 0;
+        } else
+        {
+            zDirection = 1;
+        }
+
+        if (manager.GetComponent<GameManager>().firstDead && manager.GetComponent<GameManager>().round < 5)
+        {
+            zDirection = 0;
+        }
+
+        if (manager.GetComponent<GameManager>().secondDead)
+        {
+            zDirection = 0;
+        }
 
         if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {

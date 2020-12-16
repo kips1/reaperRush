@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (secondDead && PhotonNetwork.IsMasterClient)
             {
                 round = 10;
-                StartCoroutine(ExecuteLast(5.0f));
+                StartCoroutine(ExecuteLast(10.0f));
             }
             if (!PhotonNetwork.IsMasterClient && secondDead)
             {
