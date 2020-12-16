@@ -163,7 +163,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.NetworkingClient.IsConnectedAndReady)
         {
             PhotonNetwork.LeaveRoom();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
         }
+
+    }
+
+    public override void OnLeftRoom()
+    {
+        //We have left the Room, return back to the GameLobby
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
     }
 }
