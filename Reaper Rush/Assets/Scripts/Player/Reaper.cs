@@ -48,7 +48,7 @@ public class Reaper : MonoBehaviour
             zDirection = 1;
         }
 
-        if (manager.GetComponent<GameManager>().firstDead && manager.GetComponent<GameManager>().round < 5)
+        if (manager.GetComponent<GameManager>().dead)
         {
             zDirection = 0;
         }
