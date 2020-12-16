@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10)
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10 && PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.IsConnectedAndReady)
             {
