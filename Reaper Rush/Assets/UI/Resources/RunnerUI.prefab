@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: -4701095871152867264}
   - component: {fileID: 3935664902722586729}
   m_Layer: 0
-  m_Name: UI
+  m_Name: RunnerUI
   m_TagString: Runner UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
