@@ -15,16 +15,22 @@ public class PowerUpInv : MonoBehaviour
         z = Random.Range(100, 500);
 
 
-        CreatePowerUp(PowerUp);
+        //CreatePowerUp(PowerUp);
 
     }
-    void CreatePowerUp(int coinsNum)
+    private void Update()
     {
-        for (int i = 0; i < coinsNum; i++)
+        if (GameObject.Find("Power-Up #3 Gen").transform.childCount < 15)
         {
-            GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
-
+            CreatePowerUp();
         }
+
+    }
+    void CreatePowerUp()
+    {
+            GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
+            CoinClone.transform.SetParent(this.transform);
+
     }
 
 }

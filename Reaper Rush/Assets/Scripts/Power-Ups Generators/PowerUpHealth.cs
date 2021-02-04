@@ -15,16 +15,21 @@ public class PowerUpHealth : MonoBehaviour
         z = Random.Range(100, 500);
 
 
-        CreatePowerUp(PowerUp);
+        //CreatePowerUp(PowerUp);
 
     }
-    void CreatePowerUp(int coinsNum)
+    private void Update()
     {
-        for (int i = 0; i < coinsNum; i++)
+        if (GameObject.Find("Power-Up #2 Gen").transform.childCount < 15)
         {
-            GameObject CoinClone = Instantiate(PowerUp2Original, new Vector3(Random.Range(-4, 4), PowerUp2Original.transform.position.y - 4, z += x = Random.Range(200, 600)), PowerUp2Original.transform.rotation);
-
+            CreatePowerUp();
         }
+
+    }
+    void CreatePowerUp()
+    {
+            GameObject CoinClone = Instantiate(PowerUp2Original, new Vector3(Random.Range(-4, 4), PowerUp2Original.transform.position.y - 4, z += x = Random.Range(200, 600)), PowerUp2Original.transform.rotation);
+            CoinClone.transform.SetParent(this.transform);
     }
 
 }
