@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             finalRound = true;
             if (round == 0 && PhotonNetwork.IsMasterClient)
             {
-                if (runner.GetComponent<Player>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
+                if (runner.GetComponent<Runner>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
                 {
                     distanceScored = distanceScore;
                     round++;

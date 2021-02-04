@@ -22,7 +22,7 @@ public class RunnerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Distance.text = runner.GetComponent<Player>().distanceUnit.ToString();
+        Distance.text = runner.GetComponent<Runner>().distanceUnit.ToString();
         playerName.text = PhotonNetwork.NickName;
         if (manager.GetComponent<GameManager>().distanceScore > 0)
         {

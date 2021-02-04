@@ -33,11 +33,11 @@ public class ReaperObjScript : MonoBehaviourPun
     {
         if (other.CompareTag("Player"))
         {
-            if (runner.GetComponent<Player>().takeDamage == true)
+            if (runner.GetComponent<Runner>().takeDamage == true)
             {
-                runner.GetComponent<Player>().TakeDamage(1);
+                runner.GetComponent<Runner>().TakeDamage(1);
             }
-            runner.GetComponent<Player>().anim.SetTrigger("Collide");
+            runner.GetComponent<Runner>().anim.SetTrigger("Collide");
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviourPun
+public class Runner : MonoBehaviourPun
 {
     public float distanceValue;
     public GameObject obstacleGenerator;

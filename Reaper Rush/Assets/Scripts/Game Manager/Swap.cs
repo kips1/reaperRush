@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class swap : MonoBehaviour
+public class Swap : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

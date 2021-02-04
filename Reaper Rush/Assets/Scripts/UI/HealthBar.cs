@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        float healthPercentage = runner.GetComponent<Player>().currentHealth / runner.GetComponent<Player>().maxHealth;
+        float healthPercentage = runner.GetComponent<Runner>().currentHealth / runner.GetComponent<Runner>().maxHealth;
         //healthPercentage = Mathf.Clamp(healthPercentage, 0, 1);
         health.fillAmount = healthPercentage;
     }

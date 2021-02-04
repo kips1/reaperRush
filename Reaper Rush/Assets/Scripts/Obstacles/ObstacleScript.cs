@@ -44,11 +44,11 @@ public class ObstacleScript : MonoBehaviourPun
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (runner.GetComponent<Player>().takeDamage == true)
+            if (runner.GetComponent<Runner>().takeDamage == true)
             {
-                runner.GetComponent<Player>().TakeDamage(10);
+                runner.GetComponent<Runner>().TakeDamage(10);
             }
-            runner.GetComponent<Player>().anim.SetTrigger("Collide");
+            runner.GetComponent<Runner>().anim.SetTrigger("Collide");
             
             //generate.Message(myNum);
             //Debug.Log("Works!");
