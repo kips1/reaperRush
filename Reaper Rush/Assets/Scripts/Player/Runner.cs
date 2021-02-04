@@ -10,6 +10,7 @@ using UnityEngine.UI;
  * The script attached to the instance of a runner which provides basic attributes and functionality
  * 
  * Version:
+ * 
  */
 
 public class Runner : MonoBehaviourPun
@@ -73,7 +74,7 @@ public class Runner : MonoBehaviourPun
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
-        // Sets the movement of the player when an instance is created
+        // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
             zDirection = 1;
@@ -109,7 +110,7 @@ public class Runner : MonoBehaviourPun
             { 
                 xDirection += 0.045f;
             }
-            // Stops the runner moving left/right whilst in the air
+            // Stop moving left/right
             else
             {
                 xDirection = 0;

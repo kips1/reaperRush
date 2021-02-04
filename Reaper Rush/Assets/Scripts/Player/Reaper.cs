@@ -10,6 +10,7 @@ using Photon.Pun;
  * The script attached to the instance of a reaper which provides basic attributes and functionality
  * 
  * Version:
+ * 
  */
 
 public class Reaper : MonoBehaviour
@@ -34,6 +35,7 @@ public class Reaper : MonoBehaviour
     private float zDirection = 1;
 
     // Start is called before the first frame update
+    // Initialise fields
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -51,59 +53,56 @@ public class Reaper : MonoBehaviour
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
+        // Starts the movement when an instance of runner is created
         if (GameObject.Find("Player(Clone)") == null)
         {
             zDirection = 0;
         }
+
         else
         {
             zDirection = 1;
         }
 
+        // Stops movement when runner has died
         if (manager.GetComponent<GameManager>().dead)
         {
             zDirection = 0;
         }
 
-
+        // Move right
         if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {
             xDirection -= 0.01f;
         }
 
+        // Move left
         else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
         {
             xDirection += 0.01f;
         }
 
+        // Stop moving left/right
         else
         {
             xDirection = 0;
         }
 
+        // Spawn rock obstacle
         if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
-            
         }
 
+        // Spawn fire
         if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
             fireSound.Play();
-
         }
-
+        // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
-
-    }
-
-    public void Reset()
-    {
-        PhotonNetwork.Destroy(gameObject);
-        rmController.GetComponent<PUN2_RoomController>().Start();
-        PhotonNetwork.LoadLevel("Game");
     }
 }

@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Author: Alex, Kips
+ * 
+ * The script attached to the instance of a coin to generate them
+ * 
+ * Version:
+ * 
+ */
+
 public class CoinGen : MonoBehaviour
 {
-    
     public GameObject coin;
 
-    // public GameObject CoinContainer;
-    // Random rnd = new Random();
-    // int x = rnd.Next(-5, 5);
-    // int z = rnd.Next(3, 15);
-    int z; 
-    //public int Coins;
+    int z;
 
-   void Start()
+    //  Start is called before the first frame update
+    // Initialise fields
+    void Start()
     {
         z = Random.Range(10, 25);
-        //GameObject CoinClone = Instantiate(coinOriginal);
-        
     }
+
+    // Update is called once per frame
     private void Update()
     {
+        // Controls the number of coins to generate
         if (GameObject.Find("CoinGenerator").transform.childCount < 9)
         {
             CreateCoins();
         }
-
     }
+
+    // Generates instance of a coin
     void CreateCoins()
     {
-
             GameObject CoinClone = Instantiate(coin, new Vector3(Random.Range(-4,4), coin.transform.position.y + 2, z+=10), coin.transform.rotation);
             CoinClone.transform.SetParent(this.transform);
-            //CoinClone.transform.parent = CoinContainer.transform;
-            //CoinClone.name = "CoinClone" + (i + 1);
     }
-    
 }

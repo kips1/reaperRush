@@ -3,18 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+
+/*
+ * Author: Josh, Kips
+ * 
+ * Deals with the winning/losing scene of the game
+ * 
+ * Version:
+ * 
+ */
+
 public class GameOver : MonoBehaviour
 {
+    public GameObject manager;
+
+    public Image background;
     public Text Message;
     public Text Top;
     public Text Bottom;
-    public GameObject manager;
-    public float firstScore;
-    public float secondScore;
-    public Image background;
+
     public string player2;
 
+    public float firstScore;
+    public float secondScore;
+
     // Start is called before the first frame update
+    // Initialise fields
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager");
@@ -22,7 +36,9 @@ public class GameOver : MonoBehaviour
         secondScore = manager.GetComponent<GameManager>().secondScore;
         background = gameObject.GetComponentInChildren<Image>();
         player2 = manager.GetComponent<GameManager>().player2;
-        if (PhotonNetwork.IsMasterClient == false)
+
+        // Applies game over state conditions to each client
+        if (!PhotonNetwork.IsMasterClient)
         {
             if(secondScore > firstScore)
             {
@@ -45,6 +61,7 @@ public class GameOver : MonoBehaviour
                 background.color = Color.yellow;
             }
         }
+
         else
         {
             if (firstScore > secondScore)

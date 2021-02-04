@@ -24,7 +24,7 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
     void Update()
     {
         //StartCoroutine(WaitSys());
-        if (GameObject.Find("Controller").transform.childCount < 15) {
+        if (GameObject.Find("Controller").transform.childCount < 9) {
             Generate();
         }
     }
