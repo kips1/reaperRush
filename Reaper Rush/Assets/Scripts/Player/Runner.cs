@@ -4,52 +4,54 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
+/*
+ * Author: Josh, Alex, Kips
+ * 
+ * The main script attached to the instance of a runner which provides basic attributes and functionality
+ * 
+ * Version:
+ */
+
 public class Runner : MonoBehaviourPun
 {
-    public float distanceValue;
-    public GameObject obstacleGenerator;
+    // fields that are accessible within the inspector
     [SerializeField] public float speed = 25.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
 
-
+    // defines the objects that are associated directly to the runner instance
     private GameObject playerPosition;
+    private GameObject rmController;
+    public GameObject obstacleGenerator;
+    public GameObject ObstacleGeneratorScript;
+    public GameObject obstacle;
+    public GameObject manager;
+    
     private CharacterController controller;
     private HealthBar healthBar;
-    private GameObject rmController;
     public Animator anim;
- 
+
+    AudioSource coinSound;
+    AudioSource powerUpSound;
+
+    private int start = 0;
 
     private float yVelocity = 0.0f;
     private float xDirection = 0;
     private float zDirection = 0;
-    private bool isJumping = false;
-
-
-    public bool takeDamage = true;
     public float distanceUnit;
     public float maxHealth;
     public float currentHealth;
-    public bool hasLost;
-    public GameObject ObstacleGeneratorScript;
-    public GameObject obstacle;
-    public GameObject manager;
-
+    public float distanceValue;
     float timeLeft = 3.0f;
-    private int start = 0;
+   
+    private bool isJumping = false;
+    public bool takeDamage = true;
+    public bool hasLost;
 
-    // AudioSource audioSrcCoins;
-    // AudioSource audioSrcPowerUp1;
-    // AudioSource audioSrcPowerUp2;
-
-    AudioSource audio1;
-    AudioSource audio2;
-    AudioSource audio3;
-    
     // Start is called before the first frame update
     void Start()
     {
-        
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
         
@@ -62,13 +64,9 @@ public class Runner : MonoBehaviourPun
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
 
         var aSources = GetComponents<AudioSource>();
-        audio1 = aSources[0];
-        audio2 = aSources[1];
-        audio3 = aSources[2];
+        coinSound = aSources[0];
+        powerUpSound = aSources[1];
         manager = GameObject.FindGameObjectWithTag("Manager");
-        //audioSrcPowerUp1 = GetComponent<AudioSource>();
-        //audioSrcPowerUp2 = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -188,7 +186,7 @@ public class Runner : MonoBehaviourPun
         {
             
             Destroy(other.gameObject);         
-            audio3.Play();
+            powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
         }
 
@@ -196,19 +194,19 @@ public class Runner : MonoBehaviourPun
         {
             Destroy(other.gameObject);
             currentHealth += 5;
-            audio3.Play();
+            powerUpSound.Play();
         }
 
         if (other.gameObject.layer == 8)
         {
-            audio1.Play();
+            coinSound.Play();
             CoinAddScript.coinAmount += 1;
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.layer == 10)
         {
-            audio2.Play();
+            powerUpSound.Play();
             Destroy(other.gameObject);
 
             //Debug.Log("test");
