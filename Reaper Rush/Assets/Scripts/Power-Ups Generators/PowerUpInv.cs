@@ -14,9 +14,6 @@ public class PowerUpInv : MonoBehaviour
     {
         z = Random.Range(100, 500);
 
-
-        //CreatePowerUp(PowerUp);
-
     }
     private void Update()
     {
@@ -28,8 +25,8 @@ public class PowerUpInv : MonoBehaviour
     }
     void CreatePowerUp()
     {
-            GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
-            CoinClone.transform.SetParent(this.transform);
+        GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
+        CoinClone.transform.SetParent(this.transform);
 
     }
 

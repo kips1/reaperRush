@@ -43,7 +43,8 @@ public class Reaper : MonoBehaviour
         if (GameObject.Find("Player(Clone)") == null)
         {
             zDirection = 0;
-        } else
+        }
+        else
         {
             zDirection = 1;
         }
@@ -73,7 +74,6 @@ public class Reaper : MonoBehaviour
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
-            //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
 
         }
 
@@ -82,7 +82,6 @@ public class Reaper : MonoBehaviour
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
             audio1.Play();
-            //PhotonNetwork.Instantiate(obstacle.name, obstacleSpawn, obstacle.transform.rotation);
 
         }
 

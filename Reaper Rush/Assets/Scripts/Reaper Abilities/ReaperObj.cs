@@ -16,7 +16,7 @@ public class ReaperObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Generate(Vector3 position)
     {
@@ -25,7 +25,7 @@ public class ReaperObj : MonoBehaviour
     }
     public void GenerateFire(Vector3 position)
     {
-            GameObject obstacleClone = PhotonNetwork.Instantiate(fire.name, position, fire.transform.rotation);
-            obstacleClone.transform.SetParent(this.transform, true);
+        GameObject obstacleClone = PhotonNetwork.Instantiate(fire.name, position, fire.transform.rotation);
+        obstacleClone.transform.SetParent(this.transform, true);
     }
 }
