@@ -40,50 +40,36 @@ public class GameOver : MonoBehaviour
         // Applies game over state conditions to each client
         if (!PhotonNetwork.IsMasterClient)
         {
-            if(secondScore > firstScore)
-            {
-                Message.text = "YOU LOSE!";
-                Top.text = player2 + ": " + secondScore;
-                Bottom.text = PhotonNetwork.NickName + ": " + firstScore;
-            }
-            else if (secondScore < firstScore)
-            {
-                Message.text = "YOU WIN!";
-                Bottom.text = player2 + ": " + secondScore;
-                Top.text = PhotonNetwork.NickName + ": " + firstScore;
-                background.color = Color.green;
-            }
-            else if (secondScore.Equals(firstScore))
-            {
-                Message.text = "DRAW!";
-                Bottom.text = player2 + ": " + secondScore;
-                Top.text = PhotonNetwork.NickName + ": " + firstScore;
-                background.color = Color.yellow;
-            }
+            EndScreen(firstScore, secondScore);
         }
 
         else
         {
-            if (firstScore > secondScore)
-            {
-                Message.text = "YOU LOSE!";
-                Top.text = player2 + ": " + firstScore;
-                Bottom.text = PhotonNetwork.NickName + ": " + secondScore;
-            }
-            else if (firstScore < secondScore)
-            {
-                Message.text = "YOU WIN!";
-                Bottom.text = player2 + ": " + firstScore;
-                Top.text = PhotonNetwork.NickName + ": " + secondScore;
-                background.color = Color.green;
-            }
-            else if (secondScore.Equals(firstScore))
-            {
-                Message.text = "DRAW!";
-                Bottom.text = player2 + ": " + firstScore;
-                Top.text = PhotonNetwork.NickName + ": " + secondScore;
-                background.color = Color.yellow;
-            }
+            EndScreen(secondScore, firstScore);
+        }
+    }
+
+    private void EndScreen(float myScore, float otherScore)
+    {
+        if (otherScore > myScore)
+        {
+            Message.text = "YOU LOSE!";
+            Top.text = player2 + ": " + otherScore;
+            Bottom.text = PhotonNetwork.NickName + ": " + myScore;
+        }
+        else if (otherScore < myScore)
+        {
+            Message.text = "YOU WIN!";
+            Bottom.text = player2 + ": " + otherScore;
+            Top.text = PhotonNetwork.NickName + ": " + myScore;
+            background.color = Color.green;
+        }
+        else if (otherScore.Equals(myScore))
+        {
+            Message.text = "DRAW!";
+            Bottom.text = player2 + ": " + otherScore;
+            Top.text = PhotonNetwork.NickName + ": " + myScore;
+            background.color = Color.yellow;
         }
     }
 }
