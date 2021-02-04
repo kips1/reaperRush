@@ -49,6 +49,7 @@ public class GameOver : MonoBehaviour
         }
     }
 
+    // Shows the conclusion of game with scores
     private void EndScreen(float myScore, float otherScore)
     {
         if (otherScore > myScore)

@@ -2,27 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/*
+ * Author: Josh, Kips
+ * 
+ * Retains all data that is necessary for the duration of the game such as the player scores
+ * 
+ * Version:
+ * 
+ */
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public int round;
-    public float distanceScore;
-    public float distanceScored;
-    private int coinsCollected;
-    public bool finalRound;
+    private static GameManager _instance;
+
     private GameObject runner;
     private GameObject reaper;
     private GameObject rmController;
-    private static GameManager _instance;
+
     public Photon.Realtime.Player s;
-    public bool lastRound;
+
+    public string player2;
+
+    public int round;
+    private int coinsCollected;
+
+    public float distanceScore;
+    public float distanceScored;
     public float secondScore;
+
+    public bool finalRound;
+    public bool lastRound;
     public bool firstDead;
     public bool secondDead;
     public bool dead;
-    public string player2;
+
     public static GameManager Instance { get { return _instance; } }
+
+    // Executes the following when script is being loaded
     private void Awake()
     {
+        // Ensures only one instance of this class is created
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -32,27 +52,28 @@ public class GameManager : MonoBehaviourPunCallbacks
             _instance = this;
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
         rmController = GameObject.FindGameObjectWithTag("RoomController");
-        finalRound = false;
-        round = 0;
         DontDestroyOnLoad(gameObject);
         s = PhotonNetwork.MasterClient;
+        round = 0;
+        finalRound = false;
         lastRound = false;
-
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
+        // Removes the manager instance when in the lobby
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameLobby")
         {
             Destroy(this.gameObject);
         }
+
+        
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
