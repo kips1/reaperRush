@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7157166011046354848}
   - component: {fileID: 4250580188463302028}
+  - component: {fileID: 1667706798409306982}
   - component: {fileID: 6297548626246934927}
   - component: {fileID: 4303215504796706677}
   - component: {fileID: 5034126154125882690}
   - component: {fileID: 6903474578649114917}
   - component: {fileID: 6359927599403803687}
-  - component: {fileID: 7353762362327854441}
   - component: {fileID: 6143420876120813895}
   m_Layer: 8
   m_Name: Coin
@@ -46,6 +46,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6435272963498920098}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1667706798409306982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435272963498920098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c624d2ee8ddd8534fa205e67bafe0a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runner: {fileID: 0}
 --- !u!23 &6297548626246934927
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -151,21 +164,6 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7353762362327854441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6435272963498920098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7c02894a680d0468e5a23c7bf565d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinOriginal: {fileID: 0}
-  CoinContainer: {fileID: 0}
-  Coins: 0
 --- !u!114 &6143420876120813895
 MonoBehaviour:
   m_ObjectHideFlags: 0
