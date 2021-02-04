@@ -60,7 +60,6 @@ public class Runner : MonoBehaviourPun
         manager = GameObject.FindGameObjectWithTag("Manager");
         controller = GetComponent<CharacterController>();
         var aSources = GetComponents<AudioSource>();
-
         coinSound = aSources[0];
         powerUpSound = aSources[1];
         maxHealth = 100;
