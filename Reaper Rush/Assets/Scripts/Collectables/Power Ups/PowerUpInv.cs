@@ -17,7 +17,7 @@ public class PowerUpInv : MonoBehaviour
     }
     private void Update()
     {
-        if (GameObject.Find("Power-Up #3 Gen").transform.childCount < 15)
+        if (GameObject.Find("Power-Up #3 Gen").transform.childCount < 2)
         {
             CreatePowerUp();
         }

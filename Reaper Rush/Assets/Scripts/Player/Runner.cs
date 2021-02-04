@@ -7,19 +7,19 @@ using UnityEngine.UI;
 /*
  * Author: Josh, Alex, Kips
  * 
- * The main script attached to the instance of a runner which provides basic attributes and functionality
+ * The script attached to the instance of a runner which provides basic attributes and functionality
  * 
  * Version:
  */
 
 public class Runner : MonoBehaviourPun
 {
-    // fields that are accessible within the inspector
+    // Fields accessible in inspector
     [SerializeField] public float speed = 25.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
 
-    // defines the objects that are associated directly to the runner instance
+    // Defines the objects that are associated directly to the runner instance
     private GameObject playerPosition;
     private GameObject rmController;
     public GameObject obstacleGenerator;
@@ -34,6 +34,7 @@ public class Runner : MonoBehaviourPun
     AudioSource coinSound;
     AudioSource powerUpSound;
 
+    // Initialise distance counter state
     private int start = 0;
 
     private float yVelocity = 0.0f;
@@ -45,171 +46,145 @@ public class Runner : MonoBehaviourPun
     public float distanceValue;
     float timeLeft = 3.0f;
    
-    private bool isJumping = false;
+    // Fields for the player's health state
     public bool takeDamage = true;
     public bool hasLost;
 
     // Start is called before the first frame update
+    // Initialise fields
     void Start()
     {
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
-        
+        anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
+        manager = GameObject.FindGameObjectWithTag("Manager");
+        controller = GetComponent<CharacterController>();
+        var aSources = GetComponents<AudioSource>();
+
+        coinSound = aSources[0];
+        powerUpSound = aSources[1];
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
-        controller = GetComponent<CharacterController>();
-
-
-        anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
-
-        var aSources = GetComponents<AudioSource>();
-        coinSound = aSources[0];
-        powerUpSound = aSources[1];
-        manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 direction = new Vector3(xDirection, 0, zDirection);
+        Vector3 velocity = direction * speed;
 
-
+        // Sets the movement of the player when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
             zDirection = 1;
         }
-
+        // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
         if(start == 0 && zDirection == 1)
         {
-            InvokeRepeating("distance", 0, 1 / speed);
+            InvokeRepeating(nameof(Distance), 0, 1 / speed);
             start = 1;
         }
-
-        timeLeft -= Time.deltaTime;
+        // Enables the obstacle generator after a specified distance
         if (distanceUnit == distanceValue + 30)
         {
-            Debug.Log("test");
             obstacleGenerator.SetActive(true);
-            
         }
        
-
-        Vector3 direction = new Vector3(xDirection, 0, zDirection);
-        Vector3 velocity = direction * speed;
-
-
+        // Checks if the runner is on the ground
         if (controller.isGrounded)
         {
+            // Allows the runner to jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 anim.SetBool("isJumping", true);
                 yVelocity = jumpHeight;
             }
-
+            // Move left
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
             {
-                
                 xDirection -= 0.045f;
             } 
-
+            // Move right
             else if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
-            {
-                
+            { 
                 xDirection += 0.045f;
             }
-
-            else if (Input.GetKey(KeyCode.I) && xDirection < 3.48f)
-            {
-                currentHealth += 10;
-            }
+            // Stops the runner moving left/right whilst in the air
             else
             {
                 xDirection = 0;
             }
-
         } 
-            
+        // Plays jumping animation and makes the runner fall
         else
         {
             anim.SetBool("isJumping", false);
             yVelocity -= gravity;
         }
 
-        
+        // Checks when runner has died
         if (currentHealth <= 0)
         {
-            if (PhotonNetwork.PlayerList.Length > 1)
-            {
-                photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
-            }
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
             anim.SetBool("hasDied", true);
             anim.SetTrigger("Die");
+            // Checks that there is more than 1 player
             if (PhotonNetwork.PlayerList.Length > 1)
             {
+                // Sends final score to game manager
+                photonView.RPC("changeDistance", RpcTarget.AllBuffered, distanceUnit);
                 photonView.RPC("changeDead", RpcTarget.AllBuffered, hasLost);
             }
-            //GameObject.FindGameObjectWithTag("UI").GetComponent<Text>().enabled = true;
         }
 
+        // Changes Y position when jumping
         velocity.y = yVelocity;
+        // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void Reset()
-    {
-        rmController.GetComponent<PUN2_RoomController>().Start();
-    }
-
-    void distance()
+    // Increments the distance counter
+    void Distance()
     {
         if (currentHealth > 0)
         {
             distanceUnit = distanceUnit + 1;
+        }
 
-        } else
-
+        else
         {
             distanceUnit += 0;
-            
         }
     }
 
-
+    // Collision detection for collectibles
     private void OnTriggerEnter(Collider other)
     {
         distanceValue = distanceUnit;
 
+        // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
         {
-            
             Destroy(other.gameObject);         
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
         }
 
+        // Handles health powerup
         if (other.gameObject.layer == 15)
         {
             Destroy(other.gameObject);
             currentHealth += 5;
             powerUpSound.Play();
         }
-
-        if (other.gameObject.layer == 8)
-        {
-            coinSound.Play();
-            CoinAddScript.coinAmount += 1;
-            Destroy(other.gameObject);
-        }
-
         if (other.gameObject.layer == 10)
         {
             powerUpSound.Play();
             Destroy(other.gameObject);
 
-            //Debug.Log("test");
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 30), Quaternion.identity);
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 33), Quaternion.identity);
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 36), Quaternion.identity);
@@ -219,41 +194,46 @@ public class Runner : MonoBehaviourPun
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 48), Quaternion.identity);
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 52), Quaternion.identity);
             Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + 53), Quaternion.identity);
-            obstacleGenerator.SetActive(false);
 
+            obstacleGenerator.SetActive(false);
         }
 
+        // Handles coin collectible
+        if (other.gameObject.layer == 8)
+        {
+            coinSound.Play();
+            CoinAddScript.coinAmount += 1;
+            Destroy(other.gameObject);
+        }
+
+        // Destroys the rock when collision occurs
         if (other.gameObject.layer == 25)
         {
             Destroy(other.gameObject);
         }
-
-
-
-
     }
+
     public void TakeDamage(float damage)
     {  
             currentHealth -= damage;  
-        
     }
 
-
-
+    // Makes runner invulnerable for a given time
     IEnumerator invulnerableActiveFor(float time)
     {
         takeDamage = false;
         yield return new WaitForSeconds(time);
         takeDamage = true;
-
     }
 
+    // Updates distance score in game manager
     [PunRPC]
     void changeDistance(float distance)
     {
         manager.GetComponent<GameManager>().distanceScore = distance;
     }
 
+    // Change runner's state in game manager
     [PunRPC]
     void changeDead(bool isDead)
     {

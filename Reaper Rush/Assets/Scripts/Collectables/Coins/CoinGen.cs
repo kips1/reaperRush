@@ -22,7 +22,7 @@ public class CoinGen : MonoBehaviour
     }
     private void Update()
     {
-        if (GameObject.Find("CoinGenerator").transform.childCount < 15)
+        if (GameObject.Find("CoinGenerator").transform.childCount < 5)
         {
             CreateCoins();
         }

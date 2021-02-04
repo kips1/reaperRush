@@ -4,34 +4,45 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Kips
+ * 
+ * The script attached to the instance of a reaper which provides basic attributes and functionality
+ * 
+ * Version:
+ */
+
 public class Reaper : MonoBehaviour
 {
+    // fields accessible in inspector
     [SerializeField] private float speed = 25.0f;
-    private CharacterController controller;
-    private float xDirection = 0;
-    private float zDirection = 1;
-    public GameObject obstacle;
-    public GameObject reaper;
-    private Vector3 obstacleSpawn;
+
+    // Defines the objects that are associated directly to the reaper instance
     private GameObject ReaperObj;
     private GameObject ReaperUI;
     private GameObject rmController;
     private GameObject manager;
-    AudioSource audio1;
+    public GameObject obstacle;
+    public GameObject reaper;
 
+    private CharacterController controller;
+    private Vector3 obstacleSpawn;
+
+    AudioSource fireSound;
+
+    private float xDirection = 0;
+    private float zDirection = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
         ReaperUI = GameObject.FindGameObjectWithTag("ReaperUI");
         manager = GameObject.FindGameObjectWithTag("Manager");
         var aSources = GetComponents<AudioSource>();
-        audio1 = aSources[0];
-
+        fireSound = aSources[0];
     }
 
     // Update is called once per frame
@@ -74,14 +85,14 @@ public class Reaper : MonoBehaviour
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
-
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
         {
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
-            audio1.Play();
+            fireSound.Play();
 
         }
 

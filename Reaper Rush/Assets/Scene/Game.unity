@@ -850,10 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7c02894a680d0468e5a23c7bf565d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinOriginal: {fileID: 6435272963498920098, guid: 32a39a3071251dd4292a204981c5041b,
-    type: 3}
-  CoinContainer: {fileID: 0}
-  Coins: 1000
+  coin: {fileID: 6435272963498920098, guid: 32a39a3071251dd4292a204981c5041b, type: 3}
 --- !u!4 &2111702958
 Transform:
   m_ObjectHideFlags: 0
