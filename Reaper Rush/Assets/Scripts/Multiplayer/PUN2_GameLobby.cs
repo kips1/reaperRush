@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+
+/*
+ * Author: 
+ * 
+ * The script that handles all activity with the game lobby
+ * 
+ * Version:
+ * 
+ */
+
 public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 {
-
-
-    //Our player name
+    // Our player name
     string playerName = "Please Enter Your Name";
-    //Users are separated from each other by gameversion (which allows you to make breaking changes).
+
+    // Users are separated from each other by gameversion (which allows you to make breaking changes).
     string gameVersion = "0.9";
-    //The list of created rooms
+
+    // The list of created rooms
     List<RoomInfo> createdRooms = new List<RoomInfo>();
-    //Use this name when creating a Room
+    // Use this name when creating a Room
     string roomName = "Room 1";
+
     Vector2 roomListScroll = Vector2.zero;
     bool joiningRoom = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //This makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
+        // This makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
-
         if (!PhotonNetwork.IsConnected)
         {
-            //Set the App version before connecting
+            // Set the App version before connecting
             PhotonNetwork.PhotonServerSettings.AppSettings.AppVersion = gameVersion;
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
             PhotonNetwork.ConnectUsingSettings();
@@ -187,11 +197,5 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -3,39 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Josh, Alex, Kips
+ * 
+ * Handles the generation of the obstacles on the track
+ * 
+ * Version:
+ * 
+ */
+
 public class ObstacleGenerator : MonoBehaviourPunCallbacks
 {
+    // Defines the objects that are associated directly to the obstacles to be generated
     public GameObject obstacle;
     public GameObject gameManager;
+
+    // Holds the current postion of the obstacle instance
     Vector3 position;
-    bool next;
-    public float[] posX;
-    public float[] posZ;
+
     int value = 1;
     public int lastPosition = 1;
 
+    public float[] posX;
+    public float[] posZ;
 
+    bool next;
+
+    // Start is called before the first frame update
+    // Initialise fields
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Manager");
     }
 
-
+    // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(WaitSys());
         if (GameObject.Find("Controller").transform.childCount < 9) {
             Generate();
         }
     }
-
-  /*  IEnumerator WaitSys()
-    {
-        //yield return new WaitForSeconds(2f);
-        next = true;
-        Generate();
-        yield return new WaitForSeconds(100f);
-    }*/
 
 
     public void Generate()
@@ -44,52 +51,18 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
         {
             generateObstacles();
             return;
-
         }
     }
 
-
+    // Generate instance of obstacles in random positions
     public void generateObstacles()
     {
         int i = Random.Range(0, 3);
         position.x = posX[i];
         position.z += posZ[i];
         GameObject obstacleClone = PhotonNetwork.Instantiate(obstacle.name, position, obstacle.transform.rotation);
-        //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
         obstacleClone.transform.SetParent(this.transform);
         value += 1;
         next = false;
-    }
-
-    /*public void ReaperGenerate(Vector3 reaperPosition)
-    {
-        //if (!next)
-        //  return;
-        //if (PhotonNetwork.IsMasterClient == true)
-        //{
-            //int i = Random.Range(0, 3);
-            //position.x = posX[i];
-            //position.z += posZ[i];
-            GameObject obstacleClone2 = PhotonNetwork.Instantiate(obstacle.name, reaperPosition, obstacle.transform.rotation);
-            //obstacleClone.GetComponent<ObstacleScript>().myNum = value;
-            obstacleClone2.transform.SetParent(this.transform);
-            value += 1;
-            next = false;
-            return;
-        //}
-    }
-    */
-    public void Message(int i)
-    {
-        if (lastPosition == i)
-        {
-            lastPosition += 1;
-            Debug.Log("Found");
-        } 
-
-        else
-        {
-            Debug.Log("Not found");
-        }
     }
 }
