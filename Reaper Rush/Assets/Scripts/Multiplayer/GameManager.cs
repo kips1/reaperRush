@@ -73,12 +73,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             Destroy(this.gameObject);
         }
 
-        
+        // Keeps track of first client's score
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
         {
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
+
+            // Checks when the first client has finished and loads role swap scene
             if (round == 0 && PhotonNetwork.IsMasterClient)
             {
                 if (runner.GetComponent<Runner>().hasLost && round == 0 && PhotonNetwork.IsMasterClient)
@@ -86,53 +88,46 @@ public class GameManager : MonoBehaviourPunCallbacks
                     distanceScored = distanceScore;
                     round++;
                     finalRound = true;
-                    /*if (PhotonNetwork.IsMasterClient)
-                    {
-                        runner.GetComponent<Player>().Reset();
-                        PhotonNetwork.Destroy(runner);
-                    } else if (!PhotonNetwork.IsMasterClient)
-                    {
-                        reaper.GetComponent<Reaper>().Reset();
-                        PhotonNetwork.Destroy(reaper);
-
-                    }*/
-
-
                     StartCoroutine(ExecuteAfter(5.0f));
-
-
-                    //this.gameObject.tag = "mainManager";
                 }
             }
+
+            // Updates the round for the other client
             if (PhotonNetwork.IsMasterClient == false)
             {
                 round = 1;  
             }
         }
+
+        // Saves first client's score and state, then clears for second client
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "RoleSwap" && round == 1)
         {
             distanceScored = distanceScore;
             firstDead = dead;
             dead = false;
             runner = null;
+
+            // Switches second client to master client so they become the runner
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
             {
                 PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[1]);
             }
-            //PhotonNetwork.LoadLevel("Game");
+
             round++;
             if (PhotonNetwork.PlayerList.Length > 1)
             {
                 player2 = PhotonNetwork.PlayerListOthers[0].NickName;
             }
-
         }
+
+        // Ensures that master client has switched, then loads back into game
         if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
             round = 5;
             lastRound = true;
         }
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
@@ -140,15 +135,19 @@ public class GameManager : MonoBehaviourPunCallbacks
             lastRound = true;
         }
 
+        // Ensures both clients are synced to the same round
         if(s != PhotonNetwork.MasterClient && !PhotonNetwork.IsMasterClient)
         {
             round = 5;
         }
 
+        // Saves the second player's score and state
         if (round == 5)
         {
             secondScore = distanceScore;
             secondDead = dead;
+
+            // When second player has finished, changes to score board screen
             if (secondDead && PhotonNetwork.IsMasterClient)
             {
                 round = 10;
@@ -158,9 +157,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 round = 10;
             }
-            //Debug.Log(secondScore + "thise is first" + distanceScored);
         }
 
+        // Sends players back to lobby after a certain time
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameEnd" && round == 10 && PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.IsConnectedAndReady)
@@ -169,16 +168,15 @@ public class GameManager : MonoBehaviourPunCallbacks
                 StartCoroutine(ExecuteBackToLobby(5.0f));
             }
         }
-
-
     }
 
+    // Coroutines to be executed after a given time
     IEnumerator ExecuteAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-
         PhotonNetwork.LoadLevel("RoleSwap");
     }
+
     IEnumerator ExecuteLast(float seconds)
     {
         yield return new WaitForSeconds(seconds);
@@ -189,14 +187,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(seconds);
         PhotonNetwork.LeaveRoom();
-
-
     }
 
+    //We have left the Room, return back to the GameLobby
     public override void OnLeftRoom()
     {
-        //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
     }
-
 }
