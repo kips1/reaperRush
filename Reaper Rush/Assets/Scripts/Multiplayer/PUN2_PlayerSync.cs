@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Sharp Coder
+ * 
+ * The script that handles all network activity for syncing players
+ *
+ * 
+ */
+
 public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
 {
     //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
@@ -39,6 +47,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
 
 
     }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -65,5 +74,4 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
         }
     }
-
 }

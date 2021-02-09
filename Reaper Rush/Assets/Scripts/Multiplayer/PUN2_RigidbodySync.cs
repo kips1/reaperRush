@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Sharp Coder
+ * 
+ * The script that handles all network activity for the player's physics
+ *
+ * 
+ */
+
 public class PUN2_RigidbodySync : MonoBehaviourPun, IPunObservable
 {
 

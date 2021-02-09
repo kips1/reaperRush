@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Sharp Coder
+ * 
+ * The script that handles all network activity for joining/controlling a room
+ *
+ * 
+ */
+
 public class PUN2_RoomController : MonoBehaviourPunCallbacks
 {
     //Player instance prefab, must be located in the Resources folder
@@ -19,8 +27,6 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public bool gameEnded;
 
     // Start is called before the first frame update
-
-
     public void Start()
     {
 
@@ -75,11 +81,5 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     {
         //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
     }
 }

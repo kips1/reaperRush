@@ -5,11 +5,10 @@ using Photon.Pun;
 using Photon.Realtime;
 
 /*
- * Author: 
+ * Author: Sharp Coder 
  * 
- * The script that handles all activity with the game lobby
- * 
- * Version:
+ * The script that handles all network activity with the game lobby
+ *
  * 
  */
 
