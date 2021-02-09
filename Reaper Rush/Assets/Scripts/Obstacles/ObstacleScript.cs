@@ -60,5 +60,26 @@ public class ObstacleScript : MonoBehaviourPun
             }
             runner.GetComponent<Runner>().anim.SetTrigger("Collide");
         }
+
+        //If the rock spawns where a coin is placed, it will not spawn the obstacle
+        if (collider.gameObject.CompareTag("Coin"))
+        {
+            Destroy(gameObject);
+        }
+        //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle
+        if (collider.gameObject.layer == 20)
+        {
+            Destroy(gameObject);
+        }
+
+        if (collider.gameObject.layer == 15)
+        {
+            Destroy(gameObject);
+        }
+
+        if (collider.gameObject.layer == 10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
