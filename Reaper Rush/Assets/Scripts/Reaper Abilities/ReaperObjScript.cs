@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+/*
+ * Author: Kips
+ * 
+ * Deals with the behaviour of the reaper objects
+ * 
+ * Version:
+ * 
+ */
+
 public class ReaperObjScript : MonoBehaviourPun
 {
-    private ReaperObj generate;
-    private Renderer render;
     public GameObject runner;
+
+    private ReaperObj generate;
+
+    private Renderer render;
+
     // Start is called before the first frame update
+    // Initiate the fields
     void Start()
     {
         generate = GetComponentInParent<ReaperObj>();
@@ -17,6 +30,7 @@ public class ReaperObjScript : MonoBehaviourPun
     }
 
     // Update is called once per frame
+    // Removes the objects that are spawned
     void Update()
     {
 
@@ -26,9 +40,9 @@ public class ReaperObjScript : MonoBehaviourPun
             PhotonNetwork.Destroy(gameObject);
             }
         }
-
     }
 
+    // Triggers damage function when runner instance collides reaper object
     void OnParticleCollision(GameObject other)
     {
         if (other.CompareTag("Player"))

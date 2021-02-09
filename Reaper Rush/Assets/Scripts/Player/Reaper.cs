@@ -102,6 +102,7 @@ public class Reaper : MonoBehaviour
             ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
             fireSound.Play();
         }
+
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
     }

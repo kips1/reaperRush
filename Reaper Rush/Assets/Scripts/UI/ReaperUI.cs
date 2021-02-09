@@ -4,14 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
+/*
+ * Author: Kips
+ * 
+ * Displays the reaper interface
+ * 
+ * Version:
+ * 
+ */
+
 public class ReaperUI : MonoBehaviour
 {
     private GameObject reaper;
+
     public Text playerName;
     public Text activeObject;
+
     public Button rockButton;
     public Button fireButton;
+
     // Start is called before the first frame update
+    // Initialise fields
     void Start()
     {
         reaper = GameObject.FindGameObjectWithTag("Reaper");
@@ -41,6 +54,7 @@ public class ReaperUI : MonoBehaviour
         }
     }
 
+    // Changes text to the selected ability
     public void setRock()
     {
         activeObject.text = "ROCK";

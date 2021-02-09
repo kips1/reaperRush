@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Author: Kips
+ * 
+ * Controls the density of the fog
+ * 
+ * Version:
+ * 
+ */
+
 public class FogDensity : MonoBehaviour
 {
-
-    public bool fog;
     public Color fogColor;
-    public float fogDensity;
     public Color ambientLight;
+    Color previousFogColor;
+    Color previousAmbientLight;
+    public float fogDensity;
     public float haloStrength;
     public float flareStrength;
-
-    bool previousFog;
-    Color previousFogColor;
     float previousFogDensity;
-    Color previousAmbientLight;
     float previousHaloStrength;
     float previousFlareStrength;
+
+    public bool fog;
+    bool previousFog;
 
     void OnPreRender()
     {
