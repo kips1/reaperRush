@@ -121,26 +121,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         // Ensures that master client has switched, then loads back into game
-        // second set of conditions after the or has been added, REMOVE AND UNCOMMENT ELSE IF BELOW IF GAME HAS BROKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (s != PhotonNetwork.MasterClient && round == 2 && PhotonNetwork.IsMasterClient || s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Game");
             round = 5;
             lastRound = true;
         }
-
-
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        /*
-        else if (s != PhotonNetwork.MasterClient && round == 1 && PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("Game");
-            round = 5;
-            lastRound = true;
-        }
-        */
-
-
 
         // Ensures both clients are synced to the same round
         if(s != PhotonNetwork.MasterClient && !PhotonNetwork.IsMasterClient)
