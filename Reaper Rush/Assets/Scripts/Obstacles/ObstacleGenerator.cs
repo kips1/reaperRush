@@ -44,7 +44,6 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
         }
     }
 
-
     public void Generate()
     {
         if (PhotonNetwork.IsMasterClient == true)

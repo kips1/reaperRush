@@ -4,17 +4,28 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
-public class ObstacleScript : MonoBehaviourPun
+/*
+ * Author: Josh, Kips
+ * 
+ * Hanldes the behaviour of the obstacles
+ * 
+ * Version:
+ * 
+ */
 
+public class ObstacleScript : MonoBehaviourPun
 {
-    //public int myNum;
-    private ObstacleGenerator generate;
-    private Renderer render;
-    public GameObject runner;
     private GameObject reaperobj;
     private GameObject roomController;
     private GameObject manager;
+    public GameObject runner;
 
+    private ObstacleGenerator generate;
+
+    private Renderer render;
+
+
+    // Start is called before the first frame update
     private void Start()
     {
         runner = GameObject.FindGameObjectWithTag("Player");
@@ -24,6 +35,8 @@ public class ObstacleScript : MonoBehaviourPun
         manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
+    // Update is called once per frame
+    // Deletes instance of obstacles when out of view
     private void Update()
     {
         if (render.transform.position.z < runner.transform.position.z - 40)
@@ -32,14 +45,11 @@ public class ObstacleScript : MonoBehaviourPun
             {
                 PhotonNetwork.Destroy(gameObject);
 
-            }/* else if (!PhotonNetwork.IsMasterClient == true && !photonView.IsMine && manager.GetComponent<GameManager>().round == 1)
-            {
-                PhotonNetwork.Destroy(gameObject);
-            }*/
+            }
         }
     }
 
-    // Start is called before the first frame update
+    // Triggers damage function and animation when the obstacle detects a player instance
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
@@ -49,19 +59,6 @@ public class ObstacleScript : MonoBehaviourPun
                 runner.GetComponent<Runner>().TakeDamage(10);
             }
             runner.GetComponent<Runner>().anim.SetTrigger("Collide");
-            
-            //generate.Message(myNum);
-            //Debug.Log("Works!");
-            //if(SceneManager.GetActiveScene().name == "Game") {
-            //    SceneManager.LoadScene("Game2");
-            //    PhotonNetwork.LoadLevel("Game2");
-            //}
-
         }
     }
-    
-
-
-
-
 }
