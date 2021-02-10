@@ -39,7 +39,7 @@ public class ObstacleScript : MonoBehaviourPun
     // Deletes instance of obstacles when out of view
     private void Update()
     {
-        if (render.transform.position.z < runner.transform.position.z - 40)
+        if (render.transform.position.z < runner.transform.position.z - 80)
         {
             if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
             {

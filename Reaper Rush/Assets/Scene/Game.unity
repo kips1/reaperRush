@@ -698,6 +698,7 @@ MonoBehaviour:
   obstacle: {fileID: 6193450199760839890, guid: 42e1abef07f9a964281e033e1e335498,
     type: 3}
   gameManager: {fileID: 0}
+  lastPosition: 1
   posX:
   - 2
   - 4
@@ -705,8 +706,7 @@ MonoBehaviour:
   posZ:
   - 50
   - 12
-  - 3
-  lastPosition: 1
+  - 14
 --- !u!4 &1325664465
 Transform:
   m_ObjectHideFlags: 0
@@ -908,13 +908,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b5f8a84eedbf4997934bed4b30543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player2: 
   round: 0
   distanceScore: 0
   distanceScored: 0
+  secondScore: 0
   finalRound: 0
   lastRound: 0
-  secondScore: 0
   firstDead: 0
   secondDead: 0
   dead: 0
-  player2: 
