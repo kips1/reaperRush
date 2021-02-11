@@ -58,7 +58,10 @@ public class ObstacleScript : MonoBehaviourPun
             {
                 runner.GetComponent<Runner>().TakeDamage(10);
             }
-            runner.GetComponent<Runner>().photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
+            else if (PhotonNetwork.IsMasterClient == true)
+            {
+                runner.GetComponent<Runner>().photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
+            }
         }
 
         //If the rock spawns where a coin is placed, it will not spawn the obstacle
