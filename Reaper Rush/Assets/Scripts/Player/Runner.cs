@@ -129,8 +129,8 @@ public class Runner : MonoBehaviourPun
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
-            anim.SetBool("hasDied", true);
-            anim.SetTrigger("Die");
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "hasDied", true);
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Die");
             // Checks that there is more than 1 player
             if (PhotonNetwork.PlayerList.Length > 1)
             {
