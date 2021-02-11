@@ -214,7 +214,6 @@ public class Runner : MonoBehaviourPun
     {  
             currentHealth -= damage;
             //anim.SetTrigger("Collide");
-            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
     }
 
     // Makes runner invulnerable for a given time
