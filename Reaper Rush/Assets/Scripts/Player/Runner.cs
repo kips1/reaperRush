@@ -27,7 +27,6 @@ public class Runner : MonoBehaviourPun
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
     public GameObject manager;
-    public GameObject thisRunner;
     
     private CharacterController controller;
     private HealthBar healthBar;
@@ -60,7 +59,6 @@ public class Runner : MonoBehaviourPun
         rmController = GameObject.FindWithTag("RoomController");
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
         manager = GameObject.FindGameObjectWithTag("Manager");
-        thisRunner = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         var aSources = GetComponents<AudioSource>();
         coinSound = aSources[0];
@@ -213,7 +211,6 @@ public class Runner : MonoBehaviourPun
     public void TakeDamage(float damage)
     {  
             currentHealth -= damage;
-            //anim.SetTrigger("Collide");
     }
 
     // Makes runner invulnerable for a given time
