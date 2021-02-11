@@ -27,6 +27,7 @@ public class Runner : MonoBehaviourPun
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
     public GameObject manager;
+    public GameObject thisRunner;
     
     private CharacterController controller;
     private HealthBar healthBar;
@@ -59,6 +60,7 @@ public class Runner : MonoBehaviourPun
         rmController = GameObject.FindWithTag("RoomController");
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
         manager = GameObject.FindGameObjectWithTag("Manager");
+        thisRunner = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         var aSources = GetComponents<AudioSource>();
         coinSound = aSources[0];
@@ -97,7 +99,8 @@ public class Runner : MonoBehaviourPun
             // Allows the runner to jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("isJumping", true);
+                //anim.SetBool("isJumping", true);
+                photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping");
                 yVelocity = jumpHeight;
             }
             // Move left
@@ -233,5 +236,12 @@ public class Runner : MonoBehaviourPun
     void changeDead(bool isDead)
     {
         manager.GetComponent<GameManager>().dead = isDead; ;
+    }
+
+
+    [PunRPC]
+    void syncAnimation(string anim)
+    {
+        thisRunner.GetComponent<Animator>().SetBool(anim, true);
     }
 }

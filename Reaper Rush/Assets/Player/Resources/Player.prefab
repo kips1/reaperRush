@@ -330,12 +330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2106aebabf2793847b12f269ba77a122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fog: 1
   fogColor: {r: 0.7924528, g: 0.7737629, b: 0.77394885, a: 0}
-  fogDensity: 0.04
   ambientLight: {r: 0.8745099, g: 0.9803922, b: 0.97647065, a: 0}
+  fogDensity: 0.04
   haloStrength: 0.5
   flareStrength: 1
+  fog: 1
 --- !u!1 &3536685616307044674
 GameObject:
   m_ObjectHideFlags: 0
