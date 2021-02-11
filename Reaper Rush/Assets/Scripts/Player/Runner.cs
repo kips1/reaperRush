@@ -242,6 +242,7 @@ public class Runner : MonoBehaviourPun
     [PunRPC]
     void syncAnimation(string anim)
     {
-        thisRunner.GetComponent<Animator>().SetBool(anim, true);
+        this.anim.SetBool(anim, true);
+        //thisRunner.GetComponent<Animator>().SetBool(anim, true);
     }
 }
