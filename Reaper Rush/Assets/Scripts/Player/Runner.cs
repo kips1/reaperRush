@@ -100,7 +100,7 @@ public class Runner : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //anim.SetBool("isJumping", true);
-                photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping");
+                photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", true);
                 yVelocity = jumpHeight;
             }
             // Move left
@@ -122,7 +122,8 @@ public class Runner : MonoBehaviourPun
         // Plays jumping animation and makes the runner fall
         else
         {
-            anim.SetBool("isJumping", false);
+            //anim.SetBool("isJumping", false);
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", false);
             yVelocity -= gravity;
         }
 
@@ -240,9 +241,9 @@ public class Runner : MonoBehaviourPun
 
 
     [PunRPC]
-    void syncAnimation(string anim)
+    void syncAnimation(string anim, bool set)
     {
-        this.anim.SetBool(anim, true);
+        this.anim.SetBool(anim, set);
         //thisRunner.GetComponent<Animator>().SetBool(anim, true);
     }
 }
