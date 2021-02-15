@@ -41,6 +41,7 @@ MonoBehaviour:
   - changeDistance
   - changeDead
   - Leave
+  - syncAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

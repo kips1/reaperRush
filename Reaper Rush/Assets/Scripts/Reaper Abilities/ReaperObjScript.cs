@@ -16,8 +16,6 @@ public class ReaperObjScript : MonoBehaviourPun
 {
     public GameObject runner;
 
-    public ParticleSystem boundary;
-
     private ReaperObj generate;
 
     private Renderer render;
@@ -26,11 +24,9 @@ public class ReaperObjScript : MonoBehaviourPun
     // Initiate the fields
     void Start()
     {
-        var x = boundary.shape;
         generate = GetComponentInParent<ReaperObj>();
         render = GetComponent<Renderer>();
         runner = GameObject.FindGameObjectWithTag("Player");
-        x.scale = new Vector3(0.01f,0.01f,0.01f);
     }
 
     // Update is called once per frame
