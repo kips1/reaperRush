@@ -49,9 +49,8 @@ public class ReaperObjScript : MonoBehaviourPun
         {
             if (runner.GetComponent<Runner>().takeDamage == true)
             {
-                runner.GetComponent<Runner>().TakeDamage(1);
+                runner.GetComponent<Runner>().TakeDamage(0.5f);
             }
-            runner.GetComponent<Runner>().anim.SetTrigger("Collide");
         }
     }
 }
