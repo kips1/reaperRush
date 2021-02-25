@@ -22,7 +22,6 @@ public class Runner : MonoBehaviourPun
     [SerializeField] private float jumpHeight = 10.0f;
 
     // Defines the objects that are associated directly to the runner instance
-    private PowerUpTimer timer;
     private GameObject playerPosition;
     private GameObject rmController;
     public GameObject obstacleGenerator;
