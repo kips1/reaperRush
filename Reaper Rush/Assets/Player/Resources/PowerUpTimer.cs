@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class PowerUpTimer : Runner
+public class PowerUpTimer : MonoBehaviour
 {
     public float timeLeft = 3.0f;
     public Text timer;
