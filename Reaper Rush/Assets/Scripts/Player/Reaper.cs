@@ -13,7 +13,7 @@ using Photon.Pun;
  * 
  */
 
-public class Reaper : MonoBehaviourPun
+public class Reaper : MonoBehaviour
 {
     // fields accessible in inspector
     [SerializeField] private float speed = 25.0f;
@@ -56,35 +56,30 @@ public class Reaper : MonoBehaviourPun
         // Starts the movement when an instance of runner is created
         if (GameObject.Find("Player(Clone)") == null)
         {
-            //zDirection = 0;
-            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 0);
+            zDirection = 0;
         }
 
         else
         {
-            //zDirection = 1;
-            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 1);
+            zDirection = 1;
         }
 
         // Stops movement when runner has died
         if (manager.GetComponent<GameManager>().dead)
         {
-            //zDirection = 0;
-            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 0);
+            zDirection = 0;
         }
 
         // Move right
         if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {
-            //xDirection -= 0.01f;
-            photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection -= 0.01f);
+            xDirection -= 0.01f;
         }
 
         // Move left
         else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
         {
-            //xDirection += 0.01f;
-            photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection += 0.01f);
+            xDirection += 0.01f;
         }
 
         // Stop moving left/right
@@ -110,17 +105,5 @@ public class Reaper : MonoBehaviourPun
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
-    }
-
-    [PunRPC]
-    void SyncXPosition(float xPos)
-    {
-        xDirection = xPos;
-    }
-
-    [PunRPC]
-    void SyncZPosition(float zPos)
-    {
-        zDirection = zPos;
     }
 }

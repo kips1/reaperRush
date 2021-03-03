@@ -22,8 +22,6 @@ public class Runner : MonoBehaviourPun
 
     // Defines the objects that are associated directly to the runner instance
     private GameObject playerPosition;
-    private Vector3 direction;
-    private Vector3 velocity;
     private GameObject rmController;
     public GameObject obstacleGenerator;
     public GameObject ObstacleGeneratorScript;
@@ -73,14 +71,13 @@ public class Runner : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector3(xDirection, 0, zDirection);
-        velocity = direction * speed;
+        Vector3 direction = new Vector3(xDirection, 0, zDirection);
+        Vector3 velocity = direction * speed;
 
         // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
-            //zDirection = 1;
-            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 1);
+            zDirection = 1;
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
         if(start == 0 && zDirection == 1)
@@ -106,14 +103,12 @@ public class Runner : MonoBehaviourPun
             // Move left
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
             {
-                //xDirection -= 0.045f;
-                photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection -= 0.045f);
+                xDirection -= 0.045f;
             } 
             // Move right
             else if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
             { 
-                //xDirection += 0.045f;
-                photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection += 0.045f);
+                xDirection += 0.045f;
             }
             // Stop moving left/right
             else
@@ -251,17 +246,5 @@ public class Runner : MonoBehaviourPun
     void syncAnimation(string anim)
     {
         this.anim.SetTrigger(anim);
-    }
-
-    [PunRPC]
-    void SyncXPosition(float xPos)
-    {
-        xDirection = xPos;
-    }
-
-    [PunRPC]
-    void SyncZPosition(float zPos)
-    {
-        zDirection = zPos;
     }
 }
