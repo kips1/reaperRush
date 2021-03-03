@@ -57,34 +57,34 @@ public class Reaper : MonoBehaviourPun
         if (GameObject.Find("Player(Clone)") == null)
         {
             //zDirection = 0;
-            photonView.RPC("ReaperZPosition", RpcTarget.AllBuffered, zDirection = 0);
+            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 0);
         }
 
         else
         {
             //zDirection = 1;
-            photonView.RPC("ReaperZPosition", RpcTarget.AllBuffered, zDirection = 1);
+            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 1);
         }
 
         // Stops movement when runner has died
         if (manager.GetComponent<GameManager>().dead)
         {
             //zDirection = 0;
-            photonView.RPC("ReaperZPosition", RpcTarget.AllBuffered, zDirection = 0);
+            photonView.RPC("SyncZPosition", RpcTarget.AllBuffered, zDirection = 0);
         }
 
         // Move right
         if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
         {
             //xDirection -= 0.01f;
-            photonView.RPC("ReaperXPosition", RpcTarget.AllBuffered, xDirection -= 0.01f);
+            photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection -= 0.01f);
         }
 
         // Move left
         else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
         {
             //xDirection += 0.01f;
-            photonView.RPC("ReaperXPosition", RpcTarget.AllBuffered, xDirection += 0.01f);
+            photonView.RPC("SyncXPosition", RpcTarget.AllBuffered, xDirection += 0.01f);
         }
 
         // Stop moving left/right
@@ -113,13 +113,13 @@ public class Reaper : MonoBehaviourPun
     }
 
     [PunRPC]
-    void ReaperXPosition(float xPos)
+    void SyncXPosition(float xPos)
     {
         xDirection = xPos;
     }
 
     [PunRPC]
-    void ReaperZPosition(float zPos)
+    void SyncZPosition(float zPos)
     {
         zDirection = zPos;
     }
