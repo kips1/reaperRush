@@ -19,6 +19,7 @@ TagManager:
   - PowerUpHealth
   - PowerUpCoin
   - ReaperSpawnPoint
+  - Reaper Model
   layers:
   - Default
   - TransparentFX
