@@ -20,6 +20,11 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     //Values that will be synced over network
     Vector3 latestPos;
     Quaternion latestRot;
+    float currentTime = 0;
+    double currentPacketTime = 0;
+    double lastPacketTime = 0;
+    Vector3 positionAtLastPacket = Vector3.zero;
+    Quaternion rotationAtLastPacket = Quaternion.identity;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +32,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         if (photonView.IsMine)
         {
             //Player is local
-            gameObject.tag = "Player";
+            //gameObject.tag = "Player";
             //Add Rigidbody to make the player interact with rigidbody
             //Rigidbody r = gameObject.AddComponent<Rigidbody>();
             //r.isKinematic = true;
@@ -54,14 +59,22 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         {
             //We own this player: send the others our data
             stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
+            //stream.SendNext(transform.rotation);
         }
         else
         {
             //Network player, receive data
             latestPos = (Vector3)stream.ReceiveNext();
-            latestRot = (Quaternion)stream.ReceiveNext();
+            //latestRot = (Quaternion)stream.ReceiveNext();
+
+            currentTime = 0.0f;
+            positionAtLastPacket = transform.position;
+            lastPacketTime = currentPacketTime;
+            currentPacketTime = info.SentServerTime;
+            //rotationAtLastPacket = transform.rotation;
         }
+        //lag = Mathf.Abs(((float)PhotonNetwork.Time - info.SentServerTime);
+
     }
 
     // Update is called once per frame
@@ -69,9 +82,12 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     {
         if (!photonView.IsMine)
         {
+            double timeToReachGoal = currentPacketTime - lastPacketTime;
+            currentTime += Time.deltaTime;
+
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
-            transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(positionAtLastPacket, latestPos, (float)(currentTime / timeToReachGoal));
+            //transform.rotation = Quaternion.Lerp(rotationAtLastPacket, latestRot, (float)(currentTime / timeToReachGoal));
         }
     }
 }

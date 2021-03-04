@@ -58,6 +58,7 @@ public class ObstacleScript : MonoBehaviourPun
                 runner.GetComponent<Runner>().TakeDamage(10);
             }
             runner.GetComponent<Runner>().anim.SetTrigger("Collide");
+            
         }
 
         //If the rock spawns where a coin is placed, it will not spawn the obstacle
