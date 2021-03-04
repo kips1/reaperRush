@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 2346741310503012909}
   - component: {fileID: -4701095871152867264}
   - component: {fileID: 3935664902722586729}
-  - component: {fileID: -7008411971598383027}
+  - component: {fileID: 6441046914162600475}
   m_Layer: 0
   m_Name: RunnerUI
   m_TagString: Runner UI
@@ -836,7 +836,7 @@ MonoBehaviour:
   - {fileID: 2346741310503012909}
   localObjects:
   - {fileID: 9054535584886726201}
---- !u!114 &-7008411971598383027
+--- !u!114 &6441046914162600475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

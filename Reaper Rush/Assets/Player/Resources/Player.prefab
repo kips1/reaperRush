@@ -358,7 +358,6 @@ GameObject:
   - component: {fileID: -1095480959496323769}
   - component: {fileID: 1079967185586541157}
   - component: {fileID: 6569782657899177461}
-  - component: {fileID: 3237978200835485646}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -411,6 +410,7 @@ MonoBehaviour:
   speed: 25
   gravity: 0.95
   jumpHeight: 25
+  PowerUpTimer: {fileID: 0}
   obstacleGenerator: {fileID: 0}
   ObstacleGeneratorScript: {fileID: 3749495040766380588, guid: 766263e11ed9e0540a791a0ec6d4dddd,
     type: 3}
@@ -870,20 +870,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3237978200835485646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3536685616307044674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29d49c8702efbd49aec1b258bdba21f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLeft: 3
-  timer: {fileID: 0}
 --- !u!1 &5024561158317924316
 GameObject:
   m_ObjectHideFlags: 0
