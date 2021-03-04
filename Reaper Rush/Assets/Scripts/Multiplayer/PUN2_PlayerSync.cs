@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 /*
- * Author: Sharp Coder
+ * Author: Sharp Coder, Josh, Kips
  * 
  * The script that handles all network activity for syncing players
  *
@@ -13,16 +13,19 @@ using Photon.Pun;
 
 public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
 {
-    //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
+    // List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
     public MonoBehaviour[] localScripts;
-    //List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
+    // List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
     public GameObject[] localObjects;
-    //Values that will be synced over network
-    Vector3 latestPos;
-    float currentTime = 0;
-    double currentPacketTime = 0;
-    double lastPacketTime = 0;
-    Vector3 positionAtLastPacket = Vector3.zero;
+    // Values that will be synced over network
+    private Vector3 latestPos;
+    private Vector3 positionAtLastPacket = Vector3.zero;
+
+    // Values that will be used to account for lag over network
+    private float currentTime = 0;
+    private double currentPacketTime = 0;
+    private double lastPacketTime = 0;
+
 
     // Start is called before the first frame update
     void Start()
