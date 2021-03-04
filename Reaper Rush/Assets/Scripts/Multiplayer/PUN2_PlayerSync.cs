@@ -19,25 +19,15 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     public GameObject[] localObjects;
     //Values that will be synced over network
     Vector3 latestPos;
-    Quaternion latestRot;
     float currentTime = 0;
     double currentPacketTime = 0;
     double lastPacketTime = 0;
     Vector3 positionAtLastPacket = Vector3.zero;
-    Quaternion rotationAtLastPacket = Quaternion.identity;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (photonView.IsMine)
-        {
-            //Player is local
-            //gameObject.tag = "Player";
-            //Add Rigidbody to make the player interact with rigidbody
-            //Rigidbody r = gameObject.AddComponent<Rigidbody>();
-            //r.isKinematic = true;
-        }
-        else
+        if (!photonView.IsMine)
         {
             //Player is Remote, deactivate the scripts and object that should only be enabled for the local player
             for (int i = 0; i < localScripts.Length; i++)
@@ -49,8 +39,6 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
                 localObjects[i].SetActive(false);
             }
         }
-
-
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -59,21 +47,18 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         {
             //We own this player: send the others our data
             stream.SendNext(transform.position);
-            //stream.SendNext(transform.rotation);
         }
         else
         {
             //Network player, receive data
             latestPos = (Vector3)stream.ReceiveNext();
-            //latestRot = (Quaternion)stream.ReceiveNext();
 
+            // Account for lag when receving other player's position
             currentTime = 0.0f;
             positionAtLastPacket = transform.position;
             lastPacketTime = currentPacketTime;
             currentPacketTime = info.SentServerTime;
-            //rotationAtLastPacket = transform.rotation;
         }
-        //lag = Mathf.Abs(((float)PhotonNetwork.Time - info.SentServerTime);
 
     }
 
@@ -82,12 +67,12 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     {
         if (!photonView.IsMine)
         {
+            // Calculate lag duration
             double timeToReachGoal = currentPacketTime - lastPacketTime;
             currentTime += Time.deltaTime;
 
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
             transform.position = Vector3.Lerp(positionAtLastPacket, latestPos, (float)(currentTime / timeToReachGoal));
-            //transform.rotation = Quaternion.Lerp(rotationAtLastPacket, latestRot, (float)(currentTime / timeToReachGoal));
         }
     }
 }
