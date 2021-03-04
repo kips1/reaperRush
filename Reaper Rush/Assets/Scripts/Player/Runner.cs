@@ -22,7 +22,7 @@ public class Runner : MonoBehaviourPun
     [SerializeField] private float jumpHeight = 10.0f;
 
     // Defines the objects that are associated directly to the runner instance
-    public GameObject PowerUpTimer;
+    
     private GameObject playerPosition;
     private GameObject rmController;
     public GameObject obstacleGenerator;
@@ -175,13 +175,15 @@ public class Runner : MonoBehaviourPun
 
         // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
-        {
-            Destroy(other.gameObject);         
+        { 
+            Destroy(other.gameObject);
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
             gameObject.GetComponent<PowerUpTimer>().timeLeft = 3.0f;
             gameObject.GetComponent<PowerUpTimer>().timer.enabled = true;
-            
+
+
+
 
 
 
