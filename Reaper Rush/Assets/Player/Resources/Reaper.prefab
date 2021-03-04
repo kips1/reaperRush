@@ -476,7 +476,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 5120304360619008118}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!82 &3659085471458534581
@@ -1204,11 +1204,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Reaper_Floating
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d7cdbeb0acd9a1d4d8d79a75f79f4be1,
-        type: 3}
-      propertyPath: m_TagString
-      value: Reaper Model
       objectReference: {fileID: 0}
     - target: {fileID: 3603261995440057107, guid: d7cdbeb0acd9a1d4d8d79a75f79f4be1,
         type: 3}

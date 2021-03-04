@@ -39,7 +39,7 @@ public class Reaper : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        reaper = GameObject.FindGameObjectWithTag("Reaper Model");
+        reaper = GameObject.FindGameObjectWithTag("Reaper");
         ReaperObj = GameObject.FindGameObjectWithTag("ReaperObj");
         ReaperUI = GameObject.FindGameObjectWithTag("ReaperUI");
         manager = GameObject.FindGameObjectWithTag("Manager");
