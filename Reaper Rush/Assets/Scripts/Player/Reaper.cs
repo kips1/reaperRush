@@ -34,6 +34,10 @@ public class Reaper : MonoBehaviour
     private float xDirection = 0;
     private float zDirection = 1;
 
+    public float cooldownTime = 3;
+    public float time1 = 0;
+    private float nextFireTime = 0;
+
     // Start is called before the first frame update
     // Initialise fields
     void Start()
@@ -48,8 +52,10 @@ public class Reaper : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
+       
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
@@ -91,19 +97,37 @@ public class Reaper : MonoBehaviour
         // Spawn rock obstacle
         if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
         {
+
             obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
             ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
+            
+
         }
 
         // Spawn fire
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+        if (time1 > nextFireTime) 
         {
-            obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
-            ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
-            fireSound.Play();
+            
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+            {
+
+                print("ability used, cooldown started");
+                nextFireTime = time1 + cooldownTime;
+
+                obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
+                ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
+                fireSound.Play();
+
+                
+                
+
+            }
         }
+
+        time1 = time1 + 2;
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
     }
+
 }
