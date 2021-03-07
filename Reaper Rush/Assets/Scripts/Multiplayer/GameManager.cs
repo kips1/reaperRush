@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (reaperReady && runnerReady)
         {
             bothReady = true;
-            Debug.Log(bothReady);
         }
     }
 
