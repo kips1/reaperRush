@@ -13,7 +13,7 @@ using Photon.Pun;
  * 
  */
 
-public class Reaper : MonoBehaviour
+public class Reaper : MonoBehaviourPun
 {
     // fields accessible in inspector
     [SerializeField] private float speed = 25.0f;
@@ -32,7 +32,7 @@ public class Reaper : MonoBehaviour
     AudioSource fireSound;
 
     private float xDirection = 0;
-    private float zDirection = 1;
+    private float zDirection = 0;
 
     // Start is called before the first frame update
     // Initialise fields
@@ -54,12 +54,12 @@ public class Reaper : MonoBehaviour
         Vector3 velocity = direction * speed;
 
         // Starts the movement when an instance of runner is created
-        if (GameObject.Find("Player(Clone)") == null)
+        if (GameObject.Find("Player(Clone)") != null)
         {
-            zDirection = 0;
+            photonView.RPC("ready", RpcTarget.AllBuffered, "reaperReady", true);
         }
 
-        else
+        if (manager.GetComponent<GameManager>().bothReady)
         {
             zDirection = 1;
         }
@@ -105,5 +105,11 @@ public class Reaper : MonoBehaviour
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    [PunRPC]
+    void ready(bool reaperReady)
+    {
+        manager.GetComponent<GameManager>().reaperReady = reaperReady;
     }
 }

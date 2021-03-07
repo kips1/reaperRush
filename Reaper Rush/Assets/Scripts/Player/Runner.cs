@@ -77,6 +77,11 @@ public class Runner : MonoBehaviourPun
         // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
+            photonView.RPC("ready", RpcTarget.AllBuffered, "runnerReady", true);
+        }
+
+        if (manager.GetComponent<GameManager>().bothReady)
+        {
             zDirection = 1;
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
@@ -246,5 +251,11 @@ public class Runner : MonoBehaviourPun
     void syncAnimation(string anim)
     {
         this.anim.SetTrigger(anim);
+    }
+
+    [PunRPC]
+    void ready(bool runnerReady)
+    {
+        manager.GetComponent<GameManager>().runnerReady = runnerReady;
     }
 }
