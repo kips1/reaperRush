@@ -77,7 +77,7 @@ public class Runner : MonoBehaviourPun
         // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
-            photonView.RPC("ready", RpcTarget.AllBuffered, true);
+            photonView.RPC("RunnerReady", RpcTarget.AllBuffered, true);
         }
 
         if (manager.GetComponent<GameManager>().bothReady)
@@ -254,7 +254,7 @@ public class Runner : MonoBehaviourPun
     }
 
     [PunRPC]
-    void ready(bool runnerReady)
+    void RunnerReady(bool runnerReady)
     {
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
     }

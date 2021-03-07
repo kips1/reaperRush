@@ -34,8 +34,6 @@ public class Reaper : MonoBehaviourPun
     private float xDirection = 0;
     private float zDirection = 0;
 
-    public bool readytest;
-
     // Start is called before the first frame update
     // Initialise fields
     void Start()
@@ -58,8 +56,7 @@ public class Reaper : MonoBehaviourPun
         // Starts the movement when an instance of runner is created
         if (GameObject.Find("Player(Clone)") != null)
         {
-            readytest = true;
-            photonView.RPC("ready", RpcTarget.AllBuffered, readytest);
+            photonView.RPC("ReaperReady", RpcTarget.AllBuffered, true);
         }
 
         if (manager.GetComponent<GameManager>().bothReady)
@@ -111,7 +108,7 @@ public class Reaper : MonoBehaviourPun
     }
 
     [PunRPC]
-    void ready(bool reaperReady)
+    void ReaperReady(bool reaperReady)
     {
         manager.GetComponent<GameManager>().reaperReady = reaperReady;
     }
