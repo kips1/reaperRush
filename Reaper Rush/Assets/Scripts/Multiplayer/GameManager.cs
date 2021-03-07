@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool reaperReady;
     public bool bothReady;
 
+
     public static GameManager Instance { get { return _instance; } }
 
     // Executes the following when script is being loaded
