@@ -79,7 +79,7 @@ public class Runner : MonoBehaviourPun
         {
             photonView.RPC("ready", RpcTarget.AllBuffered, true);
         }
-
+        photonView.RPC("ready", RpcTarget.AllBuffered, true);
         if (manager.GetComponent<GameManager>().bothReady)
         {
             zDirection = 1;

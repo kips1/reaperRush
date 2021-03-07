@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool dead;
     public bool runnerReady;
     public bool reaperReady;
+    public bool runnerReadytemp;
+    public bool reaperReadytemp;
     public bool bothReady;
 
 
@@ -83,7 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
-
+            runnerReadytemp = runnerReady;
+            reaperReadytemp = reaperReady;
             // Checks when the first client has finished and loads role swap scene
             if (round == 0 && PhotonNetwork.IsMasterClient)
             {
