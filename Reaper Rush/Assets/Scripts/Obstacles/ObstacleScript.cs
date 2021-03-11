@@ -61,25 +61,14 @@ public class ObstacleScript : MonoBehaviourPun
             
         }
 
-        //If the rock spawns where a coin is placed, it will not spawn the obstacle
-        if (collider.gameObject.CompareTag("Coin"))
+        //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle or If the rock spawns where a coin is placed, it will not spawn the obstacle
+        if (collider.gameObject.CompareTag("Coin") || collider.gameObject.layer == 20 || collider.gameObject.layer == 15 || collider.gameObject.layer == 10)
         {
-            Destroy(gameObject);
-        }
-        //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle
-        if (collider.gameObject.layer == 20)
-        {
-            Destroy(gameObject);
+            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
 
-        if (collider.gameObject.layer == 15)
-        {
-            Destroy(gameObject);
-        }
-
-        if (collider.gameObject.layer == 10)
-        {
-            Destroy(gameObject);
-        }
     }
 }
