@@ -34,8 +34,8 @@ public class Reaper : MonoBehaviour
     private float xDirection = 0;
     private float zDirection = 1;
 
-    public float cooldownTime = 3;
-    public float time1 = 0;
+    public float cooldownTime = 1000;
+    public float time1 = 1;
     private float nextFireTime = 0;
 
     // Start is called before the first frame update
@@ -105,14 +105,14 @@ public class Reaper : MonoBehaviour
         }
 
         // Spawn fire
-        if (time1 > nextFireTime) 
+        if (Time.time > nextFireTime) 
         {
             
             if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
             {
 
                 print("ability used, cooldown started");
-                nextFireTime = time1 + cooldownTime;
+                nextFireTime = Time.time + cooldownTime;
 
                 obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
                 ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
@@ -124,7 +124,7 @@ public class Reaper : MonoBehaviour
             }
         }
 
-        time1 = time1 + 2;
+        
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);

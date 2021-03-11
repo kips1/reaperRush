@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1419468606290845340}
   - component: {fileID: 3536438999152591409}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PowerUpTimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,4 +176,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
