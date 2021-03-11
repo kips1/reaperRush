@@ -179,7 +179,7 @@ public class Runner : MonoBehaviourPun
             Destroy(other.gameObject);
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
-            gameObject.GetComponent<PowerUpTimer>().timeLeft = 3.0f;
+            gameObject.GetComponent<PowerUpTimer>().timeLeft = 5.0f;
             gameObject.GetComponent<PowerUpTimer>().timer.enabled = true;
 
 

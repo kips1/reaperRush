@@ -34,8 +34,8 @@ public class Reaper : MonoBehaviour
     private float xDirection = 0;
     private float zDirection = 1;
 
-    public float cooldownTime = 1000;
-    public float time1 = 1;
+    public float cooldownTime;
+    // public float time1 = 1;
     private float nextFireTime = 0;
 
     // Start is called before the first frame update
@@ -95,13 +95,17 @@ public class Reaper : MonoBehaviour
         }
 
         // Spawn rock obstacle
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
+        if (Time.time > nextFireTime)
         {
 
-            obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
-            ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
-            
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
+            {
+                nextFireTime = Time.time + 5;
+                obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
+                ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
 
+
+            }
         }
 
         // Spawn fire
@@ -112,7 +116,7 @@ public class Reaper : MonoBehaviour
             {
 
                 print("ability used, cooldown started");
-                nextFireTime = Time.time + cooldownTime;
+                nextFireTime = Time.time + 5;
 
                 obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
                 ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
