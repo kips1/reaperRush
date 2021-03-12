@@ -100,7 +100,8 @@ public class Reaper : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
             {
-                nextFireTime = Time.time + 5;
+                print("Shade Summoned");
+                nextFireTime = Time.time + 1;
                 obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
                 ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
 
@@ -116,7 +117,7 @@ public class Reaper : MonoBehaviour
             {
 
                 print("ability used, cooldown started");
-                nextFireTime = Time.time + 5;
+                nextFireTime = Time.time + 1;
 
                 obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
                 ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
