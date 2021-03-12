@@ -37,6 +37,7 @@ public class Reaper : MonoBehaviour
     public float cooldownTime;
     // public float time1 = 1;
     private float nextFireTime = 0;
+    private float nextShadeTime = 0;
 
     // Start is called before the first frame update
     // Initialise fields
@@ -94,17 +95,19 @@ public class Reaper : MonoBehaviour
             xDirection = 0;
         }
 
-        // Spawn rock obstacle
-        if (Time.time > nextFireTime)
+        // Spawn shade obstacle
+        if (Time.time > nextShadeTime)
         {
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
             {
                 print("Shade Summoned");
-                nextFireTime = Time.time + 5;
+                nextShadeTime = Time.time + 5;
                 obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
                 ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
 
+                gameObject.GetComponent<ShadeCooldown>().timeLeft2 = 5.0f;
+                gameObject.GetComponent<ShadeCooldown>().timer2.enabled = true;
 
             }
         }
@@ -123,8 +126,8 @@ public class Reaper : MonoBehaviour
                 ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
                 fireSound.Play();
 
-                gameObject.GetComponent<ReaperCD>().timeLeft = 5.0f;
-                gameObject.GetComponent<ReaperCD>().timer.enabled = true;
+                gameObject.GetComponent<FireCooldown>().timeLeft1 = 5.0f;
+                gameObject.GetComponent<FireCooldown>().timer1.enabled = true;
 
 
 
