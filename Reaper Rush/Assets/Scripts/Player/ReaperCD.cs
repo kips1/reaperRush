@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ReaperCD : MonoBehaviour
 {
-    public float timeLeft = 3.0f;
+    public float timeLeft = 5.0f;
     public Text timer;
     // Start is called before the first frame update
     void Start()
     {
-
+        timer.enabled = false;
     }
 
     // Update is called once per frame
@@ -20,8 +20,10 @@ public class ReaperCD : MonoBehaviour
         timer.text = (timeLeft).ToString("0");
         if (timeLeft < 0.5)
         {
-            timer.enabled = true;
+            timer.enabled = false;
             timeLeft = 0;
         }
+
+        //print("The CD " + timer);
     }
 }
