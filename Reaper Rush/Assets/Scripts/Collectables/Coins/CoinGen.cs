@@ -48,6 +48,6 @@ public class CoinGen : MonoBehaviourPunCallbacks
     void CreateCoins()
     {
             GameObject CoinClone = PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4,4), coin.transform.position.y + 2, z+=10), coin.transform.rotation);
-            //CoinClone.transform.SetParent(this.transform);
+            CoinClone.transform.SetParent(this.transform);
     }
 }

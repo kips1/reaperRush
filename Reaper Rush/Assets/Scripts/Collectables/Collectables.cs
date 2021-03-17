@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Collectables : MonoBehaviour
+public class Collectables : MonoBehaviourPun
 {
     public GameObject runner;
     // Start is called before the first frame update
@@ -18,20 +19,14 @@ public class Collectables : MonoBehaviour
         {
             if (this.transform.position.z < runner.transform.position.z - 40)
             {
-                if (gameObject != null)
+                if (PhotonNetwork.IsMasterClient && photonView.IsMine)
                 {
-                    Destroy(gameObject);
+                    PhotonNetwork.Destroy(gameObject);
                 }
             }
         }
     
     }
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Rock"))
-        {
-            Destroy(gameObject);
-        }
-    }
+   
 }
 
