@@ -31,7 +31,16 @@ public class CoinGen : MonoBehaviourPunCallbacks
         // Controls the number of coins to generate
         if (GameObject.Find("CoinGenerator").transform.childCount < 9)
         {
+            Generate();
+        }
+    }
+
+    public void Generate()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
+        {
             CreateCoins();
+            return;
         }
     }
 
@@ -39,6 +48,6 @@ public class CoinGen : MonoBehaviourPunCallbacks
     void CreateCoins()
     {
             GameObject CoinClone = PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4,4), coin.transform.position.y + 2, z+=10), coin.transform.rotation);
-            CoinClone.transform.SetParent(this.transform);
+            //CoinClone.transform.SetParent(this.transform);
     }
 }
