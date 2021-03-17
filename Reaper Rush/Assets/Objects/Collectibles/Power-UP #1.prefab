@@ -4749,6 +4749,7 @@ GameObject:
   - component: {fileID: 13500000}
   - component: {fileID: 2300000}
   - component: {fileID: 11400000}
+  - component: {fileID: 3698171550139451329}
   m_Layer: 10
   m_Name: PowerUp
   m_TagString: Untagged
@@ -4844,6 +4845,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &3698171550139451329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4906,6 +4929,7 @@ GameObject:
   - component: {fileID: 13500002}
   - component: {fileID: 2300002}
   - component: {fileID: 11400002}
+  - component: {fileID: 7955690495825923484}
   m_Layer: 10
   m_Name: InnerPowerUp
   m_TagString: Untagged
@@ -5001,6 +5025,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 1
+--- !u!114 &7955690495825923484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &34290921948892215
 GameObject:
   m_ObjectHideFlags: 0
@@ -9750,6 +9796,7 @@ GameObject:
   - component: {fileID: 7926752453116217862}
   - component: {fileID: 7681013085076692668}
   - component: {fileID: 7395462713950548495}
+  - component: {fileID: 7588464502692380011}
   m_Layer: 10
   m_Name: PowerUp
   m_TagString: Untagged
@@ -9845,6 +9892,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &7588464502692380011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111144109089509322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2722739680371899829
 GameObject:
   m_ObjectHideFlags: 0

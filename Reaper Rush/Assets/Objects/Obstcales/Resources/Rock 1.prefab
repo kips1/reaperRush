@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4748463799167261278}
   - component: {fileID: 4748463798619209271}
   - component: {fileID: 1021083633089145494}
+  - component: {fileID: 9066814786299449934}
   m_Layer: 25
   m_Name: Volume16
   m_TagString: Untagged
@@ -141,10 +142,26 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 9066814786299449934}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &9066814786299449934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539356619472651713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34388e81112cd494da688a69ffcf114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 9133429337468755571}
+  localObjects: []
 --- !u!1 &1447450497290581837
 GameObject:
   m_ObjectHideFlags: 0

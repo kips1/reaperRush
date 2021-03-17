@@ -9485,6 +9485,7 @@ GameObject:
   - component: {fileID: 1597400967064746574}
   - component: {fileID: 4374063308376805376}
   - component: {fileID: 3920042693328164487}
+  - component: {fileID: 9173719096551638724}
   m_Layer: 15
   m_Name: PowerUp (1)
   m_TagString: Untagged
@@ -9580,6 +9581,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &9173719096551638724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067183894694219846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4390625595667343144
 GameObject:
   m_ObjectHideFlags: 0
@@ -9628,6 +9651,7 @@ GameObject:
   - component: {fileID: 8695561179193405035}
   - component: {fileID: 8728766696432934824}
   - component: {fileID: 2495351225958722097}
+  - component: {fileID: 9144791790789082909}
   m_Layer: 15
   m_Name: PowerUp (1)
   m_TagString: Untagged
@@ -9723,6 +9747,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &9144791790789082909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647571952793217899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6679313011358387622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9736,6 +9782,7 @@ GameObject:
   - component: {fileID: 3691272097334806634}
   - component: {fileID: 4009051964928072912}
   - component: {fileID: 4294891524760154211}
+  - component: {fileID: 7111576972142380397}
   m_Layer: 15
   m_Name: PowerUp
   m_TagString: Untagged
@@ -9831,6 +9878,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &7111576972142380397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679313011358387622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6718089927411664070
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9913,7 @@ GameObject:
   - component: {fileID: 6718089927408286734}
   - component: {fileID: 6718089927413864974}
   - component: {fileID: 6718089927406186798}
+  - component: {fileID: 4674132968524167083}
   m_Layer: 15
   m_Name: InnerPowerUp
   m_TagString: Untagged
@@ -9939,6 +10009,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 1
+--- !u!114 &4674132968524167083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718089927411664070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6718089927411664072
 GameObject:
   m_ObjectHideFlags: 0
@@ -9952,6 +10044,7 @@ GameObject:
   - component: {fileID: 6718089927408286732}
   - component: {fileID: 6718089927413864972}
   - component: {fileID: 6718089927406186796}
+  - component: {fileID: 936587469623268259}
   m_Layer: 15
   m_Name: PowerUp
   m_TagString: Untagged
@@ -10047,6 +10140,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &936587469623268259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718089927411664072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6718089927411664074
 GameObject:
   m_ObjectHideFlags: 0
@@ -10057,6 +10172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6718089927412095210}
   - component: {fileID: 7274717048077516466}
+  - component: {fileID: 2916616367737267972}
   m_Layer: 15
   m_Name: Power-UP #2
   m_TagString: Untagged
@@ -10097,6 +10213,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 0}
+--- !u!114 &2916616367737267972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718089927411664074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6718089927411664076
 GameObject:
   m_ObjectHideFlags: 0

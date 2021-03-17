@@ -4782,6 +4782,7 @@ GameObject:
   - component: {fileID: 5087261723143778053}
   - component: {fileID: 5087261723145259269}
   - component: {fileID: 5087261723137483301}
+  - component: {fileID: 1456103820641268177}
   m_Layer: 20
   m_Name: PowerUp
   m_TagString: Untagged
@@ -4877,6 +4878,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &1456103820641268177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087261723147196353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5087261723147196355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4887,6 +4910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5087261723147553763}
   - component: {fileID: 1519689051469726026}
+  - component: {fileID: 8215797155683454846}
   m_Layer: 20
   m_Name: Power-UP #3
   m_TagString: Untagged
@@ -4926,6 +4950,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 0}
+--- !u!114 &8215797155683454846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087261723147196355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5087261723147196357
 GameObject:
   m_ObjectHideFlags: 0
@@ -9675,6 +9721,7 @@ GameObject:
   - component: {fileID: 5087261723143778055}
   - component: {fileID: 5087261723145259271}
   - component: {fileID: 5087261723137483303}
+  - component: {fileID: 5126671625946254611}
   m_Layer: 20
   m_Name: InnerPowerUp
   m_TagString: Untagged
@@ -9770,6 +9817,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 1
+--- !u!114 &5126671625946254611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087261723147196367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5107160025624223058
 GameObject:
   m_ObjectHideFlags: 0
@@ -14519,6 +14588,7 @@ GameObject:
   - component: {fileID: 2925350530028018531}
   - component: {fileID: 3171067546514182105}
   - component: {fileID: 2321715226766730090}
+  - component: {fileID: 5171653900510913054}
   m_Layer: 20
   m_Name: PowerUp
   m_TagString: Untagged
@@ -14614,6 +14684,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
+--- !u!114 &5171653900510913054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5121517942785744559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7156370188249443536
 GameObject:
   m_ObjectHideFlags: 0

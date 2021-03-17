@@ -415,7 +415,7 @@ MonoBehaviour:
     type: 3}
   obstacle: {fileID: 0}
   manager: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 891531410}
   distanceUnit: 0
   maxHealth: 100
   currentHealth: 100
@@ -733,7 +733,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.008
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34388e81112cd494da688a69ffcf114f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScripts: []
+  localScripts:
+  - {fileID: 1667706798409306982}
   localObjects: []
 --- !u!114 &6359927599403803687
 MonoBehaviour:
