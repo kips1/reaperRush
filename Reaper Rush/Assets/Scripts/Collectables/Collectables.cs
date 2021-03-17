@@ -19,7 +19,7 @@ public class Collectables : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-            if (render.transform.position.z < runner.transform.position.z - 40)
+            if (this.transform.position.z < runner.transform.position.z - 40)
             {
                 if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
                 {

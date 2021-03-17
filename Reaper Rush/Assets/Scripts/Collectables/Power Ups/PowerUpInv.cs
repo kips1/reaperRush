@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /*
  * Author: Alex, Kips
@@ -11,7 +12,7 @@ using UnityEngine;
  * 
  */
 
-public class PowerUpInv : MonoBehaviour
+public class PowerUpInv : MonoBehaviourPunCallbacks
 {
     public GameObject PowerUp3Original;
     public GameObject PowerUp3Container;
@@ -33,14 +34,23 @@ public class PowerUpInv : MonoBehaviour
         // Controls the number of invulnerability power ups to generate
         if (GameObject.Find("Power-Up #3 Gen").transform.childCount < 2)
         {
+            Generate();
+        }
+    }
+
+    public void Generate()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
+        {
             CreatePowerUp();
+            return;
         }
     }
 
     // Generates instance of an invulnerability power up
     void CreatePowerUp()
     {
-        GameObject CoinClone = Instantiate(PowerUp3Original, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
+        GameObject CoinClone = PhotonNetwork.Instantiate(PowerUp3Original.name, new Vector3(Random.Range(-4, 4), PowerUp3Original.transform.position.y - 4, z += x = Random.Range(100, 800)), PowerUp3Original.transform.rotation);
         CoinClone.transform.SetParent(this.transform);
     }
 }

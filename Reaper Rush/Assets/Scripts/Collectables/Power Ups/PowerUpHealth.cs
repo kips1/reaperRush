@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 
 /*
  * Author: Alex, Kips
@@ -11,7 +13,7 @@ using UnityEngine;
  * 
  */
 
-public class PowerUpHealth : MonoBehaviour
+public class PowerUpHealth : MonoBehaviourPunCallbacks
 {
     public GameObject PowerUp2Original;
     public GameObject PowerUp2Container;
@@ -33,14 +35,23 @@ public class PowerUpHealth : MonoBehaviour
         // Controls the number of health power ups to generate
         if (GameObject.Find("Power-Up #2 Gen").transform.childCount < 2)
         {
+            Generate();
+        }
+    }
+
+    public void Generate()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
+        {
             CreatePowerUp();
+            return;
         }
     }
 
     // Generates instance of a health power up
     void CreatePowerUp()
     {
-        GameObject CoinClone = Instantiate(PowerUp2Original, new Vector3(Random.Range(-4, 4), PowerUp2Original.transform.position.y - 4, z += x = Random.Range(200, 600)), PowerUp2Original.transform.rotation);
+        GameObject CoinClone = PhotonNetwork.Instantiate(PowerUp2Original.name, new Vector3(Random.Range(-4, 4), PowerUp2Original.transform.position.y - 4, z += x = Random.Range(200, 600)), PowerUp2Original.transform.rotation);
         CoinClone.transform.SetParent(this.transform);
     }
 }
