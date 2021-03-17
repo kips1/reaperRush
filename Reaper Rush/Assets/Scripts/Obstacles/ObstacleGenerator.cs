@@ -39,7 +39,8 @@ public class ObstacleGenerator : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Controller").transform.childCount < 9) {
+        if (GameObject.Find("Controller").transform.childCount < 9) 
+        {
             Generate();
         }
     }
