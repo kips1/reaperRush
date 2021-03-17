@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /*
  * Author: Alex, Kips
@@ -11,7 +12,7 @@ using UnityEngine;
  * 
  */
 
-public class CoinGen : MonoBehaviour
+public class CoinGen : MonoBehaviourPunCallbacks
 {
     public GameObject coin;
 
@@ -37,7 +38,7 @@ public class CoinGen : MonoBehaviour
     // Generates instance of a coin
     void CreateCoins()
     {
-            GameObject CoinClone = Instantiate(coin, new Vector3(Random.Range(-4,4), coin.transform.position.y + 2, z+=10), coin.transform.rotation);
+            GameObject CoinClone = PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4,4), coin.transform.position.y + 2, z+=10), coin.transform.rotation);
             CoinClone.transform.SetParent(this.transform);
     }
 }
