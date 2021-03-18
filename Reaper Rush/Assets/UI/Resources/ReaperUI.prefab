@@ -363,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rock
+  m_Text: Shades
 --- !u!1 &7726124870378591685
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 738.91003, y: 25.699997}
+  m_AnchoredPosition: {x: 738.91016, y: 25.699951}
   m_SizeDelta: {x: 55.313477, y: 17.419983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8717028226496131278

@@ -34,6 +34,11 @@ public class Reaper : MonoBehaviourPun
     private float xDirection = 0;
     private float zDirection = 0;
 
+    public float cooldownTime;
+    // public float time1 = 1;
+    private float nextFireTime = 0;
+    private float nextShadeTime = 0;
+
     // Start is called before the first frame update
     // Initialise fields
     void Start()
@@ -48,8 +53,10 @@ public class Reaper : MonoBehaviourPun
     }
 
     // Update is called once per frame
+
     void Update()
     {
+       
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
@@ -88,20 +95,46 @@ public class Reaper : MonoBehaviourPun
             xDirection = 0;
         }
 
-        // Spawn rock obstacle
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
+        // Spawn shade obstacle
+        if (Time.time > nextShadeTime)
         {
-            obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
-            ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("ROCK"))
+            {
+                print("Shade Summoned");
+                nextShadeTime = Time.time + 5;
+                obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z);
+                ReaperObj.GetComponent<ReaperObj>().Generate(obstacleSpawn);
+
+                gameObject.GetComponent<ShadeCooldown>().timeLeft2 = 5.0f;
+                gameObject.GetComponent<ShadeCooldown>().timer2.enabled = true;
+
+            }
         }
 
         // Spawn fire
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+        if (Time.time > nextFireTime) 
         {
-            obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
-            ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
-            fireSound.Play();
+            
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ReaperUI.GetComponent<ReaperUI>().activeObject.text.Equals("FIRE"))
+            {
+
+                print("ability used, cooldown started");
+                nextFireTime = Time.time + 5;
+
+                obstacleSpawn = new Vector3(reaper.transform.position.x, 0, reaper.transform.position.z + 30);
+                ReaperObj.GetComponent<ReaperObj>().GenerateFire(obstacleSpawn);
+                fireSound.Play();
+
+                gameObject.GetComponent<FireCooldown>().timeLeft1 = 5.0f;
+                gameObject.GetComponent<FireCooldown>().timer1.enabled = true;
+
+
+
+            }
         }
+
+        
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);

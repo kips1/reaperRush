@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using static PowerUpTimer;
 
 /*
  * Author: Josh, Alex, Kips
@@ -21,6 +22,7 @@ public class Runner : MonoBehaviourPun
     [SerializeField] private float jumpHeight = 10.0f;
 
     // Defines the objects that are associated directly to the runner instance
+    
     private GameObject playerPosition;
     private GameObject rmController;
     public GameObject obstacleGenerator;
@@ -45,8 +47,10 @@ public class Runner : MonoBehaviourPun
     public float maxHealth;
     public float currentHealth;
     public float distanceValue;
-    float timeLeft = 3.0f;
-   
+    
+    
+    
+
     // Fields for the player's health state
     public bool takeDamage = true;
     public bool hasLost;
@@ -55,6 +59,7 @@ public class Runner : MonoBehaviourPun
     // Initialise fields
     void Start()
     {
+        
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
@@ -149,6 +154,9 @@ public class Runner : MonoBehaviourPun
         velocity.y = yVelocity;
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
+
+      
+    
     }
 
     // Increments the distance counter
@@ -172,10 +180,18 @@ public class Runner : MonoBehaviourPun
 
         // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
-        {
-            Destroy(other.gameObject);         
+        { 
+            Destroy(other.gameObject);
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
+            gameObject.GetComponent<PowerUpTimer>().timeLeft = 5.0f;
+            gameObject.GetComponent<PowerUpTimer>().timer.enabled = true;
+
+
+
+
+
+
         }
 
         // Handles health powerup

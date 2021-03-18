@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60f5131687682c4e8f0da8dec83217a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 1447450497290581837, guid: 36fe4df5044888b4db2c1b7739ac37c2,
+  obstacle: {fileID: 1447450497290581837, guid: c632f51c165a0fe46971319c38909f3f,
     type: 3}
   fire: {fileID: 972907126413355617, guid: 631967b17f2c8294e8ddddee557b6c0a, type: 3}
 --- !u!4 &1947426484
