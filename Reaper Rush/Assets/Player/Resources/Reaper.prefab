@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
+  manager: {fileID: 8328224327490682241, guid: 91918a3a4d2f0e84a869a539d1d44741, type: 3}
   obstacle: {fileID: 6193450199760839890, guid: 42e1abef07f9a964281e033e1e335498,
     type: 3}
   reaper: {fileID: 1192028030900807206}

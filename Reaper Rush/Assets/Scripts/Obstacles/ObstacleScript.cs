@@ -61,21 +61,15 @@ public class ObstacleScript : MonoBehaviourPun
             
         }
 
-        
+        /*
         //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle or if the rock spawns where a coin is placed, it will not spawn the obstacle
         if (collider.gameObject.layer == 8 || collider.gameObject.layer == 20 || collider.gameObject.layer == 15 || collider.gameObject.layer == 10)
         {
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             {
-                photonView.RPC("Remove", RpcTarget.AllBuffered);
+                PhotonNetwork.Destroy(gameObject);
             }
         }
-        
-    }
-
-    [PunRPC]
-    void Remove()
-    {
-        PhotonNetwork.Destroy(gameObject);
+        */
     }
 }

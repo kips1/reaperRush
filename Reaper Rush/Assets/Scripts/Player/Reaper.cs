@@ -22,7 +22,7 @@ public class Reaper : MonoBehaviourPun
     private GameObject ReaperObj;
     private GameObject ReaperUI;
     private GameObject rmController;
-    private GameObject manager;
+    public GameObject manager;
     public GameObject obstacle;
     public GameObject reaper;
 
