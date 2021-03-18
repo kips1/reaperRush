@@ -416,11 +416,11 @@ MonoBehaviour:
   ObstacleGeneratorScript: {fileID: 3749495040766380588, guid: 766263e11ed9e0540a791a0ec6d4dddd,
     type: 3}
   obstacle: {fileID: 0}
-  manager: {fileID: 0}
-  anim: {fileID: 0}
+  manager: {fileID: 8328224327490682241, guid: 91918a3a4d2f0e84a869a539d1d44741, type: 3}
+  anim: {fileID: 891531410}
   distanceUnit: 0
   maxHealth: 100
-  currentHealth: 100
+  currentHealth: 90
   distanceValue: 0
   takeDamage: 1
   hasLost: 0
@@ -735,7 +735,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.008
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -39,12 +39,11 @@ public class ObstacleScript : MonoBehaviourPun
     // Deletes instance of obstacles when out of view
     private void Update()
     {
-        if (render.transform.position.z < runner.transform.position.z - 40)
+        if (render.transform.position.z < runner.transform.position.z - 80)
         {
-            if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             {
                 PhotonNetwork.Destroy(gameObject);
-
             }
         }
     }
@@ -59,27 +58,18 @@ public class ObstacleScript : MonoBehaviourPun
                 runner.GetComponent<Runner>().TakeDamage(10);
             }
             runner.GetComponent<Runner>().anim.SetTrigger("Collide");
+            
         }
 
-        //If the rock spawns where a coin is placed, it will not spawn the obstacle
-        if (collider.gameObject.CompareTag("Coin"))
+        /*
+        //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle or if the rock spawns where a coin is placed, it will not spawn the obstacle
+        if (collider.gameObject.layer == 8 || collider.gameObject.layer == 20 || collider.gameObject.layer == 15 || collider.gameObject.layer == 10)
         {
-            Destroy(gameObject);
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
-        //If the rock spawns where any of the power-ups are placed, it will not spawn the obstacle
-        if (collider.gameObject.layer == 20)
-        {
-            Destroy(gameObject);
-        }
-
-        if (collider.gameObject.layer == 15)
-        {
-            Destroy(gameObject);
-        }
-
-        if (collider.gameObject.layer == 10)
-        {
-            Destroy(gameObject);
-        }
+        */
     }
 }

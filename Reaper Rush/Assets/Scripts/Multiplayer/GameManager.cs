@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool firstDead;
     public bool secondDead;
     public bool dead;
+    public bool runnerReady;
+    public bool reaperReady;
+    public bool runnerReadytemp;
+    public bool reaperReadytemp;
+    public bool bothReady;
+
 
     public static GameManager Instance { get { return _instance; } }
 
@@ -79,7 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
             finalRound = true;
-
+            runnerReadytemp = runnerReady;
+            reaperReadytemp = reaperReady;
             // Checks when the first client has finished and loads role swap scene
             if (round == 0 && PhotonNetwork.IsMasterClient)
             {
@@ -106,6 +113,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             firstDead = dead;
             dead = false;
             runner = null;
+            runnerReady = false;
+            reaperReady = false;
+            bothReady = false;
 
             // Switches second client to master client so they become the runner
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
@@ -160,6 +170,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                 round = 11;
                 StartCoroutine(ExecuteBackToLobby(5.0f));
             }
+        }
+
+        if (reaperReady && runnerReady)
+        {
+            bothReady = true;
         }
     }
 

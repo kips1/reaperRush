@@ -20,6 +20,7 @@ TagManager:
   - PowerUpCoin
   - ReaperSpawnPoint
   - GreenPowerUp
+  - Reaper Model
   layers:
   - Default
   - TransparentFX

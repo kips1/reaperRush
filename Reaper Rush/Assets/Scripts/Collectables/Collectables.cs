@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Collectables : MonoBehaviour
+public class Collectables : MonoBehaviourPun
 {
     public GameObject runner;
+    public GameObject coin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,23 +17,33 @@ public class Collectables : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (runner != null)
-        {
             if (this.transform.position.z < runner.transform.position.z - 40)
             {
-                if (gameObject != null)
+                if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
                 {
-                    Destroy(gameObject);
+                    PhotonNetwork.Destroy(gameObject);
                 }
             }
-        }
-    
     }
-    void OnTriggerEnter(Collider collider)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collider.gameObject.CompareTag("Rock"))
+        // Handles coin powerup
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 10)
         {
-            Destroy(gameObject);
+            for (int i = 30; i < 54; i += 3)
+            {
+                PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4, 4), 2, runner.GetComponent<Runner>().distanceUnit + i), Quaternion.identity);
+            }
+            PhotonNetwork.Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 8)
+        {
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
     }
 }

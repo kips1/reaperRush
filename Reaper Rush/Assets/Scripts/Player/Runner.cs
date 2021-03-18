@@ -82,6 +82,11 @@ public class Runner : MonoBehaviourPun
         // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
+            photonView.RPC("RunnerReady", RpcTarget.AllBuffered, true);
+        }
+
+        if (manager.GetComponent<GameManager>().bothReady)
+        {
             zDirection = 1;
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
@@ -102,7 +107,7 @@ public class Runner : MonoBehaviourPun
             // Allows the runner to jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("isJumping", true);
+                photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", true);
                 yVelocity = jumpHeight;
             }
             // Move left
@@ -124,7 +129,7 @@ public class Runner : MonoBehaviourPun
         // Plays jumping animation and makes the runner fall
         else
         {
-            anim.SetBool("isJumping", false);
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", false);
             yVelocity -= gravity;
         }
 
@@ -134,8 +139,8 @@ public class Runner : MonoBehaviourPun
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
-            anim.SetBool("hasDied", true);
-            anim.SetTrigger("Die");
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "hasDied", true);
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Die");
             // Checks that there is more than 1 player
             if (PhotonNetwork.PlayerList.Length > 1)
             {
@@ -202,10 +207,10 @@ public class Runner : MonoBehaviourPun
         {
             powerUpSound.Play();
             Destroy(other.gameObject);
-            for(int i = 30; i < 54; i += 3)
-            {
-                Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + i), Quaternion.identity);
-            }
+            //for(int i = 30; i < 54; i += 3)
+            //{
+            //    PhotonNetwork.Instantiate(GameObject.FindGameObjectWithTag("Coin").name, new Vector3(Random.Range(-4, 4), 2, distanceUnit + i), Quaternion.identity);
+            //}
             obstacleGenerator.SetActive(false);
         }
 
@@ -214,7 +219,6 @@ public class Runner : MonoBehaviourPun
         {
             coinSound.Play();
             CoinAddScript.coinAmount += 1;
-            Destroy(other.gameObject);
         }
 
         // Destroys the rock when collision occurs
@@ -226,7 +230,7 @@ public class Runner : MonoBehaviourPun
 
     public void TakeDamage(float damage)
     {  
-            currentHealth -= damage;  
+            currentHealth -= damage;
     }
 
     // Makes runner invulnerable for a given time
@@ -249,5 +253,24 @@ public class Runner : MonoBehaviourPun
     void changeDead(bool isDead)
     {
         manager.GetComponent<GameManager>().dead = isDead; ;
+    }
+
+
+    [PunRPC]
+    void syncAnimation(string anim, bool set)
+    {
+        this.anim.SetBool(anim, set);
+    }
+
+    [PunRPC]
+    void syncAnimation(string anim)
+    {
+        this.anim.SetTrigger(anim);
+    }
+
+    [PunRPC]
+    void RunnerReady(bool runnerReady)
+    {
+        manager.GetComponent<GameManager>().runnerReady = runnerReady;
     }
 }
