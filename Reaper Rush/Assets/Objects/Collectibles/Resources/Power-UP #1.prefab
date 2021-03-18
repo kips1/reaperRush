@@ -4883,6 +4883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a, type: 3}
+  coin: {fileID: 6435272963498920098, guid: 32a39a3071251dd4292a204981c5041b, type: 3}
 --- !u!114 &8599027734279027849
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a, type: 3}
+  coin: {fileID: 6435272963498920098}
 --- !u!23 &6297548626246934927
 MeshRenderer:
   m_ObjectHideFlags: 0

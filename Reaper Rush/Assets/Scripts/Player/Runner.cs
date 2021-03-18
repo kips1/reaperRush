@@ -191,10 +191,10 @@ public class Runner : MonoBehaviourPun
         {
             powerUpSound.Play();
             Destroy(other.gameObject);
-            for(int i = 30; i < 54; i += 3)
-            {
-                Instantiate(GameObject.FindWithTag("Coin"), new Vector3(Random.Range(-4, 4), 2, distanceUnit + i), Quaternion.identity);
-            }
+            //for(int i = 30; i < 54; i += 3)
+            //{
+            //    PhotonNetwork.Instantiate(GameObject.FindGameObjectWithTag("Coin").name, new Vector3(Random.Range(-4, 4), 2, distanceUnit + i), Quaternion.identity);
+            //}
             obstacleGenerator.SetActive(false);
         }
 

@@ -4949,6 +4949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 3536685616307044674, guid: 2c7d8c896fc9f434496d41b2fdc0924a, type: 3}
+  coin: {fileID: 0}
 --- !u!1 &5087261723147196357
 GameObject:
   m_ObjectHideFlags: 0

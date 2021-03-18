@@ -6,14 +6,12 @@ using Photon.Pun;
 public class Collectables : MonoBehaviourPun
 {
     public GameObject runner;
-
-    private Renderer render;
+    public GameObject coin;
 
     // Start is called before the first frame update
     void Start()
     {
         runner = GameObject.FindGameObjectWithTag("Player");
-        render = GetComponentInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -26,6 +24,19 @@ public class Collectables : MonoBehaviourPun
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Handles coin powerup
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 10)
+        {
+            for (int i = 30; i < 54; i += 3)
+            {
+                PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4, 4), 2, runner.GetComponent<Runner>().distanceUnit + i), Quaternion.identity);
+            }
+            PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 }
 
