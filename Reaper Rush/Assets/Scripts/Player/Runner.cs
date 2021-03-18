@@ -203,7 +203,6 @@ public class Runner : MonoBehaviourPun
         {
             coinSound.Play();
             CoinAddScript.coinAmount += 1;
-            Destroy(other.gameObject);
         }
 
         // Destroys the rock when collision occurs

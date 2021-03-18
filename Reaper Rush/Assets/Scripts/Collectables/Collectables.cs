@@ -19,7 +19,7 @@ public class Collectables : MonoBehaviourPun
     {
             if (this.transform.position.z < runner.transform.position.z - 40)
             {
-                if (PhotonNetwork.IsMasterClient == true && photonView.IsMine)
+                if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
                 {
                     PhotonNetwork.Destroy(gameObject);
                 }
@@ -36,6 +36,14 @@ public class Collectables : MonoBehaviourPun
                 PhotonNetwork.Instantiate(coin.name, new Vector3(Random.Range(-4, 4), 2, runner.GetComponent<Runner>().distanceUnit + i), Quaternion.identity);
             }
             PhotonNetwork.Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 8)
+        {
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
     }
 }
