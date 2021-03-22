@@ -186,12 +186,6 @@ public class Runner : MonoBehaviourPun
             StartCoroutine(invulnerableActiveFor(5));
             gameObject.GetComponent<PowerUpTimer>().timeLeft = 5.0f;
             gameObject.GetComponent<PowerUpTimer>().timer.enabled = true;
-
-
-
-
-
-
         }
 
         // Handles health powerup
@@ -200,6 +194,10 @@ public class Runner : MonoBehaviourPun
             Destroy(other.gameObject);
             currentHealth += 5;
             powerUpSound.Play();
+            if (currentHealth > 100)
+            {
+                currentHealth = 100;
+            }
         }
 
         // Handles coin powerup
@@ -207,10 +205,6 @@ public class Runner : MonoBehaviourPun
         {
             powerUpSound.Play();
             Destroy(other.gameObject);
-            //for(int i = 30; i < 54; i += 3)
-            //{
-            //    PhotonNetwork.Instantiate(GameObject.FindGameObjectWithTag("Coin").name, new Vector3(Random.Range(-4, 4), 2, distanceUnit + i), Quaternion.identity);
-            //}
             obstacleGenerator.SetActive(false);
         }
 
