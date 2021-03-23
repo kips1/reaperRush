@@ -52,7 +52,7 @@ public class Collectables : MonoBehaviourPun
         }
 
         // Handles health powerup
-        if (other.gameObject.tag == "Player" && other.gameObject.layer == 15)
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 15)
         {
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             {

@@ -59,8 +59,11 @@ public class ObstacleScript : MonoBehaviourPun
             }
             runner.GetComponent<Runner>().anim.SetTrigger("Collide");
 
-            // Destroys the rock when collision occurs
-            PhotonNetwork.Destroy(gameObject);
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                // Destroys the rock when collision occurs
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
 
         
