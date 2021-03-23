@@ -181,7 +181,6 @@ public class Runner : MonoBehaviourPun
         // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
         { 
-            Destroy(other.gameObject);
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
             gameObject.GetComponent<PowerUpTimer>().timeLeft = 5.0f;
@@ -191,7 +190,6 @@ public class Runner : MonoBehaviourPun
         // Handles health powerup
         if (other.gameObject.layer == 15)
         {
-            Destroy(other.gameObject);
             currentHealth += 5;
             powerUpSound.Play();
             if (currentHealth > 100)
@@ -204,7 +202,6 @@ public class Runner : MonoBehaviourPun
         if (other.gameObject.layer == 10)
         {
             powerUpSound.Play();
-            Destroy(other.gameObject);
             obstacleGenerator.SetActive(false);
         }
 
@@ -213,12 +210,6 @@ public class Runner : MonoBehaviourPun
         {
             coinSound.Play();
             CoinAddScript.coinAmount += 1;
-        }
-
-        // Destroys the rock when collision occurs
-        if (other.gameObject.layer == 25)
-        {
-            Destroy(other.gameObject);
         }
     }
 

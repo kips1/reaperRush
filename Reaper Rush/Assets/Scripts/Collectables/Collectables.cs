@@ -38,10 +38,28 @@ public class Collectables : MonoBehaviourPun
             }
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             { 
-                PhotonNetwork.Destroy(gameObject);
+                PhotonNetwork.Destroy(transform.parent.gameObject);
             }
         }
-        
+
+        // Handles invulnerability powerup 
+        if (other.gameObject.tag == "Player" && this.gameObject.layer == 20)
+        {
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(transform.parent.gameObject);
+            }
+        }
+
+        // Handles health powerup
+        if (other.gameObject.tag == "Player" && other.gameObject.layer == 15)
+        {
+            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(transform.parent.gameObject);
+            }
+        }
+
         if (other.gameObject.tag == "Player" && this.gameObject.layer == 8)
         {
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
