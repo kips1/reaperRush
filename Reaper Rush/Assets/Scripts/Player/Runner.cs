@@ -270,8 +270,14 @@ public class Runner : MonoBehaviourPun
     void SetActive(bool active)
     {
         if (!PhotonNetwork.IsMasterClient)
-        { 
-            GameObject.FindGameObjectWithTag("Rock").SetActive(active);
+        {
+            GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
+            foreach(GameObject rock in rocks)
+            {
+                rock.SetActive(active);
+            }
+
+            
         }    
     }
     
