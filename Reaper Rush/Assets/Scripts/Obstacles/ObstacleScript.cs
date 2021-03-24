@@ -49,13 +49,12 @@ public class ObstacleScript : MonoBehaviourPun
         }
         if(runner.GetComponent<Runner>().antiRock == true)
         {
-            this.gameObject.GetComponent<Renderer>().enabled = false;
+            photonView.RPC("removeRenderer", RpcTarget.AllBuffered, false);
             this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
         if (runner.GetComponent<Runner>().antiRock == false)
         {
-            this.gameObject.GetComponent<Renderer>().enabled = true;
-            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            photonView.RPC("removeRenderer", RpcTarget.AllBuffered, true);
         }
     }
 
@@ -93,6 +92,12 @@ public class ObstacleScript : MonoBehaviourPun
     void DestroyObstacle()
     {
         Destroy(gameObject);
+    }
+
+    [PunRPC]
+    void removeRenderer(bool setActive)
+    {
+        gameObject.GetComponent<Renderer>().enabled = setActive;
     }
         
 }
