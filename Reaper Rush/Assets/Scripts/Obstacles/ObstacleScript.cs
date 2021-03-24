@@ -98,6 +98,14 @@ public class ObstacleScript : MonoBehaviourPun
     void removeRenderer(bool setActive)
     {
         gameObject.GetComponent<Renderer>().enabled = setActive;
+        if (setActive == false && this.gameObject.CompareTag("Rock"))
+        {
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        }
+        if (setActive == false && this.gameObject.CompareTag("Rock"))
+        {
+            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
         
 }
