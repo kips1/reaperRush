@@ -50,7 +50,7 @@ public class ObstacleScript : MonoBehaviourPun
         if(runner.GetComponent<Runner>().antiRock == true)
         {
             photonView.RPC("removeRenderer", RpcTarget.AllBuffered, false);
-           // this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
         if (runner.GetComponent<Runner>().antiRock == false)
         {
@@ -97,15 +97,14 @@ public class ObstacleScript : MonoBehaviourPun
     [PunRPC]
     void removeRenderer(bool setActive)
     {
-        //gameObject.GetComponent<Renderer>().enabled = setActive;
+        gameObject.GetComponent<Renderer>().enabled = setActive;
         if (setActive == false && this.gameObject.CompareTag("Rock"))
         {
-            gameObject.transform.localScale = new Vector3(0, 0, 0);
-            gameObject.GetComponent<Renderer>().enabled = setActive;
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
-        if (setActive == true && this.gameObject.CompareTag("Rock"))
+        if (setActive == false && this.gameObject.CompareTag("Rock"))
         {
-            gameObject.GetComponent<Renderer>().enabled = setActive;
+            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
         
