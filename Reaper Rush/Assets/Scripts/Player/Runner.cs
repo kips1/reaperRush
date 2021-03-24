@@ -264,10 +264,19 @@ public class Runner : MonoBehaviourPun
     [PunRPC]
     void GenerateObstacles(bool active)
     {
-        PhotonView[] rocks = obstacleGenerator.GetPhotonViewsInChildren();
-        foreach (PhotonView rock in rocks)
+        if (PhotonNetwork.IsMasterClient == true) {
+            PhotonView[] rocks = obstacleGenerator.GetPhotonViewsInChildren();
+            foreach (PhotonView rock in rocks)
+            {
+                rock.gameObject.SetActive(active);
+            }
+        }
+        else
         {
-            rock.gameObject.SetActive(active);
+            foreach(GameObject rocks in GameObject.FindGameObjectsWithTag("Rock"))
+            {
+                rocks.SetActive(active);
+            }
         }
     }
 }
