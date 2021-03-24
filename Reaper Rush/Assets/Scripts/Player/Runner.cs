@@ -54,7 +54,7 @@ public class Runner : MonoBehaviourPun
     // Fields for the player's health state
     public bool takeDamage = true;
     public bool hasLost;
-    public bool antiRock = false;
+    public bool antiRock;
 
     // Start is called before the first frame update
     // Initialise fields
@@ -72,6 +72,7 @@ public class Runner : MonoBehaviourPun
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
+        antiRock = false;
     }
 
     // Update is called once per frame
