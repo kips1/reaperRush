@@ -50,12 +50,12 @@ public class ObstacleScript : MonoBehaviourPun
         if(runner.GetComponent<Runner>().antiRock == true)
         {
             this.gameObject.GetComponent<Renderer>().enabled = false;
-            this.gameObject.GetComponent<Collider>().enabled = false;
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
         if (runner.GetComponent<Runner>().antiRock == false)
         {
             this.gameObject.GetComponent<Renderer>().enabled = true;
-            this.gameObject.GetComponent<Collider>().enabled = true;
+            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
