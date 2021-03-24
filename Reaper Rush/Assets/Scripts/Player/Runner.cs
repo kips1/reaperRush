@@ -22,14 +22,14 @@ public class Runner : MonoBehaviourPun
     [SerializeField] private float jumpHeight = 10.0f;
 
     // Defines the objects that are associated directly to the runner instance
-    
+
     private GameObject playerPosition;
     private GameObject rmController;
     public GameObject obstacleGenerator;
     public GameObject ObstacleGeneratorScript;
     public GameObject obstacle;
     public GameObject manager;
-    
+
     private CharacterController controller;
     private HealthBar healthBar;
     public Animator anim;
@@ -47,19 +47,20 @@ public class Runner : MonoBehaviourPun
     public float maxHealth;
     public float currentHealth;
     public float distanceValue;
-    
-    
-    
+
+
+
 
     // Fields for the player's health state
     public bool takeDamage = true;
     public bool hasLost;
+    public bool antiRock = false;
 
     // Start is called before the first frame update
     // Initialise fields
     void Start()
     {
-        
+
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
         anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
@@ -90,7 +91,7 @@ public class Runner : MonoBehaviourPun
             zDirection = 1;
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
-        if(start == 0 && zDirection == 1)
+        if (start == 0 && zDirection == 1)
         {
             InvokeRepeating(nameof(Distance), 0, 1 / speed);
             start = 1;
@@ -99,9 +100,9 @@ public class Runner : MonoBehaviourPun
         if (distanceUnit == distanceValue + 30)
         {
             //obstacleGenerator.SetActive(true);
-            photonView.RPC("GenerateObstacles", RpcTarget.AllBuffered, true);
+            antiRock = false;
         }
-       
+
         // Checks if the runner is on the ground
         if (controller.isGrounded)
         {
@@ -115,10 +116,10 @@ public class Runner : MonoBehaviourPun
             else if (Input.GetKey(KeyCode.A) && xDirection > -4.48f)
             {
                 xDirection -= 0.045f;
-            } 
+            }
             // Move right
             else if (Input.GetKey(KeyCode.D) && xDirection < 3.48f)
-            { 
+            {
                 xDirection += 0.045f;
             }
             // Stop moving left/right
@@ -126,7 +127,7 @@ public class Runner : MonoBehaviourPun
             {
                 xDirection = 0;
             }
-        } 
+        }
         // Plays jumping animation and makes the runner fall
         else
         {
@@ -156,8 +157,8 @@ public class Runner : MonoBehaviourPun
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
 
-      
-    
+
+
     }
 
     // Increments the distance counter
@@ -181,7 +182,7 @@ public class Runner : MonoBehaviourPun
 
         // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
-        { 
+        {
             powerUpSound.Play();
             StartCoroutine(invulnerableActiveFor(5));
             gameObject.GetComponent<PowerUpTimer>().timeLeft = 5.0f;
@@ -204,7 +205,7 @@ public class Runner : MonoBehaviourPun
         {
             powerUpSound.Play();
             //obstacleGenerator.SetActive(false);
-            photonView.RPC("GenerateObstacles", RpcTarget.AllBuffered, false);
+            antiRock = true;
         }
 
         // Handles coin collectible
@@ -216,8 +217,8 @@ public class Runner : MonoBehaviourPun
     }
 
     public void TakeDamage(float damage)
-    {  
-            currentHealth -= damage;
+    {
+        currentHealth -= damage;
     }
 
     // Makes runner invulnerable for a given time
@@ -261,22 +262,4 @@ public class Runner : MonoBehaviourPun
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
     }
 
-    [PunRPC]
-    void GenerateObstacles(bool active)
-    {
-        if (PhotonNetwork.IsMasterClient == true) {
-            PhotonView[] rocks = obstacleGenerator.GetPhotonViewsInChildren();
-            foreach (PhotonView rock in rocks)
-            {
-                rock.gameObject.SetActive(active);
-            }
-        }
-        else
-        {
-            foreach(GameObject rocks in GameObject.FindGameObjectsWithTag("Rock"))
-            {
-                rocks.SetActive(active);
-            }
-        }
-    }
 }
