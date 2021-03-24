@@ -420,7 +420,7 @@ MonoBehaviour:
   anim: {fileID: 891531410}
   distanceUnit: 0
   maxHealth: 100
-  currentHealth: 20
+  currentHealth: 0
   distanceValue: 0
   takeDamage: 1
   hasLost: 0

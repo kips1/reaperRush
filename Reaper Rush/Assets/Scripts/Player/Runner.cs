@@ -98,7 +98,8 @@ public class Runner : MonoBehaviourPun
         // Enables the obstacle generator after a specified distance
         if (distanceUnit == distanceValue + 30)
         {
-            obstacleGenerator.SetActive(true);
+            //obstacleGenerator.SetActive(true);
+            photonView.RPC("GenerateObstacles", RpcTarget.AllBuffered, true);
         }
        
         // Checks if the runner is on the ground
@@ -202,7 +203,8 @@ public class Runner : MonoBehaviourPun
         if (other.gameObject.layer == 10)
         {
             powerUpSound.Play();
-            obstacleGenerator.SetActive(false);
+            //obstacleGenerator.SetActive(false);
+            photonView.RPC("GenerateObstacles", RpcTarget.AllBuffered, false);
         }
 
         // Handles coin collectible
@@ -257,5 +259,15 @@ public class Runner : MonoBehaviourPun
     void RunnerReady(bool runnerReady)
     {
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
+    }
+
+    [PunRPC]
+    void GenerateObstacles(bool active)
+    {
+        PhotonView[] rocks = obstacleGenerator.GetPhotonViewsInChildren();
+        foreach (PhotonView rock in rocks)
+        {
+            rock.gameObject.SetActive(active);
+        }
     }
 }

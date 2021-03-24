@@ -21,7 +21,14 @@ public class Collectables : MonoBehaviourPun
             {
                 if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
                 {
-                    PhotonNetwork.Destroy(gameObject);
+                    if (gameObject.layer == 8)
+                    {
+                        PhotonNetwork.Destroy(gameObject);
+                    }
+                    else
+                    {
+                        PhotonNetwork.Destroy(transform.parent.gameObject);
+                    }
                 }
             }
     }

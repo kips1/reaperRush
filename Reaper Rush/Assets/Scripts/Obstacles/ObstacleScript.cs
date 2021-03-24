@@ -62,7 +62,10 @@ public class ObstacleScript : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             {
                 // Destroys the rock when collision occurs
-                PhotonNetwork.Destroy(gameObject);
+                if (gameObject.CompareTag("Rock")) 
+                { 
+                    PhotonNetwork.Destroy(gameObject); 
+                }
             }
         }
 
