@@ -47,6 +47,15 @@ public class ObstacleScript : MonoBehaviourPun
                 PhotonNetwork.Destroy(gameObject);
             }
         }
+        if(runner.GetComponent<Runner>().antiRock == true)
+        {
+            photonView.RPC("removeRenderer", RpcTarget.AllBuffered, false);
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        }
+        if (runner.GetComponent<Runner>().antiRock == false)
+        {
+            photonView.RPC("removeRenderer", RpcTarget.AllBuffered, true);
+        }
     }
 
     // Triggers damage function and animation when the obstacle detects a player instance
@@ -84,4 +93,11 @@ public class ObstacleScript : MonoBehaviourPun
     {
         Destroy(gameObject);
     }
+
+    [PunRPC]
+    void removeRenderer(bool setActive)
+    {
+        gameObject.GetComponent<Renderer>().enabled = setActive;
+    }
+        
 }

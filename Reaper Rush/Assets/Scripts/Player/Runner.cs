@@ -100,8 +100,7 @@ public class Runner : MonoBehaviourPun
         // Enables the obstacle generator after a specified distance
         if (distanceUnit == distanceValue + 30)
         {
-            obstacleGenerator.SetActive(true);
-            photonView.RPC("SetActive", RpcTarget.AllBuffered, true);
+            //obstacleGenerator.SetActive(true);
             antiRock = false;
         }
 
@@ -206,8 +205,7 @@ public class Runner : MonoBehaviourPun
         if (other.gameObject.layer == 10)
         {
             powerUpSound.Play();
-            obstacleGenerator.SetActive(false);
-            photonView.RPC("SetActive", RpcTarget.AllBuffered, false);
+            //obstacleGenerator.SetActive(false);
             antiRock = true;
         }
 
@@ -243,7 +241,7 @@ public class Runner : MonoBehaviourPun
     [PunRPC]
     void changeDead(bool isDead)
     {
-        manager.GetComponent<GameManager>().dead = isDead;
+        manager.GetComponent<GameManager>().dead = isDead; ;
     }
 
 
@@ -265,14 +263,4 @@ public class Runner : MonoBehaviourPun
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
     }
 
-
-    [PunRPC]
-    void SetActive(bool active)
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        { 
-            GameObject.FindGameObjectWithTag("Rock").SetActive(active);
-        }    
-    }
-    
 }
