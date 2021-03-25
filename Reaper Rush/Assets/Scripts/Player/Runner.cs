@@ -109,7 +109,7 @@ public class Runner : MonoBehaviourPun
         if (controller.isGrounded)
         {
             // Allows the runner to jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !hasLost)
             {
                 photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", true);
                 yVelocity = jumpHeight;

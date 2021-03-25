@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   gravity: 0.95
-  jumpHeight: 25
+  jumpHeight: 20
   obstacleGenerator: {fileID: 0}
   ObstacleGeneratorScript: {fileID: 3749495040766380588, guid: 766263e11ed9e0540a791a0ec6d4dddd,
     type: 3}
@@ -1330,17 +1330,17 @@ PrefabInstance:
     - target: {fileID: 7913744470127147408, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7783448
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7913744470127147408, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4537303
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 7913744470127147408, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.69833
+      value: 1.53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 114b26d9de9ea7343998657fa56d509b, type: 3}
