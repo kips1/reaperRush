@@ -21,6 +21,8 @@ TagManager:
   - ReaperSpawnPoint
   - GreenPowerUp
   - Reaper Model
+  - PositionCube
+  - FIreCD
   layers:
   - Default
   - TransparentFX
