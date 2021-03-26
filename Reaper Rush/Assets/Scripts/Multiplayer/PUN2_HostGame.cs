@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 /*
  * Author: Sharp Coder 
@@ -12,8 +14,13 @@ using Photon.Realtime;
  * 
  */
 
-public class PUN2_GameLobby : MonoBehaviourPunCallbacks
+public class PUN2_HostGame : MonoBehaviourPunCallbacks
 {
+    public InputField playerNameInput;
+    public InputField roomNameInput;
+    public TextMeshProUGUI connectionStatus;
+    public TextMeshProUGUI[] errors;
+
     // Our player name
     string playerName = "Please Enter Your Name";
 
@@ -23,10 +30,11 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     // The list of created rooms
     List<RoomInfo> createdRooms = new List<RoomInfo>();
     // Use this name when creating a Room
-    string roomName = "Room 1";
+    string roomName = "Enter room name";
 
     Vector2 roomListScroll = Vector2.zero;
     bool joiningRoom = false;
+    bool start = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +71,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     }
     void OnGUI()
     {
-        GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
+        GUI.Window(0, new Rect(0, 0, 0, 0), LobbyWindow, "");
     }
 
     void LobbyWindow(int index)
@@ -72,6 +80,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         GUILayout.BeginHorizontal();
 
         GUILayout.Label("Status: " + PhotonNetwork.NetworkClientState);
+        connectionStatus.text = "Connection Status: " + PhotonNetwork.NetworkClientState;
 
         if (joiningRoom || !PhotonNetwork.IsConnected || PhotonNetwork.NetworkClientState != ClientState.JoinedLobby)
         {
@@ -81,11 +90,13 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
 
         //Room name text field
-        roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
+        //roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
+        roomName = roomNameInput.text;
 
-        if (GUILayout.Button("Host", GUILayout.Width(125)))
+        if (start)
         {
-            if (roomName != "")
+            start = false;
+            if (roomName != "" && playerName != "")
             {
                 joiningRoom = true;
 
@@ -95,7 +106,25 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 roomOptions.MaxPlayers = (byte)2; //Set any number
 
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
-            } 
+            }
+            else
+            {
+                if (playerName == "" && roomName == "")
+                {
+                    errors[0].gameObject.SetActive(true);
+                    errors[1].gameObject.SetActive(true);
+                }
+
+                if (playerName == "")
+                {
+                    errors[0].gameObject.SetActive(true);
+                }
+
+                if (roomName == "")
+                {
+                    errors[1].gameObject.SetActive(true);
+                }
+            }
         }
 
         GUILayout.EndHorizontal();
@@ -138,7 +167,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 
         GUILayout.Label("Player Name: ", GUILayout.Width(85));
         //Player name text field
-        playerName = GUILayout.TextField(playerName, GUILayout.Width(250));
+        playerName = playerNameInput.text;
 
         GUILayout.FlexibleSpace();
 
@@ -196,5 +225,10 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
+    }
+
+    public void StartGame()
+    {
+        start = true;
     }
 }

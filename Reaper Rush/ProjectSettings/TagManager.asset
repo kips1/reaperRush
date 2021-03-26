@@ -21,6 +21,9 @@ TagManager:
   - ReaperSpawnPoint
   - GreenPowerUp
   - Reaper Model
+  - MainMenu
+  - StartGame
+  - Host
   layers:
   - Default
   - TransparentFX
