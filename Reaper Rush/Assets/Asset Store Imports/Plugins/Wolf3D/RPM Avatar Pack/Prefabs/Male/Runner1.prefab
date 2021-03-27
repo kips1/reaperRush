@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 7913744470127147408}
   - component: {fileID: 1353878768}
   m_Layer: 0
-  m_Name: Male_03_V01
+  m_Name: Runner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
