@@ -80,6 +80,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         //We have left the Room, return back to the GameLobby
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        PhotonNetwork.Disconnect();
     }
 }

@@ -48,7 +48,6 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
             PhotonNetwork.ConnectUsingSettings();
         }
-
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -78,8 +77,7 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
     {
         //Connection Status and Room creation Button
         GUILayout.BeginHorizontal();
-
-        GUILayout.Label("Status: " + PhotonNetwork.NetworkClientState);
+        //GUILayout.Label("Status: " + PhotonNetwork.NetworkClientState);
         connectionStatus.text = "Connection Status: " + PhotonNetwork.NetworkClientState;
 
         if (joiningRoom || !PhotonNetwork.IsConnected || PhotonNetwork.NetworkClientState != ClientState.JoinedLobby)
@@ -90,7 +88,6 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
 
         //Room name text field
-        //roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
         roomName = roomNameInput.text;
 
         if (start)
@@ -230,5 +227,10 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         start = true;
+    }
+
+    public void Disconnect()
+    {
+        PhotonNetwork.Disconnect();
     }
 }

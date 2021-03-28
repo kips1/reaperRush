@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
+using UnityEngine.UI;
 
 /*
  * Author: Sharp Coder 
@@ -13,15 +15,19 @@ using Photon.Realtime;
  */
 public class PUN2_JoinGame : MonoBehaviourPunCallbacks
 {
+    public TextMeshProUGUI connectionStatus;
+    public TextMeshProUGUI error;
+    public TextMeshProUGUI waitingMessage;
+    public InputField playerNameInput;
+
+
     // Our player name
-    string playerName = "Please Enter Your N";
+    string playerName = "Please Enter Your Name";
 
     // Users are separated from each other by gameversion (which allows you to make breaking changes).
     string gameVersion = "0.9";
     // The list of created rooms
     List<RoomInfo> createdRooms = new List<RoomInfo>();
-    // Use this name when creating a Room
-    string roomName = "Room 1";
 
     Vector2 roomListScroll = Vector2.zero;
     bool joiningRoom = false;
@@ -38,7 +44,6 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
             PhotonNetwork.ConnectUsingSettings();
         }
-
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -61,7 +66,7 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
     }
     void OnGUI()
     {
-        GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
+        GUI.Window(0, new Rect(Screen.width / 2 - 370, Screen.height / 2 - 100, 700, 250), LobbyWindow, "");
     }
 
     void LobbyWindow(int index)
@@ -69,7 +74,7 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
         //Connection Status and Room creation Button
         GUILayout.BeginHorizontal();
 
-        GUILayout.Label("Status: " + PhotonNetwork.NetworkClientState);
+        connectionStatus.text = "Connection Status: " + PhotonNetwork.NetworkClientState;
 
         if (joiningRoom || !PhotonNetwork.IsConnected || PhotonNetwork.NetworkClientState != ClientState.JoinedLobby)
         {
@@ -78,53 +83,48 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
 
         GUILayout.FlexibleSpace();
 
-        //Room name text field
-        roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
-
-        if (GUILayout.Button("Host", GUILayout.Width(125)))
-        {
-            if (roomName != "")
-            {
-                joiningRoom = true;
-
-                RoomOptions roomOptions = new RoomOptions();
-                roomOptions.IsOpen = true;
-                roomOptions.IsVisible = true;
-                roomOptions.MaxPlayers = (byte)2; //Set any number
-
-                PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
-            }
-        }
-
         GUILayout.EndHorizontal();
 
         //Scroll through available rooms
-        roomListScroll = GUILayout.BeginScrollView(roomListScroll, true, true);
+        roomListScroll = GUILayout.BeginScrollView(roomListScroll, false, true);
 
         if (createdRooms.Count == 0)
         {
-            GUILayout.Label("Waiting For Other Player...");
+            waitingMessage.gameObject.SetActive(true);
         }
         else
         {
             for (int i = 0; i < createdRooms.Count; i++)
             {
+                waitingMessage.gameObject.SetActive(false);
                 GUILayout.BeginHorizontal("box");
                 GUILayout.Label(createdRooms[i].Name, GUILayout.Width(400));
                 GUILayout.Label(createdRooms[i].PlayerCount + "/" + createdRooms[i].MaxPlayers);
+
+                if(createdRooms[i].PlayerCount == 0)
+                {
+                    Refresh();
+                }
 
                 GUILayout.FlexibleSpace();
 
                 if (GUILayout.Button("Join"))
                 {
-                    joiningRoom = true;
+                    if (playerName == "")
+                    {
+                        error.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        joiningRoom = true;
 
-                    //Set our Player name
-                    PhotonNetwork.NickName = playerName;
+                        //Set our Player name
+                        PhotonNetwork.NickName = playerName;
 
-                    //Join the Room
-                    PhotonNetwork.JoinRoom(createdRooms[i].Name);
-                }
+                        //Join the Room
+                        PhotonNetwork.JoinRoom(createdRooms[i].Name);
+                    }
+                } 
                 GUILayout.EndHorizontal();
             }
         }
@@ -134,26 +134,13 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
         //Set player name and Refresh Room button
         GUILayout.BeginHorizontal();
 
-        GUILayout.Label("Player Name: ", GUILayout.Width(85));
         //Player name text field
-        playerName = GUILayout.TextField(playerName, GUILayout.Width(250));
+        playerName = playerNameInput.text;
 
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
-        if (GUILayout.Button("Refresh", GUILayout.Width(100)))
-        {
-            if (PhotonNetwork.IsConnected)
-            {
-                //Re-join Lobby to get the latest Room list
-                PhotonNetwork.JoinLobby(TypedLobby.Default);
-            }
-            else
-            {
-                //We are not connected, estabilish a new connection
-                PhotonNetwork.ConnectUsingSettings();
-            }
-        }
+
 
         GUILayout.EndHorizontal();
 
@@ -194,5 +181,25 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
+    }
+
+    // Refresh room list
+    public void Refresh()
+    {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.NetworkClientState == ClientState.JoinedLobby)
+            {
+                //Re-join Lobby to get the latest Room list
+                PhotonNetwork.JoinLobby(TypedLobby.Default);
+            }
+        else
+            {
+                //We are not connected, estabilish a new connection
+                PhotonNetwork.ConnectUsingSettings();
+            }
+    }
+
+    public void Disconnect()
+    {
+        PhotonNetwork.Disconnect();
     }
 }

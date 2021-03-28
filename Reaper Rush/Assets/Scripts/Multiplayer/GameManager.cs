@@ -201,5 +201,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        PhotonNetwork.Disconnect();
+        Destroy(this.gameObject);
     }
 }
