@@ -6,6 +6,7 @@ public class CharacterSelector : MonoBehaviour
 {
     public int currentCharacterIndex;
     public GameObject[] characters;
+    public string runnerName;
 
 
 
@@ -16,5 +17,8 @@ public class CharacterSelector : MonoBehaviour
             character.SetActive(false);
 
         characters[currentCharacterIndex].SetActive(true);
+        runnerName = characters[currentCharacterIndex].name;
+        
     }
+
 }

@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4444190635591583668}
   m_Layer: 0
   m_Name: CharacterHolder
-  m_TagString: Untagged
+  m_TagString: cHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +93,7 @@ MonoBehaviour:
   - {fileID: 3735171947366372562}
   - {fileID: 5498917476756976212}
   - {fileID: 4812042741176652677}
+  runnerName: 
 --- !u!1 &2010688744090541117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,7 +1954,7 @@ PrefabInstance:
     - target: {fileID: 3211852784867840886, guid: 0afed582f01c71a4d9406ea526cdc7a7,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Female_04_V01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0afed582f01c71a4d9406ea526cdc7a7, type: 3}

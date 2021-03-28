@@ -23,6 +23,9 @@ TagManager:
   - Reaper Model
   - PositionCube
   - FIreCD
+  - StartGame
+  - cHolder
+  - Female_04_V01
   layers:
   - Default
   - TransparentFX
