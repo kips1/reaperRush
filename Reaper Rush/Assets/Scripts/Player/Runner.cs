@@ -181,8 +181,7 @@ public class Runner : MonoBehaviourPun
     private void OnTriggerEnter(Collider other)
     {
         distanceValue = distanceUnit;
-        powerUpSound.volume = GameObject.Find("Options").GetComponent<Options>().sfxVol;
-        coinSound.volume = GameObject.Find("Options").GetComponent<Options>().sfxVol;
+
         // Handles invulnerability powerup 
         if (other.gameObject.layer == 20)
         {
