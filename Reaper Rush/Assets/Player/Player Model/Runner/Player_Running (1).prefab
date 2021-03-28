@@ -42,7 +42,7 @@ Animator:
   m_GameObject: {fileID: 6152068309144461198}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dc147139108e65249839e3375a87bbb7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b5bca9b0e472d3449fbafa954c8464a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 1325215509, guid: 0afed582f01c71a4d9406ea526cdc7a7, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 8b5bca9b0e472d3449fbafa954c8464a, type: 2}
     - target: {fileID: 1325215509, guid: 0afed582f01c71a4d9406ea526cdc7a7, type: 3}
       propertyPath: m_WarningMessage
       value: 
