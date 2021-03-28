@@ -200,6 +200,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     //We have left the Room, return back to the GameLobby
     public override void OnLeftRoom()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        PhotonNetwork.Disconnect();
+        Destroy(this.gameObject);
     }
 }
