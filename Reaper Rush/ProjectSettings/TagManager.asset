@@ -21,6 +21,7 @@ TagManager:
   - ReaperSpawnPoint
   - GreenPowerUp
   - Reaper Model
+  - Options
   - MainMenu
   - StartGame
   - Host
