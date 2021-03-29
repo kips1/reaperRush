@@ -32,7 +32,7 @@ public class Runner : MonoBehaviourPun
 
     private CharacterController controller;
     private HealthBar healthBar;
-    public Animator anim;
+    public Animator anim = null;
 
     AudioSource coinSound;
     AudioSource powerUpSound;
@@ -48,7 +48,7 @@ public class Runner : MonoBehaviourPun
     public float currentHealth;
     public float distanceValue;
 
-
+    public string runnername;
 
 
     // Fields for the player's health state
@@ -63,7 +63,6 @@ public class Runner : MonoBehaviourPun
 
         obstacleGenerator = GameObject.FindWithTag("ObstacleGenerator");
         rmController = GameObject.FindWithTag("RoomController");
-        anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
         manager = GameObject.FindGameObjectWithTag("Manager");
         controller = GetComponent<CharacterController>();
         var aSources = GetComponents<AudioSource>();
@@ -78,6 +77,11 @@ public class Runner : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if(anim == null)
+        {
+            runnername = GameObject.FindGameObjectWithTag("cHolder").GetComponent<CharacterSelector>().runnerName;
+            anim = GameObject.Find(runnername).GetComponent<Animator>();
+        }
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
@@ -109,7 +113,7 @@ public class Runner : MonoBehaviourPun
         if (controller.isGrounded)
         {
             // Allows the runner to jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !hasLost)
             {
                 photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", true);
                 yVelocity = jumpHeight;
