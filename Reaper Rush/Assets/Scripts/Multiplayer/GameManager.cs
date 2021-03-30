@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string player2;
     public string currentRunner;
 
+
     public int round;
     private int coinsCollected;
 
