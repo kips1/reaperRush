@@ -281,7 +281,7 @@ public class Runner : MonoBehaviourPun
     [PunRPC]
     void SetAnimation()
     {
-        this.anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
+        this.anim = GameObject.FindGameObjectWithTag(GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName).GetComponent<Animator>();
     }
 
     [PunRPC]

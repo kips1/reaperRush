@@ -1122,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 3068820024891473077, guid: 1303fd13f88225042865a0a372afe3e3,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Male_06_V01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1303fd13f88225042865a0a372afe3e3, type: 3}
@@ -1161,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 3735171946857769595, guid: e3499db628d04234ab4cb537b26cda6a,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Female_05_V01
       objectReference: {fileID: 0}
     - target: {fileID: 4079750762883084481, guid: e3499db628d04234ab4cb537b26cda6a,
         type: 3}
@@ -1335,12 +1335,12 @@ PrefabInstance:
     - target: {fileID: 6741838433865085829, guid: 942fe544991a2344d905b4a3292d8fcc,
         type: 3}
       propertyPath: m_Name
-      value: Male_06_V02 - Copy
+      value: Male_06_V02
       objectReference: {fileID: 0}
     - target: {fileID: 6741838433865085829, guid: 942fe544991a2344d905b4a3292d8fcc,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Male_06_V02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 942fe544991a2344d905b4a3292d8fcc, type: 3}
@@ -1657,7 +1657,7 @@ PrefabInstance:
     - target: {fileID: 3079494004095100789, guid: 0b370994ff1266140ad55b8b24ef039d,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Female_04_V02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b370994ff1266140ad55b8b24ef039d, type: 3}
@@ -1766,7 +1766,7 @@ PrefabInstance:
     - target: {fileID: 5498917478488103926, guid: 890b24cb9cc638147b1ecb0ad76bb912,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Female_05_V02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 890b24cb9cc638147b1ecb0ad76bb912, type: 3}
@@ -1805,7 +1805,7 @@ PrefabInstance:
     - target: {fileID: 4812042741799327092, guid: beb9e839b531a744c877a785deeaa302,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Male_01_V01
       objectReference: {fileID: 0}
     - target: {fileID: 5299645823720771534, guid: beb9e839b531a744c877a785deeaa302,
         type: 3}
@@ -2085,7 +2085,7 @@ PrefabInstance:
     - target: {fileID: 6017083664785188797, guid: 2c3c7b33f3eea7b41811d1ba0f85d750,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Male_01_V02
       objectReference: {fileID: 0}
     - target: {fileID: 6398252887488855303, guid: 2c3c7b33f3eea7b41811d1ba0f85d750,
         type: 3}
@@ -2189,12 +2189,12 @@ PrefabInstance:
     - target: {fileID: 7392821542550479658, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
       propertyPath: m_Name
-      value: Player_Running
+      value: Runner1
       objectReference: {fileID: 0}
     - target: {fileID: 7392821542550479658, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
       propertyPath: m_TagString
-      value: Player_Running
+      value: Runner1
       objectReference: {fileID: 0}
     - target: {fileID: 7913744470127147408, guid: 114b26d9de9ea7343998657fa56d509b,
         type: 3}
