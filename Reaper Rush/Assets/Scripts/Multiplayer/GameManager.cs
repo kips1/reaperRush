@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Photon.Realtime.Player s;
 
     public string player2;
+    public string currentRunner;
 
     public int round;
     private int coinsCollected;

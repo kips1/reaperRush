@@ -16332,6 +16332,7 @@ MonoBehaviour:
   - {fileID: 6519213632330218529}
   - {fileID: 6120177958166720082}
   - {fileID: 6017083666422449104}
+  options: {fileID: 0}
 --- !u!4 &1596792207963549006
 Transform:
   m_ObjectHideFlags: 0
@@ -36647,6 +36648,7 @@ MonoBehaviour:
   masterVol: 0
   sfxVol: 0
   backgroundmusicVol: 0
+  runnerName: 
 --- !u!1 &7680999299217086492
 GameObject:
   m_ObjectHideFlags: 0

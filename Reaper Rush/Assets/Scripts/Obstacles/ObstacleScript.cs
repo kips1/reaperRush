@@ -58,7 +58,6 @@ public class ObstacleScript : MonoBehaviourPun
             {
                 runner.GetComponent<Runner>().TakeDamage(10);
             }
-            runner.GetComponent<Runner>().anim.SetTrigger("Collide");
 
             if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
             {

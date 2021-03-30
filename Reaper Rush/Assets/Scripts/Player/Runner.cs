@@ -74,7 +74,7 @@ public class Runner : MonoBehaviourPun
         antiRock = false;
         //runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
         photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
-
+        photonView.RPC("StoreRunnerName", RpcTarget.AllBuffered);
     }
 
     // Update is called once per frame
@@ -279,6 +279,16 @@ public class Runner : MonoBehaviourPun
     void SetAnimation()
     {
         this.anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
+    }
+
+    [PunRPC]
+    void StoreRunnerName()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
+        }
+        manager.GetComponent<GameManager>().currentRunner = runnername;
     }
 
 
