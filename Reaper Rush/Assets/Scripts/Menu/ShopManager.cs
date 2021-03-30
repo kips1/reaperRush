@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class ShopManager : MonoBehaviour
 {
     public int currentCharacterIndex;
@@ -9,8 +10,18 @@ public class ShopManager : MonoBehaviour
 
     public GameObject options;
 
+    public CharacterBlueprint[] characters;
+    public Button buyButton;
     void Start()
     {
+        foreach(CharacterBlueprint character in characters)
+        {
+            if (character.price == 0)
+                character.isUnlocked = true;
+            else
+                character.isUnlocked = PlayerPrefs.GetInt(character.name, 0)== 0 ? false: true;
+        }
+
         options = GameObject.FindGameObjectWithTag("Options");
         currentCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         foreach (GameObject character in characterModels)
@@ -23,6 +34,7 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
+        UpdateUI();
     }
 
     public void ChangeNext()
@@ -47,5 +59,30 @@ public class ShopManager : MonoBehaviour
 
         characterModels[currentCharacterIndex].SetActive(true);
         PlayerPrefs.SetInt("SelectedCharacter", currentCharacterIndex);
+    }
+
+    private void UpdateUI()
+    {
+        CharacterBlueprint c = characters[currentCharacterIndex];
+        if (c.isUnlocked)
+        {
+            buyButton.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            buyButton.gameObject.SetActive(true);
+            buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy-" + c.price;
+            if (c.price >= PlayerPrefs.GetInt("NumberOfCoins", 0))
+            {
+                buyButton.interactable = true;
+            }
+            else
+            {
+                buyButton.interactable = false;
+
+            }
+
+        }
     }
 }

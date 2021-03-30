@@ -94,6 +94,7 @@ MonoBehaviour:
   - {fileID: 4812042741176652677}
   - {fileID: 7608545252519813582}
   runnerName: 
+  runner: 
 --- !u!1 &2010688744090541117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,12 +1371,17 @@ PrefabInstance:
     - target: {fileID: 2374728232815058420, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2374728232815058420, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00007629395
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374728232815058420, guid: 94bc0856b7ed14f49af3b5bef75724bb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
@@ -1391,7 +1397,7 @@ PrefabInstance:
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_Text
-      value: 
+      value: Invincibility
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
@@ -1401,22 +1407,22 @@ PrefabInstance:
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.9529412
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.8745098
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.38431373
+      value: 0.78039217
       objectReference: {fileID: 0}
     - target: {fileID: 4480934587103075175, guid: 94bc0856b7ed14f49af3b5bef75724bb,
         type: 3}
