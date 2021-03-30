@@ -69,7 +69,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
         GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (PhotonNetwork.IsConnected)
+            if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Leaving)
             {
                 PhotonNetwork.LeaveRoom();
             }
