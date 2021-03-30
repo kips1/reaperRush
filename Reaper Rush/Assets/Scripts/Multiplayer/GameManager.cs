@@ -86,6 +86,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             runner = GameObject.FindGameObjectWithTag("Player");
             reaper = GameObject.FindGameObjectWithTag("Reaper");
+            if (currentRunner != null && runner != null && GameObject.Find(currentRunner) != null)
+            {
+                runner.GetComponent<Runner>().anim = GameObject.FindGameObjectWithTag(currentRunner).GetComponent<Animator>();
+            }
             finalRound = true;
             runnerReadytemp = runnerReady;
             reaperReadytemp = reaperReady;

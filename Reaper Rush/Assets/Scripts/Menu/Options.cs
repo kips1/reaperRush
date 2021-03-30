@@ -10,6 +10,8 @@ public class Options : MonoBehaviour
     public float backgroundmusicVol;
 
     public string runnerName;
+    public string currentRunner;
+
     public static Options Instance { get { return _instance; } }
     private void Awake()
     {

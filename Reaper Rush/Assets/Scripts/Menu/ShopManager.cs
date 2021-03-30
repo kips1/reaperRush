@@ -34,7 +34,7 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
-        UpdateUI();
+        //UpdateUI();
     }
 
     public void ChangeNext()
