@@ -1,9 +1,8 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSelector : MonoBehaviourPun
+public class CharacterSelector : MonoBehaviour
 {
     public int currentCharacterIndex;
     public GameObject[] characters;
@@ -11,26 +10,15 @@ public class CharacterSelector : MonoBehaviourPun
 
 
 
-    void Update()
+    void Start()
     {
         currentCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("setModel", RpcTarget.AllBuffered);
-        }
-
-
-
-    }
-
-    [PunRPC]
-    void SetModel()
-    {
         foreach (GameObject character in characters)
             character.SetActive(false);
 
         characters[currentCharacterIndex].SetActive(true);
         runnerName = characters[currentCharacterIndex].name;
+        
     }
 
 }
