@@ -67,13 +67,14 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveRoom();
         }
 
-        GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
-        {
-            if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Leaving)
+            GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
             {
-                PhotonNetwork.LeaveRoom();
-            }
-        });
+                if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Leaving)
+                {
+                    PhotonNetwork.LeaveRoom();
+                }
+            });
+
 
 
         //Show the Room name
@@ -83,8 +84,15 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             //Show if this player is a Master Client. There can only be one Master Client per Room so use this to define the authoritative logic etc.)
-            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? "MasterClient: " : "");
-            GameObject.Find("Client").GetComponentInChildren<Text>().text = isMasterClient + PhotonNetwork.PlayerList[i].NickName;
+            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? "Host: " : "");
+            if (PhotonNetwork.PlayerList[i].IsMasterClient)
+            {
+                GameObject.Find("MasterClient").GetComponentInChildren<Text>().text = isMasterClient + PhotonNetwork.PlayerList[i].NickName;
+            }
+            else
+            {
+                GameObject.Find("OtherClient").GetComponentInChildren<Text>().text = isMasterClient + PhotonNetwork.PlayerList[i].NickName;
+            }
         }
     }
 

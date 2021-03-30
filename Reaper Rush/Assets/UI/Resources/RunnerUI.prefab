@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 3226909796742448209}
   - component: {fileID: 2831901555757270804}
   m_Layer: 5
-  m_Name: Client
+  m_Name: MasterClient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,8 +189,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 405.00003, y: -229.8}
-  m_SizeDelta: {x: 800, y: 23.638428}
+  m_AnchoredPosition: {x: 405.00003, y: -225.62}
+  m_SizeDelta: {x: 800, y: 15.278427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3226909796742448209
 CanvasRenderer:
@@ -265,7 +265,7 @@ RectTransform:
   m_Children:
   - {fileID: 1854803565056260188}
   m_Father: {fileID: 9054535585828097457}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -534,12 +534,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9054535585828097457}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 405.00003, y: -216.1}
-  m_SizeDelta: {x: 800, y: 23.638428}
+  m_AnchoredPosition: {x: 405.00003, y: -233.03}
+  m_SizeDelta: {x: 800, y: 57.493576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3226047121478770012
 CanvasRenderer:
@@ -674,6 +674,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80194ae7a0974924daba6d7b9532c44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3619234192507443418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717701851110947007}
+  - component: {fileID: 1193951038739710628}
+  - component: {fileID: 8126833183027744606}
+  m_Layer: 5
+  m_Name: OtherClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &717701851110947007
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619234192507443418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000011920929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9054535585828097457}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 405.00003, y: -240.6}
+  m_SizeDelta: {x: 800, y: 15.278427}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1193951038739710628
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619234192507443418}
+  m_CullTransparentMesh: 0
+--- !u!114 &8126833183027744606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619234192507443418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: f4c99a340a6e6504aa6e992b7a253612, type: 3}
+    m_FontSize: 10
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!1 &4121080550987810464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1302,7 @@ RectTransform:
   - {fileID: 1516955305}
   - {fileID: 6791511831995728998}
   - {fileID: 8751740546340666219}
+  - {fileID: 717701851110947007}
   - {fileID: 3920244982889844280}
   - {fileID: 1133560859359371080}
   m_Father: {fileID: 9054535584886726202}
