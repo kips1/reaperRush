@@ -228,6 +228,10 @@ public class Runner : MonoBehaviourPun
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        if (damage == 10)
+        {
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
+        }
     }
 
     // Makes runner invulnerable for a given time
