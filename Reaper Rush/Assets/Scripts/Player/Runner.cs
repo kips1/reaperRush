@@ -72,15 +72,18 @@ public class Runner : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
-        //runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
         photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
-        photonView.RPC("StoreRunnerName", RpcTarget.AllBuffered);
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (PhotonNetwork.IsMasterClient)
+        {
+            runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
+            photonView.RPC("StoreRunnerName", RpcTarget.AllBuffered, runnername);
+        }
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
@@ -282,13 +285,9 @@ public class Runner : MonoBehaviourPun
     }
 
     [PunRPC]
-    void StoreRunnerName()
+    void StoreRunnerName(string runner)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
-        }
-        manager.GetComponent<GameManager>().currentRunner = runnername;
+        manager.GetComponent<GameManager>().currentRunner = runner;
     }
 
 
