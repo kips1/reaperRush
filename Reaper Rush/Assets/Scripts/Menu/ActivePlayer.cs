@@ -18,15 +18,19 @@ public class ActivePlayer : MonoBehaviour
             {
 
             runner = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().currentRunner;
+        }
 
-            if (gameObject.name != runner)
+        foreach (Transform runners in this.gameObject.GetComponentsInChildren<Transform>())
+        {
+            if(runners.gameObject.name == runner)
             {
-                gameObject.SetActive(false);
+                runners.gameObject.SetActive(true);
             }
-            else if(gameObject.name == runner)
+            else if (runners.gameObject.name != runner)
             {
-                gameObject.SetActive(true);
+                runners.gameObject.SetActive(false);
             }
+            
         }
     }
 }
