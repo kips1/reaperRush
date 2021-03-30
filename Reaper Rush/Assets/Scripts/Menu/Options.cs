@@ -29,6 +29,7 @@ public class Options : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        runnerName = "Runner1";
     }
 
     // Update is called once per frame
