@@ -61,19 +61,14 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom == null)
             return;
 
-        //Leave this Room
-        if (GUI.Button(new Rect(5, 5, 125, 25), "Leave Room"))
-        {
-            PhotonNetwork.LeaveRoom();
-        }
 
-            GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
+        GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
             {
-                if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Leaving)
-                {
-                    PhotonNetwork.LeaveRoom();
-                }
-            });
+            if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Leaving)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+        });
 
 
 
