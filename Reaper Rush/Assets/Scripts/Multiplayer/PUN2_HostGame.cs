@@ -20,6 +20,7 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
     public InputField roomNameInput;
     public TextMeshProUGUI connectionStatus;
     public TextMeshProUGUI[] errors;
+    public Button startButton;
 
     // Our player name
     string playerName = "Please Enter Your Name";
@@ -83,7 +84,9 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
         if (joiningRoom || !PhotonNetwork.IsConnected || PhotonNetwork.NetworkClientState != ClientState.JoinedLobby)
         {
             GUI.enabled = false;
+            startButton.gameObject.SetActive(false);
         }
+
 
         GUILayout.FlexibleSpace();
 
@@ -120,6 +123,14 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
                 if (roomName == "")
                 {
                     errors[1].gameObject.SetActive(true);
+                }
+
+                foreach(Room room in createdRooms)
+                {
+                    if (room.Name == roomName)
+                    {
+                        errors[2].gameObject.SetActive(true);
+                    }
                 }
             }
         }
@@ -169,6 +180,10 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
+        if(PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected && !joiningRoom)
+        {
+            startButton.gameObject.SetActive(true);
+        }
         if (GUILayout.Button("Refresh", GUILayout.Width(100)))
         {
             if (PhotonNetwork.IsConnected)

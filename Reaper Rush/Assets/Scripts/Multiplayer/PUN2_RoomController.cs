@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
+using System.Reflection;
 
 /*
  * Author: Sharp Coder
@@ -35,7 +37,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom == null)
         {
             Debug.Log("Is not in the room, returning back to Lobby");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
             return;
         }
 
@@ -65,15 +67,24 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveRoom();
         }
 
+        GameObject.Find("LeaveButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+        });
+
+
         //Show the Room name
-        GUI.Label(new Rect(135, 5, 200, 25), PhotonNetwork.CurrentRoom.Name);
+        GameObject.Find("Room").GetComponentInChildren<Text>().text = "Room: " + PhotonNetwork.CurrentRoom.Name;
 
         //Show the list of the players connected to this Room
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             //Show if this player is a Master Client. There can only be one Master Client per Room so use this to define the authoritative logic etc.)
-            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": MasterClient" : "");
-            GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
+            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? "MasterClient: " : "");
+            GameObject.Find("Client").GetComponentInChildren<Text>().text = isMasterClient + PhotonNetwork.PlayerList[i].NickName;
         }
     }
 
