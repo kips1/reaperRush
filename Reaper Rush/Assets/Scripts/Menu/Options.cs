@@ -8,6 +8,8 @@ public class Options : MonoBehaviour
     public float masterVol;
     public float sfxVol;
     public float backgroundmusicVol;
+
+    public string runnerName;
     public static Options Instance { get { return _instance; } }
     private void Awake()
     {

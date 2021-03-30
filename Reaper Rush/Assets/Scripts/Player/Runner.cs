@@ -72,16 +72,15 @@ public class Runner : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
+        //runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
+        photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(anim == null)
-        {
-            runnername = GameObject.FindGameObjectWithTag("cHolder").GetComponent<CharacterSelector>().runnerName;
-            anim = GameObject.Find(runnername).GetComponent<Animator>();
-        }
+
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
@@ -229,6 +228,10 @@ public class Runner : MonoBehaviourPun
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        if (damage == 10)
+        {
+            photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
+        }
     }
 
     // Makes runner invulnerable for a given time
@@ -270,6 +273,12 @@ public class Runner : MonoBehaviourPun
     void RunnerReady(bool runnerReady)
     {
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
+    }
+
+    [PunRPC]
+    void SetAnimation()
+    {
+        this.anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
     }
 
 
