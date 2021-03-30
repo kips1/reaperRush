@@ -14,19 +14,19 @@ public class ShopManager : MonoBehaviour
     public Button buyButton;
     void Start()
     {
-        foreach(CharacterBlueprint character in characters)
+        foreach (CharacterBlueprint character in characters)
         {
             if (character.price == 0)
                 character.isUnlocked = true;
             else
-                character.isUnlocked = PlayerPrefs.GetInt(character.name, 0)== 0 ? false: true;
+                character.isUnlocked = PlayerPrefs.GetInt(character.name, 0) == 0 ? false : true;
         }
 
         options = GameObject.FindGameObjectWithTag("Options");
         currentCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         foreach (GameObject character in characterModels)
             character.SetActive(false);
-            
+
         characterModels[currentCharacterIndex].SetActive(true);
     }
 
@@ -46,6 +46,11 @@ public class ShopManager : MonoBehaviour
             currentCharacterIndex = 0;
 
         characterModels[currentCharacterIndex].SetActive(true);
+
+        CharacterBlueprint c = characters[currentCharacterIndex];
+        if (!c.isUnlocked)
+            return;
+
         PlayerPrefs.SetInt("SelectedCharacter", currentCharacterIndex);
     }
 
@@ -55,10 +60,24 @@ public class ShopManager : MonoBehaviour
         currentCharacterIndex--;
 
         if (currentCharacterIndex == -1)
-            currentCharacterIndex = characterModels.Length -1;
+            currentCharacterIndex = characterModels.Length - 1;
 
         characterModels[currentCharacterIndex].SetActive(true);
+
+        CharacterBlueprint c = characters[currentCharacterIndex];
+        if (!c.isUnlocked)
+            return;
         PlayerPrefs.SetInt("SelectedCharacter", currentCharacterIndex);
+    }
+
+    public void UnlockCharacter()
+    {
+        CharacterBlueprint c = characters[currentCharacterIndex];
+         
+        PlayerPrefs.SetInt(c.name, 1);
+        PlayerPrefs.SetInt("SelectedCharacter", currentCharacterIndex);
+        c.isUnlocked = true;
+        PlayerPrefs.SetInt("coinAmount", PlayerPrefs.GetInt("coinAmount", 0) -c.price);
     }
 
     private void UpdateUI()
@@ -73,7 +92,7 @@ public class ShopManager : MonoBehaviour
         {
             buyButton.gameObject.SetActive(true);
             buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy-" + c.price;
-            if (c.price >= PlayerPrefs.GetInt("NumberOfCoins", 0))
+            if (c.price >= PlayerPrefs.GetInt("coinAmount", 0))
             {
                 buyButton.interactable = true;
             }
