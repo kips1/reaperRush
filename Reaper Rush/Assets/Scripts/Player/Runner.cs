@@ -72,8 +72,8 @@ public class Runner : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
-        runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
-        anim = GameObject.Find(runnername).GetComponent<Animator>();
+        //runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
+        photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
 
     }
 
@@ -269,6 +269,12 @@ public class Runner : MonoBehaviourPun
     void RunnerReady(bool runnerReady)
     {
         manager.GetComponent<GameManager>().runnerReady = runnerReady;
+    }
+
+    [PunRPC]
+    void SetAnimation()
+    {
+        this.anim = GameObject.FindGameObjectWithTag("Player_Running").GetComponent<Animator>();
     }
 
 
