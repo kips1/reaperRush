@@ -8,15 +8,25 @@ public class ActivePlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        runner = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().currentRunner;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.name != runner)
-        {
-            gameObject.SetActive(false);
+        if (GameObject.Find("GameManager"))
+            {
+
+            runner = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().currentRunner;
+
+            if (gameObject.name != runner)
+            {
+                gameObject.SetActive(false);
+            }
+            else if(gameObject.name == runner)
+            {
+                gameObject.SetActive(true);
+            }
         }
     }
 }
