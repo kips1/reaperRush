@@ -7,10 +7,11 @@ public class ShopManager : MonoBehaviour
     public int currentCharacterIndex;
     public GameObject[] characterModels;
 
-    
+    public GameObject options;
 
     void Start()
     {
+        options = GameObject.FindGameObjectWithTag("Options");
         currentCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         foreach (GameObject character in characterModels)
             character.SetActive(false);
@@ -21,7 +22,7 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
     }
 
     public void ChangeNext()

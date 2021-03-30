@@ -72,16 +72,15 @@ public class Runner : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
+        runnername = GameObject.FindGameObjectWithTag("Options").GetComponent<Options>().runnerName;
+        anim = GameObject.Find(runnername).GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(anim == null)
-        {
-            runnername = GameObject.FindGameObjectWithTag("cHolder").GetComponent<CharacterSelector>().runnerName;
-            anim = GameObject.Find(runnername).GetComponent<Animator>();
-        }
+
         Vector3 direction = new Vector3(xDirection, 0, zDirection);
         Vector3 velocity = direction * speed;
 
