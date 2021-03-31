@@ -923,6 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player2: 
+  currentRunner: 
   round: 0
   distanceScore: 0
   distanceScored: 0

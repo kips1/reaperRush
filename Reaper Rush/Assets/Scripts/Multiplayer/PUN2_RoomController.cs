@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Reflection;
+using Photon.Realtime;
 
 /*
  * Author: Sharp Coder
@@ -32,7 +33,6 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public void Start()
     {
 
-        // gameEnded = manager.GetComponent<GameManager>().finalRound;
         //In case we started this demo with the wrong scene being active, simply load the menu scene
         if (PhotonNetwork.CurrentRoom == null)
         {
@@ -96,5 +96,18 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
         PhotonNetwork.Disconnect();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        StartCoroutine(DisplayMessageFor(5));
+    }
+
+    IEnumerator DisplayMessageFor(float time)
+    {
+        GameObject.Find("Disconnect").SetActive(true);
+        yield return new WaitForSeconds(time);
+        PhotonNetwork.LeaveRoom();
     }
 }
