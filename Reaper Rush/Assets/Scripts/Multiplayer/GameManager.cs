@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             runnerReady = false;
             reaperReady = false;
             bothReady = false;
-
+            countdown = 5.0f;
             // Switches second client to master client so they become the runner
             if (PhotonNetwork.IsMasterClient && finalRound && PhotonNetwork.PlayerList.Length > 1)
             {

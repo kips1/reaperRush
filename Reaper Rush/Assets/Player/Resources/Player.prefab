@@ -469,6 +469,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   distanceValue: 0
+  time: 5
   runnername: 
   takeDamage: 1
   hasLost: 0
