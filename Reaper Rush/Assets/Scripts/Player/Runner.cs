@@ -237,30 +237,37 @@ public class Runner : MonoBehaviourPun
         if (manager.GetComponent<GameManager>().scoreTrack == 200)
         {
             speed = 23.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 250);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 400)
         {
             speed = 24.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 450);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 600)
         {
             speed = 25.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 650);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 800)
         {
             speed = 26.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 850);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 1000)
         {
             speed = 27.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 1050);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 1300)
         {
             speed = 28.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 1350);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 1600)
         {
             speed = 29.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 1650);
         }
         if (manager.GetComponent<GameManager>().scoreTrack == 1900)
         {
