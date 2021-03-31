@@ -16,7 +16,7 @@ using Photon.Pun;
 public class Reaper : MonoBehaviourPun
 {
     // fields accessible in inspector
-    [SerializeField] private float speed = 25.0f;
+    [SerializeField] private float speed = 22.0f;
 
     // Defines the objects that are associated directly to the reaper instance
     private GameObject ReaperObj;
@@ -139,9 +139,38 @@ public class Reaper : MonoBehaviourPun
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
 
-        if(manager.GetComponent<GameManager>().scoreTrack == 100)
+
+        if (manager.GetComponent<GameManager>().scoreTrack == 200)
         {
-            speed = 38.0f;
+            speed = 23.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 400)
+        {
+            speed = 24.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 600)
+        {
+            speed = 25.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 800)
+        {
+            speed = 26.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1000)
+        {
+            speed = 27.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1300)
+        {
+            speed = 28.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1600)
+        {
+            speed = 29.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1900)
+        {
+            speed = 30.0f;
         }
     }
 
