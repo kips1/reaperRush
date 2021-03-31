@@ -114,5 +114,6 @@ public class ShopManager : MonoBehaviour
             }
 
         }
+        
     }
 }
