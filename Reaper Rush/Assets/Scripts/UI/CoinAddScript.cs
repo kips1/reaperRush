@@ -16,18 +16,20 @@ public class CoinAddScript : MonoBehaviour
 {
     Text text;
 
-    public static int coinAmount = 0;
-
+    public static int coinAmount;
+    public int coinStored;
     // Start is called before the first frame update
     // Initialise fields
     void Start()
     {
         text = GetComponent<Text>();
+        coinAmount = PlayerPrefs.GetInt("coinStored");
     }
 
     // Update is called once per frame
     void Update()
     {
         text.text = coinAmount.ToString();
+        PlayerPrefs.SetInt("coinStored", coinAmount);
     }
 }
