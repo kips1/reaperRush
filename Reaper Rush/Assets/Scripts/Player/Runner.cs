@@ -174,6 +174,14 @@ public class Runner : MonoBehaviourPun
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
 
+        if(distanceUnit == 100)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 100)
+        {
+            speed = 38.0f;
+        }
 
 
     }
@@ -259,6 +267,12 @@ public class Runner : MonoBehaviourPun
     void changeDistance(float distance)
     {
         manager.GetComponent<GameManager>().distanceScore = distance;
+    }
+
+    [PunRPC]
+    void setScore(float distance)
+    {
+        manager.GetComponent<GameManager>().scoreTrack = distance;
     }
 
     // Change runner's state in game manager

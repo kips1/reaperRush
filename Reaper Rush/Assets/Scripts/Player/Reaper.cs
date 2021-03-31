@@ -138,6 +138,11 @@ public class Reaper : MonoBehaviourPun
 
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
+
+        if(manager.GetComponent<GameManager>().scoreTrack == 100)
+        {
+            speed = 38.0f;
+        }
     }
 
     [PunRPC]

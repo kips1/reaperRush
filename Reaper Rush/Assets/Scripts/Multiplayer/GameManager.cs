@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float distanceScored;
     public float secondScore;
     public float countdown;
+    public float scoreTrack;
 
     public bool finalRound;
     public bool lastRound;
