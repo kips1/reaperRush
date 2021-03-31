@@ -231,6 +231,15 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
         //Set our player name
         PhotonNetwork.NickName = playerName;
         //Load the Scene called GameLevel (Make sure it's added to build settings)
+        foreach (Transform objects in GameObject.FindGameObjectWithTag("Waiting").GetComponentInChildren<Transform>())
+        {
+            objects.gameObject.SetActive(true);
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
         PhotonNetwork.LoadLevel("Game");
     }
 
@@ -247,5 +256,10 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
     public void Disconnect()
     {
         PhotonNetwork.Disconnect();
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }

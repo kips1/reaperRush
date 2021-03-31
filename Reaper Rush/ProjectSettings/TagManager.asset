@@ -25,6 +25,20 @@ TagManager:
   - StartGame
   - Host
   - Join
+  - Options
+  - cHolder
+  - Female_04_V01
+  - Male_06_V01
+  - Female_04_V02
+  - Female_05_V01
+  - Runner1
+  - Male_01_V01
+  - Female_05_V02
+  - Male_06_V02
+  - Male_01_V02
+  - DisconnectMessage
+  - FIreCD
+  - Waiting
   layers:
   - Default
   - TransparentFX
