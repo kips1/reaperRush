@@ -112,7 +112,7 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
                 {
                     if (playerName == "")
                     {
-                        error.gameObject.SetActive(true);
+                        StartCoroutine(DisplayErrorFor(5.0f));
                     }
                     else
                     {
@@ -201,5 +201,16 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
     public void Disconnect()
     {
         PhotonNetwork.Disconnect();
+    }
+    public void RemoveErrorMessages()
+    {
+        error.gameObject.SetActive(false);
+    }
+
+    IEnumerator DisplayErrorFor(float time)
+    {
+        error.gameObject.SetActive(true);
+        yield return new WaitForSeconds(time);
+        error.gameObject.SetActive(false);
     }
 }

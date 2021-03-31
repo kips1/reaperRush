@@ -36,6 +36,8 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
     Vector2 roomListScroll = Vector2.zero;
     bool joiningRoom = false;
     bool start = false;
+    bool loadWaitingScreen = false;
+    bool roomExists = false;
 
     // Start is called before the first frame update
     void Start()
@@ -87,53 +89,62 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
             startButton.gameObject.SetActive(false);
         }
 
+        if (PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
+            PhotonNetwork.ConnectUsingSettings();
 
         GUILayout.FlexibleSpace();
 
         //Room name text field
         roomName = roomNameInput.text;
-
-        if (start)
+        roomExists = false;
+        for (int i = 0; i < createdRooms.Count; i++)
         {
-            start = false;
-            if (roomName != "" && playerName != "")
+            if (createdRooms[i].Name == roomName)
             {
-                joiningRoom = true;
-
-                RoomOptions roomOptions = new RoomOptions();
-                roomOptions.IsOpen = true;
-                roomOptions.IsVisible = true;
-                roomOptions.MaxPlayers = (byte)2; //Set any number
-
-                PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
+                roomExists = true;
             }
-            else
-            {
-                if (playerName == "" && roomName == "")
-                {
-                    errors[0].gameObject.SetActive(true);
-                    errors[1].gameObject.SetActive(true);
-                }
-
-                if (playerName == "")
-                {
-                    errors[0].gameObject.SetActive(true);
-                }
-
-                if (roomName == "")
-                {
-                    errors[1].gameObject.SetActive(true);
-                }
-
-                foreach(Room room in createdRooms)
-                {
-                    if (room.Name == roomName)
-                    {
-                        errors[2].gameObject.SetActive(true);
-                    }
-                }
-            }
+            Debug.Log(createdRooms[i].Name);
         }
+
+            if (start)
+            {
+                start = false;
+                if (roomName != "" && playerName != "" && !roomExists)
+                {
+                    joiningRoom = true;
+
+                    RoomOptions roomOptions = new RoomOptions();
+                    roomOptions.IsOpen = true;
+                    roomOptions.IsVisible = true;
+                    roomOptions.MaxPlayers = (byte)2; //Set any number
+
+                    PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+                }
+                else
+                {
+                    if (playerName == "" && roomName == "")
+                    {
+                        StartCoroutine(DisplayErrorFor(0, 5.0f));
+                        StartCoroutine(DisplayErrorFor(1, 5.0f));
+                    }
+
+                    if (playerName == "")
+                    {
+                        StartCoroutine(DisplayErrorFor(0, 5.0f));
+                    }
+
+                    if (roomName == "")
+                    {
+                        StartCoroutine(DisplayErrorFor(1, 5.0f));
+                    }
+
+                    if (roomExists)
+                    {
+                    StartCoroutine(DisplayErrorFor(2, 5.0f));
+                }
+                }
+            Debug.Log(roomExists);
+            }
 
         GUILayout.EndHorizontal();
 
@@ -230,10 +241,21 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
         Debug.Log("OnCreatedRoom");
         //Set our player name
         PhotonNetwork.NickName = playerName;
-        //Load the Scene called GameLevel (Make sure it's added to build settings)
-        foreach (Transform objects in GameObject.FindGameObjectWithTag("Waiting").GetComponentInChildren<Transform>())
+        //Load the waiting screen
+
+        if (loadWaitingScreen)
         {
-            objects.gameObject.SetActive(true);
+            foreach (Transform objects in GameObject.FindGameObjectWithTag("Waiting").GetComponentInChildren<Transform>())
+            {
+                objects.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (Transform objects in GameObject.FindGameObjectWithTag("Waiting").GetComponentInChildren<Transform>())
+            {
+                objects.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -260,6 +282,42 @@ public class PUN2_HostGame : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
+        StartCoroutine(Wait());
+    }
+
+    public void LoadWaitingScreen()
+    {
+        loadWaitingScreen = true;
+    }
+
+    public void RemoveErrorMessages()
+    {
+        errors[0].gameObject.SetActive(false);
+        errors[1].gameObject.SetActive(false);
+        errors[2].gameObject.SetActive(false);
+    }
+
+    IEnumerator DisplayErrorFor(int index, float time)
+    {
+        errors[index].gameObject.SetActive(true);
+        yield return new WaitForSeconds(time);
+        errors[index].gameObject.SetActive(false);
+    }
+
+    IEnumerator Wait()
+    {
         PhotonNetwork.LeaveRoom();
+        yield return new WaitForSeconds(2);
+        if (PhotonNetwork.IsConnected)
+        {
+            //Re-join Lobby to get the latest Room list
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
+        }
+        else
+        {
+            //We are not connected, estabilish a new connection
+            PhotonNetwork.ConnectUsingSettings();
+        }
+        errors[2].gameObject.SetActive(false);
     }
 }
