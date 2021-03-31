@@ -265,7 +265,7 @@ public class Runner : MonoBehaviourPun
         }
 
         // Play sound when hittting an obstacle
-        if (other.gameObject.layer == 25)
+        if (other.gameObject.layer == 25 && takeDamage)
         {
             stumbleSound.Play();
         }
