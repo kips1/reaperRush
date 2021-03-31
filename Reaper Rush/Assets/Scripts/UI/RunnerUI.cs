@@ -22,6 +22,7 @@ public class RunnerUI : MonoBehaviour
     public Text roundOver;
     public Text playerName;
     public Text Score;
+    public Text countdown;
 
     // Start is called before the first frame update
     // Initialise fields
@@ -40,6 +41,12 @@ public class RunnerUI : MonoBehaviour
         if (manager.GetComponent<GameManager>().distanceScore > 0)
         {
             Score.text = manager.GetComponent<GameManager>().distanceScored.ToString();
+        }
+
+        countdown.text = manager.GetComponent<GameManager>().countdown.ToString("0");
+        if (countdown.text == "0")
+        {
+            countdown.enabled = false;
         }
     }
 }

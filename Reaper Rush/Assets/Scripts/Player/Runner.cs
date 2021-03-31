@@ -47,6 +47,7 @@ public class Runner : MonoBehaviourPun
     public float maxHealth;
     public float currentHealth;
     public float distanceValue;
+    public float time;
 
     public string runnername;
 
@@ -72,6 +73,7 @@ public class Runner : MonoBehaviourPun
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
+        time = 5.0f;
         photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
    
     }
@@ -90,7 +92,14 @@ public class Runner : MonoBehaviourPun
         // Sets the movement when an instance is created
         if (GameObject.Find("Reaper(Clone)") != null)
         {
-            photonView.RPC("RunnerReady", RpcTarget.AllBuffered, true);
+            photonView.RPC("Timer", RpcTarget.AllBuffered, time);
+            time -= Time.deltaTime;
+            if (time < 0.5)
+            {
+                time = 0;
+                photonView.RPC("Timer", RpcTarget.AllBuffered, time);
+                photonView.RPC("RunnerReady", RpcTarget.AllBuffered, true);
+            }
         }
 
         if (manager.GetComponent<GameManager>().bothReady)
@@ -288,6 +297,12 @@ public class Runner : MonoBehaviourPun
     void StoreRunnerName(string runner)
     {
         manager.GetComponent<GameManager>().currentRunner = runner;
+    }
+
+    [PunRPC]
+    void Timer(float time)
+    {
+        manager.GetComponent<GameManager>().countdown = time;
     }
 
 

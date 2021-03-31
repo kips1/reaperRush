@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float distanceScore;
     public float distanceScored;
     public float secondScore;
+    public float countdown;
 
     public bool finalRound;
     public bool lastRound;
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         finalRound = false;
         lastRound = false;
         playersConnected = true;
+        countdown = 5.0f;
     }
 
     // Update is called once per frame

@@ -16,9 +16,11 @@ using Photon.Pun;
 public class ReaperUI : MonoBehaviour
 {
     private GameObject reaper;
+    private GameObject manager;
 
     public Text playerName;
     public Text activeObject;
+    public Text countdown;
 
     public Button rockButton;
     public Button fireButton;
@@ -29,6 +31,7 @@ public class ReaperUI : MonoBehaviour
     {
         reaper = GameObject.FindGameObjectWithTag("Reaper");
         activeObject.text = "Choose your weapon!";
+        manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     // Update is called once per frame
@@ -51,6 +54,12 @@ public class ReaperUI : MonoBehaviour
         else
         {
             fireButton.GetComponent<Image>().color = Color.white;
+        }
+
+        countdown.text = manager.GetComponent<GameManager>().countdown.ToString("0");
+        if (countdown.text == "0")
+        {
+            countdown.enabled = false;
         }
     }
 
