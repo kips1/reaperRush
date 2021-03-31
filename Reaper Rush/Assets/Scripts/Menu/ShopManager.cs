@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static CoinAddScript;
 public class ShopManager : MonoBehaviour
 {
     public int currentCharacterIndex;
@@ -12,6 +13,8 @@ public class ShopManager : MonoBehaviour
 
     public CharacterBlueprint[] characters;
     public Button buyButton;
+
+    
     void Start()
     {
         foreach (CharacterBlueprint character in characters)
@@ -23,6 +26,7 @@ public class ShopManager : MonoBehaviour
         }
 
         options = GameObject.FindGameObjectWithTag("Options");
+
         currentCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         foreach (GameObject character in characterModels)
             character.SetActive(false);
@@ -34,7 +38,7 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
-        //UpdateUI();
+        UpdateUI();
     }
 
     public void ChangeNext()
@@ -46,8 +50,8 @@ public class ShopManager : MonoBehaviour
             currentCharacterIndex = 0;
 
         characterModels[currentCharacterIndex].SetActive(true);
-
         CharacterBlueprint c = characters[currentCharacterIndex];
+
         if (!c.isUnlocked)
             return;
 
@@ -72,15 +76,18 @@ public class ShopManager : MonoBehaviour
 
     public void UnlockCharacter()
     {
+
         CharacterBlueprint c = characters[currentCharacterIndex];
-         
         PlayerPrefs.SetInt(c.name, 1);
         PlayerPrefs.SetInt("SelectedCharacter", currentCharacterIndex);
         c.isUnlocked = true;
-        PlayerPrefs.SetInt("coinAmount", PlayerPrefs.GetInt("coinAmount", 0) -c.price);
+        
+        PlayerPrefs.SetInt("coinAmount", PlayerPrefs.GetInt("coinAmount", 0) - c.price);
+        CoinAddScript.coinAmount = CoinAddScript.coinAmount - c.price;
+
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         CharacterBlueprint c = characters[currentCharacterIndex];
         if (c.isUnlocked)
@@ -92,10 +99,12 @@ public class ShopManager : MonoBehaviour
         {
             buyButton.gameObject.SetActive(true);
             buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy-" + c.price;
-            if (c.price >= PlayerPrefs.GetInt("coinAmount", 0))
+
+            if (CoinAddScript.coinAmount >= c.price)
             {
                 buyButton.interactable = true;
-            }
+                
+            } 
             else
             {
                 buyButton.interactable = false;
