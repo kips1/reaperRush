@@ -39,6 +39,7 @@ TagManager:
   - DisconnectMessage
   - FIreCD
   - Waiting
+  - Invincibility
   layers:
   - Default
   - TransparentFX
