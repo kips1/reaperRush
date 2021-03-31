@@ -265,6 +265,7 @@ public class Runner : MonoBehaviourPun
         if (manager.GetComponent<GameManager>().scoreTrack == 1900)
         {
             speed = 30.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, 2000);
         }
 
 
