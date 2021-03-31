@@ -56,6 +56,15 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
     }
 
+    private void Update()
+    {
+            if (GameObject.FindGameObjectWithTag("Player") != null && GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>().zDirection == 1 && GameObject.FindGameObjectWithTag("Reaper") == null ||
+                GameObject.FindGameObjectWithTag("Reaper") != null && GameObject.FindGameObjectWithTag("Player") == null && PhotonNetwork.IsMasterClient)
+        {
+                StartCoroutine(DisplayMessageFor(5));
+            }
+    }
+
     void OnGUI()
     {
         if (PhotonNetwork.CurrentRoom == null)
@@ -101,13 +110,19 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
-        StartCoroutine(DisplayMessageFor(5));
+        
     }
 
     IEnumerator DisplayMessageFor(float time)
     {
-        GameObject.Find("Disconnect").SetActive(true);
+        foreach (Transform objects in GameObject.FindGameObjectWithTag("DisconnectMessage").GetComponentInChildren<Transform>())
+        {
+            objects.gameObject.SetActive(true);
+        }
         yield return new WaitForSeconds(time);
-        PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.NetworkClientState != ClientState.Leaving && PhotonNetwork.NetworkClientState != ClientState.Disconnected)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
     }
 }

@@ -464,6 +464,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   manager: {fileID: 8328224327490682241, guid: 91918a3a4d2f0e84a869a539d1d44741, type: 3}
   anim: {fileID: 0}
+  zDirection: 0
   distanceUnit: 0
   maxHealth: 100
   currentHealth: 0

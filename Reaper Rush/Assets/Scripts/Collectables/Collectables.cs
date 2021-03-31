@@ -17,6 +17,8 @@ public class Collectables : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (runner != null)
+        {
             if (this.transform.position.z < runner.transform.position.z - 40)
             {
                 if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
@@ -31,6 +33,7 @@ public class Collectables : MonoBehaviourPun
                     }
                 }
             }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

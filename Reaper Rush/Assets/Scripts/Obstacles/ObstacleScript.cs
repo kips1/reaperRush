@@ -39,12 +39,14 @@ public class ObstacleScript : MonoBehaviourPun
     // Deletes instance of obstacles when out of view
     private void Update()
     {
-
-        if (render.transform.position.z < runner.transform.position.z - 80)
+        if (runner != null)
         {
-            if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+            if (render.transform.position.z < runner.transform.position.z - 80)
             {
-                PhotonNetwork.Destroy(gameObject);
+                if (PhotonNetwork.IsMasterClient == true && gameObject.GetComponent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(gameObject);
+                }
             }
         }
     }

@@ -42,7 +42,7 @@ public class Runner : MonoBehaviourPun
 
     private float yVelocity = 0.0f;
     private float xDirection = 0;
-    private float zDirection = 0;
+    public float zDirection = 0;
     public float distanceUnit;
     public float maxHealth;
     public float currentHealth;
