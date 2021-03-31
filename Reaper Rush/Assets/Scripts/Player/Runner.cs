@@ -36,6 +36,12 @@ public class Runner : MonoBehaviourPun
 
     AudioSource coinSound;
     AudioSource powerUpSound;
+    AudioSource runningSound;
+    AudioSource jumpSound;
+    AudioSource stumbleSound;
+    AudioSource fallSound;
+    AudioSource roundEndSound;
+    AudioSource reaperLaughSound;
 
     // Initialise distance counter state
     private int start = 0;
@@ -56,6 +62,7 @@ public class Runner : MonoBehaviourPun
     public bool takeDamage = true;
     public bool hasLost;
     public bool antiRock;
+    public bool playSound = false;
 
     // Start is called before the first frame update
     // Initialise fields
@@ -69,13 +76,19 @@ public class Runner : MonoBehaviourPun
         var aSources = GetComponents<AudioSource>();
         coinSound = aSources[0];
         powerUpSound = aSources[1];
+        runningSound = aSources[2];
+        jumpSound = aSources[3];
+        stumbleSound = aSources[4];
+        fallSound = aSources[5];
+        roundEndSound = aSources[6];
+        reaperLaughSound = aSources[7];
         maxHealth = 100;
         currentHealth = 100;
         hasLost = false;
         antiRock = false;
+        playSound = true;
         time = 5.0f;
         photonView.RPC("SetAnimation", RpcTarget.AllBuffered);
-   
     }
 
     // Update is called once per frame
@@ -105,6 +118,9 @@ public class Runner : MonoBehaviourPun
         if (manager.GetComponent<GameManager>().bothReady)
         {
             zDirection = 1;
+            
+            if(!runningSound.isPlaying)
+            runningSound.Play();
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
         if (start == 0 && zDirection == 1)
@@ -126,6 +142,9 @@ public class Runner : MonoBehaviourPun
             // Allows the runner to jump
             if (Input.GetKeyDown(KeyCode.Space) && !hasLost)
             {
+                if (!jumpSound.isPlaying)
+                    jumpSound.Play();
+
                 photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "isJumping", true);
                 yVelocity = jumpHeight;
             }
@@ -160,6 +179,14 @@ public class Runner : MonoBehaviourPun
             hasLost = true;
             photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "hasDied", true);
             photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Die");
+            if (!fallSound.isPlaying && !roundEndSound.isPlaying && !reaperLaughSound.isPlaying && playSound)
+            {
+                fallSound.Play();
+                roundEndSound.Play();
+                reaperLaughSound.Play();
+                playSound = false;
+            }
+
             // Checks that there is more than 1 player
             if (PhotonNetwork.PlayerList.Length > 1)
             {
@@ -237,8 +264,14 @@ public class Runner : MonoBehaviourPun
             antiRock = true;
         }
 
-        // Handles coin collectible
-        if (other.gameObject.layer == 8)
+        // Play sound when hittting an obstacle
+        if (other.gameObject.layer == 25)
+        {
+            stumbleSound.Play();
+        }
+
+            // Handles coin collectible
+            if (other.gameObject.layer == 8)
         {
             coinSound.Play();
             CoinAddScript.coinAmount += 1;
@@ -252,6 +285,12 @@ public class Runner : MonoBehaviourPun
         {
             photonView.RPC("syncAnimation", RpcTarget.AllBuffered, "Collide");
         }
+    }
+
+    void PlayRunningAudio()
+    {
+        if (zDirection == 1)
+        runningSound.Play();
     }
 
     // Makes runner invulnerable for a given time
