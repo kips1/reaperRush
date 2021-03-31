@@ -100,7 +100,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             buyButton.gameObject.SetActive(true);
-            buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy-" + c.price;
+            buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "BUY " + c.price;
 
             if (CoinAddScript.coinAmount >= c.price)
             {
