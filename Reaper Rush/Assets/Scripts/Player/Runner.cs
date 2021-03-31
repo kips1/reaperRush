@@ -17,7 +17,7 @@ using static PowerUpTimer;
 public class Runner : MonoBehaviourPun
 {
     // Fields accessible in inspector
-    [SerializeField] public float speed = 25.0f;
+    [SerializeField] public float speed = 22.0f;
     [SerializeField] private float gravity = 1.0f;
     [SerializeField] private float jumpHeight = 10.0f;
 
@@ -201,13 +201,70 @@ public class Runner : MonoBehaviourPun
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
 
-        if(distanceUnit == 100)
+        if(distanceUnit == 200)
         {
             photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
         }
-        if (manager.GetComponent<GameManager>().scoreTrack == 100)
+        if (distanceUnit == 400)
         {
-            speed = 38.0f;
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 600)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 800)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 1000)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 1300)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 1600)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+        if (distanceUnit == 1900)
+        {
+            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        }
+
+        if (manager.GetComponent<GameManager>().scoreTrack == 200)
+        {
+            speed = 23.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 400)
+        {
+            speed = 24.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 600)
+        {
+            speed = 25.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 800)
+        {
+            speed = 26.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1000)
+        {
+            speed = 27.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1300)
+        {
+            speed = 28.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1600)
+        {
+            speed = 29.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1900)
+        {
+            speed = 30.0f;
         }
 
 
