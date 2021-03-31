@@ -39,12 +39,12 @@ public class HealthBar : MonoBehaviour
         if (!runner.GetComponent<Runner>().takeDamage)
         {
             health.gameObject.SetActive(false);
-            invul.gameObject.SetActive(true);
+            invul.enabled = true;
         }
         else
         {
             health.gameObject.SetActive(true);
-            invul.gameObject.SetActive(false);
+            invul.enabled = false;
         }
     }
 }
