@@ -37,6 +37,8 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CharacterBlueprint c = characters[currentCharacterIndex];
+        if(c.isUnlocked)
         options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
         UpdateUI();
     }

@@ -16,7 +16,7 @@ public class CoinAddScript : MonoBehaviour
 {
     Text text;
 
-    public static int coinAmount = 20;
+    public static int coinAmount = 0;
 
     // Start is called before the first frame update
     // Initialise fields
