@@ -28,6 +28,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     private GameObject manager;
 
     public bool gameEnded;
+    bool connected;
 
     // Start is called before the first frame update
     public void Start()
@@ -58,11 +59,15 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-            if (GameObject.FindGameObjectWithTag("Player") != null && GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>().zDirection == 1 && GameObject.FindGameObjectWithTag("Reaper") == null ||
-                GameObject.FindGameObjectWithTag("Reaper") != null && GameObject.FindGameObjectWithTag("Player") == null && PhotonNetwork.IsMasterClient)
-            {
-                StartCoroutine(DisplayMessageFor(5));
-            }
+        if (GameObject.FindGameObjectWithTag("Reaper"))
+        {
+            connected = true;
+        }
+        if (GameObject.FindGameObjectWithTag("Player") != null && GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>().zDirection == 1 && GameObject.FindGameObjectWithTag("Reaper") == null ||
+            GameObject.FindGameObjectWithTag("Reaper") != null && GameObject.FindGameObjectWithTag("Player") == null && PhotonNetwork.IsMasterClient || connected && GameObject.FindGameObjectWithTag("Reaper") == null)
+        {
+            StartCoroutine(DisplayMessageFor(5));
+        }
     }
 
     void OnGUI()
@@ -115,14 +120,17 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
     IEnumerator DisplayMessageFor(float time)
     {
-        foreach (Transform objects in GameObject.FindGameObjectWithTag("DisconnectMessage").GetComponentInChildren<Transform>())
+        if (PhotonNetwork.IsConnected)
         {
-            objects.gameObject.SetActive(true);
-        }
-        yield return new WaitForSeconds(time);
-        if (PhotonNetwork.NetworkClientState != ClientState.Leaving && PhotonNetwork.NetworkClientState != ClientState.Disconnected)
-        {
-            PhotonNetwork.LeaveRoom();
+            foreach (Transform objects in GameObject.FindGameObjectWithTag("DisconnectMessage").GetComponentInChildren<Transform>())
+            {
+                objects.gameObject.SetActive(true);
+            }
+            yield return new WaitForSeconds(time);
+            if (PhotonNetwork.NetworkClientState != ClientState.Leaving && PhotonNetwork.NetworkClientState != ClientState.Disconnected)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
         }
     }
 }
