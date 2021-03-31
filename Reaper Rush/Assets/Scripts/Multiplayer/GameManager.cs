@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool runnerReadytemp;
     public bool reaperReadytemp;
     public bool bothReady;
+    public bool playersConnected;
 
 
     public static GameManager Instance { get { return _instance; } }
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         round = 0;
         finalRound = false;
         lastRound = false;
+        playersConnected = true;
     }
 
     // Update is called once per frame
@@ -188,6 +190,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator ExecuteAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        if (playersConnected)
         PhotonNetwork.LoadLevel("RoleSwap");
     }
 

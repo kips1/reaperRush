@@ -60,7 +60,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     {
             if (GameObject.FindGameObjectWithTag("Player") != null && GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>().zDirection == 1 && GameObject.FindGameObjectWithTag("Reaper") == null ||
                 GameObject.FindGameObjectWithTag("Reaper") != null && GameObject.FindGameObjectWithTag("Player") == null && PhotonNetwork.IsMasterClient)
-        {
+            {
                 StartCoroutine(DisplayMessageFor(5));
             }
     }
@@ -110,7 +110,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
-        
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().playersConnected = false;
     }
 
     IEnumerator DisplayMessageFor(float time)
