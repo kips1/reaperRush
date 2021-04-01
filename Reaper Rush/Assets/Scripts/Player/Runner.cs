@@ -118,9 +118,9 @@ public class Runner : MonoBehaviourPun
         if (manager.GetComponent<GameManager>().bothReady)
         {
             zDirection = 1;
-            
-            if(!runningSound.isPlaying)
-            runningSound.Play();
+
+            if (!runningSound.isPlaying)
+                runningSound.Play();
         }
         // Calls the Distance function when the runner's start state is 0 and the runner is moving forward
         if (start == 0 && zDirection == 1)
@@ -174,6 +174,7 @@ public class Runner : MonoBehaviourPun
         // Checks when runner has died
         if (currentHealth <= 0)
         {
+            zDirection = 0;
             speed = 0;
             distanceUnit += 0;
             hasLost = true;
@@ -201,78 +202,30 @@ public class Runner : MonoBehaviourPun
         // Balances game speed to prevent varying framerate advantage
         controller.Move(velocity * Time.deltaTime);
 
-        if(distanceUnit == 200)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+        if (distanceUnit < 1050) {
+            for (float f = 200; f < 1050; f += 200) {
+                if (distanceUnit == f)
+                {
+                    photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+                }
+            }
         }
-        if (distanceUnit == 400)
+        if (distanceUnit < 1050)
         {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+            for (float f = 1300; f < 2000; f += 300)
+            {
+                if (distanceUnit == f)
+                {
+                    photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+                }
+            }
         }
-        if (distanceUnit == 600)
+        for (float f = 200; f < 2000; f += 100)
         {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-        if (distanceUnit == 800)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-        if (distanceUnit == 1000)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-        if (distanceUnit == 1300)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-        if (distanceUnit == 1600)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-        if (distanceUnit == 1900)
-        {
-            photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-        }
-
-        if (manager.GetComponent<GameManager>().scoreTrack == 200)
-        {
-            speed = 23.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 250f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 400)
-        {
-            speed = 24.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 450f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 600)
-        {
-            speed = 25.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 650f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 800)
-        {
-            speed = 26.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 850f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 1000)
-        {
-            speed = 27.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 1050f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 1300)
-        {
-            speed = 28.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 1350f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 1600)
-        {
-            speed = 29.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 1650f);
-        }
-        if (manager.GetComponent<GameManager>().scoreTrack == 1900)
-        {
-            speed = 30.0f;
-            photonView.RPC("setScore", RpcTarget.AllBuffered, 2000f);
+            if (distanceUnit == f)
+            {
+                speed++;
+            }
         }
 
 
