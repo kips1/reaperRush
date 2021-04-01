@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-
+using TMPro;
 /*
  * Author: Josh, Kips
  * 
@@ -63,14 +63,14 @@ public class GameOver : MonoBehaviour
             Message.text = "YOU WIN!";
             Bottom.text = player2 + ": " + otherScore;
             Top.text = PhotonNetwork.NickName + ": " + myScore;
-            background.color = Color.green;
+            
         }
         else if (otherScore.Equals(myScore))
         {
             Message.text = "DRAW!";
             Bottom.text = player2 + ": " + otherScore;
             Top.text = PhotonNetwork.NickName + ": " + myScore;
-            background.color = Color.yellow;
+            
         }
     }
 }

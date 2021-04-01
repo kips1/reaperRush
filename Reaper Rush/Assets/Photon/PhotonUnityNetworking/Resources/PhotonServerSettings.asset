@@ -55,6 +55,7 @@ MonoBehaviour:
   - SetAnimation
   - StoreRunnerName
   - Timer
+  - setScore
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
