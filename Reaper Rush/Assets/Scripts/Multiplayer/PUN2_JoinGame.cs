@@ -71,26 +71,12 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
 
     void LobbyWindow(int index)
     {
-        //Connection Status and Room creation Button
-        GUILayout.BeginHorizontal();
-
-        connectionStatus.text = "Connection Status: " + PhotonNetwork.NetworkClientState;
-
-        if (joiningRoom || !PhotonNetwork.IsConnected || PhotonNetwork.NetworkClientState != ClientState.JoinedLobby)
-        {
-            GUI.enabled = false;
-        }
-
-        GUILayout.FlexibleSpace();
-
-        GUILayout.EndHorizontal();
-
         //Scroll through available rooms
         roomListScroll = GUILayout.BeginScrollView(roomListScroll, false, true);
 
         if (createdRooms.Count == 0)
         {
-            waitingMessage.gameObject.SetActive(true);
+            GUILayout.Label("No Rooms were created yet...");
         }
         else
         {
@@ -101,7 +87,7 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
                 GUILayout.Label(createdRooms[i].Name, GUILayout.Width(400));
                 GUILayout.Label(createdRooms[i].PlayerCount + "/" + createdRooms[i].MaxPlayers);
 
-                if(createdRooms[i].PlayerCount == 0)
+                if (createdRooms[i].PlayerCount == 0 || createdRooms.Count > 1)
                 {
                     Refresh();
                 }
@@ -124,7 +110,7 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
                         //Join the Room
                         PhotonNetwork.JoinRoom(createdRooms[i].Name);
                     }
-                } 
+                }
                 GUILayout.EndHorizontal();
             }
         }
@@ -137,10 +123,11 @@ public class PUN2_JoinGame : MonoBehaviourPunCallbacks
         //Player name text field
         playerName = playerNameInput.text;
 
+        GUILayout.Space(1.0f);
+
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
-
 
         GUILayout.EndHorizontal();
 
