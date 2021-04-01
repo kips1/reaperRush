@@ -52,6 +52,10 @@ public class PowerUpCoin : MonoBehaviourPunCallbacks
     void CreatePowerUp()
     {
         GameObject CoinClone = PhotonNetwork.Instantiate(PowerUpOriginal.name, new Vector3(Random.Range(-4, 4), PowerUpOriginal.transform.position.y - 4, z += x = Random.Range(100, 900)), PowerUpOriginal.transform.rotation);
+        
         CoinClone.transform.SetParent(this.transform);
+        CoinClone.transform.SetParent(this.transform);
+        CoinClone.transform.SetParent(this.transform);
+
     }
 }
