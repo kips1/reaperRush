@@ -204,21 +204,27 @@ public class Runner : MonoBehaviourPun
 
         if (distanceUnit < 1050) {
             for (float f = 200; f < 1050; f += 200) {
-                if (distanceUnit == f && manager.GetComponent<GameManager>().scoreTrack == f)
+                if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-                    speed++;
+                    if (manager.GetComponent<GameManager>().scoreTrack == f)
+                    {
+                        speed++;
+                    }
                 }
             }
         }
-        if (distanceUnit < 1050)
+        if (distanceUnit> 1000 && distanceUnit < 2000)
         {
             for (float f = 1300; f < 2000; f += 300)
             {
-                if (distanceUnit == f && manager.GetComponent<GameManager>().scoreTrack == f)
+                if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-                    speed++;
+                    if (manager.GetComponent<GameManager>().scoreTrack == f)
+                    {
+                        speed++;
+                    }
                 }
             }
         }
