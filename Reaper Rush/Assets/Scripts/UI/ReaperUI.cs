@@ -38,7 +38,7 @@ public class ReaperUI : MonoBehaviour
     void Update()
     {
         playerName.text = PhotonNetwork.NickName;
-        if (activeObject.text == "ROCK")
+        if (activeObject.text == "SHADES")
         {
             rockButton.GetComponent<Image>().color = Color.red;
         }
@@ -66,7 +66,7 @@ public class ReaperUI : MonoBehaviour
     // Changes text to the selected ability
     public void setRock()
     {
-        activeObject.text = "ROCK";
+        activeObject.text = "SHADES";
     }
 
     public void setFire()
