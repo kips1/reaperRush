@@ -207,10 +207,6 @@ public class Runner : MonoBehaviourPun
                 if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-                    if (manager.GetComponent<GameManager>().scoreTrack == f)
-                    {
-                        speed++;
-                    }
                 }
             }
         }
@@ -221,14 +217,43 @@ public class Runner : MonoBehaviourPun
                 if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
-                    if (manager.GetComponent<GameManager>().scoreTrack == f)
-                    {
-                        speed++;
-                    }
                 }
             }
         }
-        
+
+        if (manager.GetComponent<GameManager>().scoreTrack == 200)
+        {
+            speed = 23.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 400)
+        {
+            speed = 24.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 600)
+        {
+            speed = 25.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 800)
+        {
+            speed = 26.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1000)
+        {
+            speed = 27.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1300)
+        {
+            speed = 28.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1600)
+        {
+            speed = 29.0f;
+        }
+        if (manager.GetComponent<GameManager>().scoreTrack == 1900)
+        {
+            speed = 30.0f;
+        }
+
 
 
     }
