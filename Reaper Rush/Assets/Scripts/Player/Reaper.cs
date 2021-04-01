@@ -30,6 +30,8 @@ public class Reaper : MonoBehaviourPun
     private Vector3 obstacleSpawn;
 
     AudioSource fireSound;
+    AudioSource reaperLaughSound;
+    AudioSource roundEndSound;
 
     private float xDirection = 0;
     private float zDirection = 0;
@@ -50,6 +52,8 @@ public class Reaper : MonoBehaviourPun
         manager = GameObject.FindGameObjectWithTag("Manager");
         var aSources = GetComponents<AudioSource>();
         fireSound = aSources[0];
+        roundEndSound = aSources[1];
+        reaperLaughSound = aSources[2];
     }
 
     // Update is called once per frame
@@ -75,6 +79,11 @@ public class Reaper : MonoBehaviourPun
         if (manager.GetComponent<GameManager>().dead)
         {
             zDirection = 0;
+            if (!roundEndSound.isPlaying)
+                roundEndSound.Play();
+
+            if (!reaperLaughSound.isPlaying)
+                reaperLaughSound.Play();
         }
 
         // Move right
