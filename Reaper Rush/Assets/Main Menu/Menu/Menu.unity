@@ -3877,7 +3877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &801712773395322292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26329,37 +26329,37 @@ MonoBehaviour:
     index: 0
     price: 0
     isUnlocked: 0
-  - name: Female_04_V01
-    index: 0
+  - name: 2
+    index: 1
     price: 5
     isUnlocked: 0
-  - name: Female_04_V02
-    index: 0
+  - name: 3
+    index: 2
     price: 10
     isUnlocked: 0
-  - name: Male_06_V01
-    index: 0
+  - name: 4
+    index: 3
     price: 15
     isUnlocked: 0
-  - name: Male_06_V02
-    index: 0
+  - name: 5
+    index: 4
     price: 20
     isUnlocked: 0
-  - name: Female_05_V01
-    index: 0
-    price: 25
-    isUnlocked: 0
-  - name: Female_05_V02
-    index: 0
+  - name: 6
+    index: 5
     price: 30
     isUnlocked: 0
-  - name: Male_01_V01
-    index: 0
-    price: 35
-    isUnlocked: 0
-  - name: Male_01_V02
-    index: 0
+  - name: 7
+    index: 6
     price: 40
+    isUnlocked: 0
+  - name: 8
+    index: 7
+    price: 50
+    isUnlocked: 0
+  - name: 9
+    index: 8
+    price: 99
     isUnlocked: 0
   buyButton: {fileID: 2729081903558226597}
 --- !u!4 &3744557847793561382
