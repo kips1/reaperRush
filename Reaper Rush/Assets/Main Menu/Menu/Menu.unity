@@ -5120,7 +5120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -148.00145, y: 188}
+  m_AnchoredPosition: {x: -148.00146, y: 188}
   m_SizeDelta: {x: -460.98828, y: 260.97833}
   m_Pivot: {x: 0.50000006, y: 0.49999988}
 --- !u!114 &801712773651851372
@@ -6598,7 +6598,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -324.0003, y: 296}
+  m_AnchoredPosition: {x: -324.00034, y: 296}
   m_SizeDelta: {x: -1840, y: 57.819702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801712773990925117
@@ -8257,7 +8257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -147.99998, y: -219}
+  m_AnchoredPosition: {x: -148, y: -219}
   m_SizeDelta: {x: -460.99146, y: 260.97534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801712774343880436
@@ -8515,7 +8515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -145.99995, y: -483}
+  m_AnchoredPosition: {x: -145.99997, y: -483}
   m_SizeDelta: {x: -460.98828, y: 260.97833}
   m_Pivot: {x: 0.50000006, y: 0.49999988}
 --- !u!114 &801712774407062809
@@ -20778,7 +20778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3744557847793561381}
+      - m_Target: {fileID: 0}
         m_MethodName: UnlockCharacter
         m_Mode: 1
         m_Arguments:
@@ -25264,7 +25264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.78039217, b: 0.34117648, a: 1}
+  m_Color: {r: 1, g: 0.78039217, b: 0.34117648, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25287,7 +25287,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3744557846295278623}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -25382,7 +25382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3744557846330630432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26066,7 +26066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3744557847793561381}
+      - m_Target: {fileID: 3744557847793561384}
         m_MethodName: ChangePrevious
         m_Mode: 1
         m_Arguments:
@@ -26197,7 +26197,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3744557847793561381}
+      - m_Target: {fileID: 3744557847793561384}
         m_MethodName: ChangeNext
         m_Mode: 1
         m_Arguments:
@@ -26300,68 +26300,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 99
   reverse: 0
---- !u!114 &3744557847793561381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744557847793561383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6428d7235f344ef4599f24d55aab6afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCharacterIndex: 0
-  characterModels:
-  - {fileID: 6156354185968371576}
-  - {fileID: 2262386541153734054}
-  - {fileID: 1822789063767737330}
-  - {fileID: 1829011238904414822}
-  - {fileID: 7960259471848268980}
-  - {fileID: 9755542587958593}
-  - {fileID: 9198395300006903369}
-  - {fileID: 8156187035285482554}
-  - {fileID: 8529637643062854072}
-  options: {fileID: 0}
-  characters:
-  - name: Runner1
-    index: 0
-    price: 0
-    isUnlocked: 0
-  - name: 2
-    index: 1
-    price: 5
-    isUnlocked: 0
-  - name: 3
-    index: 2
-    price: 10
-    isUnlocked: 0
-  - name: 4
-    index: 3
-    price: 15
-    isUnlocked: 0
-  - name: 5
-    index: 4
-    price: 20
-    isUnlocked: 0
-  - name: 6
-    index: 5
-    price: 30
-    isUnlocked: 0
-  - name: 7
-    index: 6
-    price: 40
-    isUnlocked: 0
-  - name: 8
-    index: 7
-    price: 50
-    isUnlocked: 0
-  - name: 9
-    index: 8
-    price: 99
-    isUnlocked: 0
-  buyButton: {fileID: 2729081903558226597}
 --- !u!4 &3744557847793561382
 Transform:
   m_ObjectHideFlags: 0
@@ -26394,7 +26332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744557847793561382}
-  - component: {fileID: 3744557847793561381}
+  - component: {fileID: 3744557847793561384}
   - component: {fileID: 3744557847793561380}
   m_Layer: 0
   m_Name: Characters
@@ -26403,6 +26341,68 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3744557847793561384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744557847793561383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6428d7235f344ef4599f24d55aab6afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCharacterIndex: 0
+  characterModels:
+  - {fileID: 6156354185968371576}
+  - {fileID: 2262386541153734054}
+  - {fileID: 1822789063767737330}
+  - {fileID: 1829011238904414822}
+  - {fileID: 7960259471848268980}
+  - {fileID: 9755542587958593}
+  - {fileID: 9198395300006903369}
+  - {fileID: 8156187035285482554}
+  - {fileID: 8529637643062854072}
+  options: {fileID: 0}
+  characters:
+  - name: Runner1
+    index: 0
+    price: 0
+    isUnlocked: 0
+  - name: 1
+    index: 1
+    price: 10
+    isUnlocked: 0
+  - name: 2
+    index: 2
+    price: 20
+    isUnlocked: 0
+  - name: 3
+    index: 3
+    price: 30
+    isUnlocked: 0
+  - name: 4
+    index: 4
+    price: 40
+    isUnlocked: 0
+  - name: 5
+    index: 5
+    price: 50
+    isUnlocked: 0
+  - name: 6
+    index: 6
+    price: 60
+    isUnlocked: 0
+  - name: 7
+    index: 7
+    price: 70
+    isUnlocked: 0
+  - name: 8
+    index: 8
+    price: 99
+    isUnlocked: 0
+  buyButton: {fileID: 2729081903558226597}
 --- !u!95 &3744557847835527555
 Animator:
   serializedVersion: 3
