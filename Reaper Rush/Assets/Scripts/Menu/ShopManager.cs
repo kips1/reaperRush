@@ -38,8 +38,8 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         CharacterBlueprint c = characters[currentCharacterIndex];
-        if(c.isUnlocked)
-        options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
+        if (c.isUnlocked)
+            options.GetComponent<Options>().runnerName = characterModels[currentCharacterIndex].name;
         UpdateUI();
     }
 
@@ -114,6 +114,6 @@ public class ShopManager : MonoBehaviour
             }
 
         }
-        
+
     }
 }
