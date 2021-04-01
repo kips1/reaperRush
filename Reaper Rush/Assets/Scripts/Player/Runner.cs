@@ -207,6 +207,7 @@ public class Runner : MonoBehaviourPun
                 if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+                    speed++;
                 }
             }
         }
@@ -217,16 +218,11 @@ public class Runner : MonoBehaviourPun
                 if (distanceUnit == f)
                 {
                     photonView.RPC("setScore", RpcTarget.AllBuffered, distanceUnit);
+                    speed++;
                 }
             }
         }
-        for (float f = 200; f < 2000; f += 100)
-        {
-            if (distanceUnit == f)
-            {
-                speed++;
-            }
-        }
+        
 
 
     }
