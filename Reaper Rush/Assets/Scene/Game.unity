@@ -493,7 +493,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 479a8481ce9fbb94cbd58e50674b8cf1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.053
+  m_Volume: 0.013
   m_Pitch: 0.86
   Loop: 0
   Mute: 0
@@ -928,6 +928,8 @@ MonoBehaviour:
   distanceScore: 0
   distanceScored: 0
   secondScore: 0
+  countdown: 0
+  scoreTrack: 0
   finalRound: 0
   lastRound: 0
   firstDead: 0
@@ -938,3 +940,4 @@ MonoBehaviour:
   runnerReadytemp: 0
   reaperReadytemp: 0
   bothReady: 0
+  playersConnected: 0
